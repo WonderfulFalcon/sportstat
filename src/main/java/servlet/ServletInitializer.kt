@@ -4,7 +4,7 @@ import config.Configuration
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
 
 
-class SpringServlet : AbstractAnnotationConfigDispatcherServletInitializer()
+class ServletInitializer : AbstractAnnotationConfigDispatcherServletInitializer()
 {
     override fun getRootConfigClasses(): Array<out Class<*>>? {
         return null
