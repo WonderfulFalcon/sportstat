@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView
 @EnableWebMvc
 @Configuration
 @ComponentScan(value="controllers")
-open class Configuration: WebMvcConfigurerAdapter()
+open class ConfigurationMvc : WebMvcConfigurerAdapter()
 {
     @Bean
     open fun viewResolver() : InternalResourceViewResolver

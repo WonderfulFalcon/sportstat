@@ -1,17 +1,16 @@
-package servlet
+package config
 
-import config.Configuration
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
 
 
-class ServletInitializer : AbstractAnnotationConfigDispatcherServletInitializer()
+class ApplicationConfig : AbstractAnnotationConfigDispatcherServletInitializer()
 {
     override fun getRootConfigClasses(): Array<out Class<*>>? {
-        return null
+        return arrayOf(ConfigurationDataBase::class.java)
     }
 
     override fun getServletConfigClasses(): Array<out Class<*>>? {
-        return arrayOf(Configuration::class.java)
+        return arrayOf(ConfigurationMvc::class.java)
     }
 
     override fun getServletMappings(): Array<out String>? {

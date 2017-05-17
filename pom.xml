@@ -11,31 +11,54 @@
 
     <properties>
         <jdk.version>1.8</jdk.version>
+        <kotlin.version>1.1.2-3</kotlin.version>
         <spring.version>4.3.8.RELEASE</spring.version>
         <jstl.version>1.2</jstl.version>
         <servletapi.version>3.1.0</servletapi.version>
+        <postgres.jdbc.version>9.4.1212</postgres.jdbc.version>
     </properties>
 
     <dependencies>
-
+        <!-- Kotlin Start -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-runtime</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <!-- Kotlin end-->
+        <!-- Spring start-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- Spring end -->
+        <!-- JSP start -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
-
         <!-- compile only, deployed container will provide this -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -43,7 +66,13 @@
             <version>${servletapi.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- JSP end -->
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.jdbc.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
