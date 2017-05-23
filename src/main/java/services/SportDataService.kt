@@ -1,6 +1,7 @@
 package services
 
-import database.dao.CountryDAO
+
+import database.dao.DAO
 import model.Country
 import model.football.Team
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component
 class SportDataService() : SportData
 {
     @Autowired
-    lateinit var countryDAO: CountryDAO
+    lateinit var countryDAO: DAO<database.entity.Country>
 
     override fun getTeam(teamId: Int): Team
     {
@@ -26,7 +27,7 @@ class SportDataService() : SportData
     {
         try
         {
-            return countryDAO.getAllCounties().map{ c -> Country(c.name) }
+            return countryDAO.getAll().map{ c -> Country(c.name) }
         }
         catch(e : RuntimeException)
         {
