@@ -10,23 +10,21 @@ import java.sql.ResultSet
 import java.sql.SQLException
 import java.util.*
 
-/**
- * Created by WonderfulFalcon on 13.05.2017.
- */
+
 @Service
 class CountryDAO(var dataSource : DriverManagerDataSource)
 {
     fun getAllCounties() : MutableList<Country>
     {
-        var sql : String = "SELECT * FROM \"Country\"";
+        val sql : String = "SELECT * FROM \"Country\"";
 
-        var conn : Connection
+        val conn : Connection
 
         try {
             conn = dataSource.getConnection();
-            var ps : PreparedStatement = conn.prepareStatement(sql);
-            var rs : ResultSet = ps.executeQuery();
-            var countryList : MutableList<Country> = ArrayList()
+            val ps : PreparedStatement = conn.prepareStatement(sql);
+            val rs : ResultSet = ps.executeQuery();
+            val countryList : MutableList<Country> = ArrayList()
             if (rs.next())
             {
                 countryList.add(Country(
