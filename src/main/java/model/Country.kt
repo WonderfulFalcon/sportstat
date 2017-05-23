@@ -1,11 +1,8 @@
 package model
 
 
-class Country(name: String)
+class Country(name : String)
 {
-    private val name : String = name;
-
-    fun getName() : String {
-        return name;
-    }
+    val Name : String = name
+        get
 }
