@@ -6,7 +6,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 class ApplicationConfig : AbstractAnnotationConfigDispatcherServletInitializer()
 {
     override fun getRootConfigClasses(): Array<out Class<*>>? {
-        return arrayOf(ConfigurationDataBase::class.java)
+        return arrayOf(ConfigurationDataBase::class.java, WebConfiguration::class.java)
     }
 
     override fun getServletConfigClasses(): Array<out Class<*>>? {
