@@ -1,7 +1,6 @@
 package database.dao
 
 import database.entity.Country
-import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.springframework.stereotype.Service
 import java.sql.Connection
@@ -12,12 +11,11 @@ import java.util.*
 
 
 @Service
-class CountryDAO(var dataSource : DriverManagerDataSource)
+open class CountryDAO(val dataSource: DriverManagerDataSource)
 {
     fun getAllCounties() : Collection<Country>
     {
         val sql : String = "SELECT * FROM \"Country\"";
-
         val conn : Connection
 
         try

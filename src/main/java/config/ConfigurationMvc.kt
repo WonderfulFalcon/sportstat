@@ -10,13 +10,13 @@ import org.springframework.web.servlet.view.JstlView
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(value="controllers")
+@ComponentScan(value="controllers, config")
 open class ConfigurationMvc : WebMvcConfigurerAdapter()
 {
     @Bean
     open fun viewResolver() : InternalResourceViewResolver
     {
-        var resolver: InternalResourceViewResolver = InternalResourceViewResolver()
+        val resolver: InternalResourceViewResolver = InternalResourceViewResolver()
         resolver.setViewClass(JstlView::class.java)
         resolver.setPrefix("/WEB-INF/views/")
         resolver.setSuffix(".jsp")
