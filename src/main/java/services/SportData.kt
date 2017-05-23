@@ -3,7 +3,7 @@ package services
 import model.Country
 import model.football.Team
 
-interface FootballDataService
+interface SportData
 {
     fun getCountries() : Collection<Country>;
 

@@ -14,14 +14,15 @@ import java.util.*
 @Service
 class CountryDAO(var dataSource : DriverManagerDataSource)
 {
-    fun getAllCounties() : MutableList<Country>
+    fun getAllCounties() : Collection<Country>
     {
         val sql : String = "SELECT * FROM \"Country\"";
 
         val conn : Connection
 
-        try {
-            conn = dataSource.getConnection();
+        try
+        {
+            conn = dataSource.connection;
             val ps : PreparedStatement = conn.prepareStatement(sql);
             val rs : ResultSet = ps.executeQuery();
             val countryList : MutableList<Country> = ArrayList()
@@ -34,7 +35,9 @@ class CountryDAO(var dataSource : DriverManagerDataSource)
             rs.close()
             ps.close()
             return countryList
-        } catch (e : SQLException) {
+        }
+        catch (e : SQLException)
+        {
             throw RuntimeException(e)
         }
     }
