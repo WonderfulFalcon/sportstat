@@ -10,13 +10,13 @@ import services.SportData
 open class HomeController
 {
     @Autowired
-    lateinit var sportData: SportData
+    lateinit var sportData : SportData
 
     @RequestMapping(value = "/home.htm")
     open fun mainTable(): ModelAndView
     {
         val view : ModelAndView = ModelAndView("home")
-        view.addObject("countries", sportData.getTeam(0))
+        view.addObject("countries", sportData.getCountries())
         return view
     }
 }

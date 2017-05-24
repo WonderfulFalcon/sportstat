@@ -2,11 +2,16 @@ package config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import services.SportDataService
+import services.DataItems
+import services.SportData
+import services.providers.CountryProvider
 
 @Configuration
 open class WebConfiguration
 {
     @Bean
-    open fun sportData() : SportDataService = SportDataService()
+    open fun countries() : DataItems.Countries = CountryProvider.InternalCountryProvider()
+
+    @Bean
+    open fun sportData() : SportData = SportData()
 }
