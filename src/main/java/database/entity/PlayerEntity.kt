@@ -1,34 +1,14 @@
 package database.entity
 
+import database.dao.constants.Man
 import database.dao.constants.PlayerRole
 import database.dao.constants.WorkingLeg
-import java.time.LocalDate
 import java.util.*
 
-class PlayerEntity(id : Long)
+class PlayerEntity(id : Long) : Man()
 {
     val Id : Long = id
         get
-
-    var Name : String? = null
-        get
-        set
-
-    var Surname : String? = null
-        get
-        set
-
-    var SecondName : String? = null
-        get
-        set
-
-    var Citizenships : Collection<CountryEntity> = ArrayList()
-        get
-        set
-
-    var DateOfBirth : LocalDate? = null
-        get
-        set
 
     var Role : PlayerRole? = null
         get
@@ -64,6 +44,4 @@ class PlayerEntity(id : Long)
     {
         return Objects.hashCode(Id)
     }
-
-    fun fullName() : String = "$Name $SecondName $SecondName"
 }

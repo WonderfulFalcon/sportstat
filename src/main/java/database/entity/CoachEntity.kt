@@ -1,32 +1,12 @@
 package database.entity
 
-import java.time.LocalDate
+import database.dao.constants.Man
 import java.util.*
 
-class CoachEntity(id : Long)
+class CoachEntity(id : Long) : Man()
 {
     val Id : Long = id
         get
-
-    var Name : String? = null
-        get
-        set
-
-    var Surname : String? = null
-        get
-        set
-
-    var SecondName : String? = null
-        get
-        set
-
-    var DateOfBirth : LocalDate? = null
-        get
-        set
-
-    var Citizenships : Collection<CountryEntity> = ArrayList()
-        get
-        set
 
     override fun equals(other: Any?): Boolean
     {
