@@ -1,11 +1,9 @@
 package database.entity
 
-import database.dao.constants.PlayerRole
-import database.dao.constants.WorkingLeg
 import java.time.LocalDate
 import java.util.*
 
-class PlayerEntity(id : Long)
+class CoachEntity(id : Long)
 {
     val Id : Long = id
         get
@@ -22,27 +20,11 @@ class PlayerEntity(id : Long)
         get
         set
 
-    var Citizenships : Collection<CountryEntity> = ArrayList()
-        get
-        set
-
     var DateOfBirth : LocalDate? = null
         get
         set
 
-    var Role : PlayerRole? = null
-        get
-        set
-
-    var WorkingLeg : WorkingLeg? = null
-        get
-        set
-
-    var Height : Int? = null
-        get
-        set
-
-    var Weight : Int? = null
+    var Citizenships : Collection<CountryEntity> = ArrayList()
         get
         set
 
@@ -53,7 +35,7 @@ class PlayerEntity(id : Long)
             return false
         }
 
-        if (other !is PlayerEntity)
+        if (other !is CoachEntity)
         {
             return false
         }
@@ -64,6 +46,4 @@ class PlayerEntity(id : Long)
     {
         return Objects.hashCode(Id)
     }
-
-    fun fullName() : String = "$Name $SecondName $SecondName"
 }
