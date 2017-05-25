@@ -1,7 +1,7 @@
 package database.dao.javasql
 
 import database.dao.DAO
-import database.entity.Country
+import database.entity.CountryEntity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.springframework.stereotype.Service
@@ -13,12 +13,12 @@ import java.util.*
 
 
 @Service
-open class CountryDAO : DAO<Country>
+open class CountryDAO : DAO<CountryEntity>
 {
     @Autowired
     lateinit var dataSource : DriverManagerDataSource
 
-    override fun getAll(): Collection<Country>
+    override fun getAll(): Collection<CountryEntity>
     {
         val sql : String = "SELECT * FROM \"Country\"";
 
@@ -28,32 +28,32 @@ open class CountryDAO : DAO<Country>
             conn = dataSource.getConnection();
             val ps : PreparedStatement = conn.prepareStatement(sql);
             val rs : ResultSet = ps.executeQuery();
-            val countryList : MutableList<Country> = ArrayList()
+            val countryEntityList: MutableList<CountryEntity> = ArrayList()
             if (rs.next())
             {
-                countryList.add(Country(
+                countryEntityList.add(CountryEntity(
                         rs.getInt("id"),
                         rs.getString("name")))
             }
             rs.close()
             ps.close()
-            return countryList
+            return countryEntityList
         } catch (e : SQLException) {
             throw RuntimeException(e)
         }
     }
 
-    override fun getById(id: Int): Country
+    override fun getById(id: Int): CountryEntity
     {
         throw UnsupportedOperationException()
     }
 
-    override fun insert(obj: Country)
+    override fun insert(obj: CountryEntity)
     {
         throw UnsupportedOperationException()
     }
 
-    override fun insertAll(listOfObj: Collection<Country>)
+    override fun insertAll(listOfObj: Collection<CountryEntity>)
     {
         throw UnsupportedOperationException()
     }
