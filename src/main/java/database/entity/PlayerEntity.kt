@@ -44,5 +44,24 @@ class PlayerEntity(id : Long)
         get
         set
 
+    override fun equals(other: Any?): Boolean
+    {
+        if (other == null)
+        {
+            return false
+        }
+
+        if (other !is PlayerEntity)
+        {
+            return false
+        }
+        return Objects.equals(this.Id, other.Id);
+    }
+
+    override fun hashCode(): Int
+    {
+        return Objects.hashCode(Id)
+    }
+
     fun fullName() : String = "$Name $SecondName $SecondName"
 }
