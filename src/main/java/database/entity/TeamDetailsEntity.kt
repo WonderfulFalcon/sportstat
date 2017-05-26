@@ -1,28 +1,21 @@
 package database.entity
 
-import database.dao.constants.Man
-import database.dao.constants.PlayerRole
-import database.dao.constants.WorkingLeg
 import java.util.*
 
-class PlayerEntity(id : Long) : Man()
+class TeamDetailsEntity(id : Long)
 {
     val Id : Long = id
         get
 
-    var Role : PlayerRole? = null
+    var Position : Int? = null
         get
         set
 
-    var WorkingLeg : WorkingLeg? = null
+    var Players : Collection<Int>? = HashSet()
         get
         set
 
-    var Height : Int? = null
-        get
-        set
-
-    var Weight : Int? = null
+    var Coaches : Collection<Int>? = HashSet()
         get
         set
 
@@ -38,7 +31,7 @@ class PlayerEntity(id : Long) : Man()
             return false
         }
 
-        if (other !is PlayerEntity)
+        if (other !is TeamDetailsEntity)
         {
             return false
         }
@@ -49,4 +42,5 @@ class PlayerEntity(id : Long) : Man()
     {
         return Objects.hashCode(Id)
     }
+
 }

@@ -10,6 +10,11 @@ class CoachEntity(id : Long) : Man()
 
     override fun equals(other: Any?): Boolean
     {
+        if (this === other)
+        {
+            return true
+        }
+
         if (other == null)
         {
             return false
