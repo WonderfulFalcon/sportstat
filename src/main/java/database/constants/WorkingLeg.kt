@@ -1,4 +1,4 @@
-package database.dao.constants
+package database.constants
 
 enum class WorkingLeg
 {

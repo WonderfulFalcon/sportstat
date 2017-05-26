@@ -1,6 +1,7 @@
 package services.providers
 
 import database.dao.DAO
+import database.entity.CountryEntity
 import model.Country
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -12,13 +13,13 @@ class CountryProvider
     class InternalCountryProvider : DataItems.Countries
     {
         @Autowired
-        lateinit var countryDAO: DAO<database.entity.Country>
+        lateinit var countryDAO: DAO<CountryEntity>
 
         override fun getCountries(): Collection<Country>
         {
             try
             {
-                return countryDAO.getAll().map{ c -> Country(c.name) };
+                return countryDAO.getAll().map{ c -> Country(c.Name) };
             }
             catch(e : RuntimeException)
             {

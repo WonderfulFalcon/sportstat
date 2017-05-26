@@ -1,4 +1,4 @@
-package database.dao.constants
+package database.constants
 
 import database.entity.CountryEntity
 import java.time.LocalDate

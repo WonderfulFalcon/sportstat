@@ -1,8 +1,8 @@
 package database.entity
 
-import database.dao.constants.Man
-import database.dao.constants.PlayerRole
-import database.dao.constants.WorkingLeg
+import database.constants.Man
+import database.constants.PlayerRole
+import database.constants.WorkingLeg
 import java.util.*
 
 class PlayerEntity(id : Long) : Man()

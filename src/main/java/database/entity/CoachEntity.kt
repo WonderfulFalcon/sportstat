@@ -1,6 +1,6 @@
 package database.entity
 
-import database.dao.constants.Man
+import database.constants.Man
 import java.util.*
 
 class CoachEntity(id : Long) : Man()
