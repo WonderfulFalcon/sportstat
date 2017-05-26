@@ -1,0 +1,462 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.3
+-- Dumped by pg_dump version 9.6.3
+
+-- Started on 2017-05-26 08:55:23
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 6 (class 2615 OID 16547)
+-- Name: footballstat; Type: SCHEMA; Schema: -; Owner: postgres
+--
+DROP SCHEMA footballstat CASCADE;
+CREATE SCHEMA footballstat;
+
+
+ALTER SCHEMA footballstat OWNER TO postgres;
+
+SET search_path = footballstat, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 198 (class 1259 OID 16626)
+-- Name: Coach; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "Coach" (
+    id bigint NOT NULL,
+    name character varying(200) NOT NULL,
+    surname character varying(200) NOT NULL,
+    "secondName" character varying(200),
+    "dateOfBirth" bigint NOT NULL
+);
+
+
+ALTER TABLE "Coach" OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 16645)
+-- Name: Coach_Country; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "Coach_Country" (
+    "coachId" bigint NOT NULL,
+    "countryId" bigint NOT NULL
+);
+
+
+ALTER TABLE "Coach_Country" OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 16624)
+-- Name: Coach_id_seq; Type: SEQUENCE; Schema: footballstat; Owner: postgres
+--
+
+CREATE SEQUENCE "Coach_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Coach_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2191 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: Coach_id_seq; Type: SEQUENCE OWNED BY; Schema: footballstat; Owner: postgres
+--
+
+ALTER SEQUENCE "Coach_id_seq" OWNED BY "Coach".id;
+
+
+--
+-- TOC entry 188 (class 1259 OID 16550)
+-- Name: Country; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "Country" (
+    id bigint NOT NULL,
+    name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE "Country" OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 16548)
+-- Name: Country_id_seq; Type: SEQUENCE; Schema: footballstat; Owner: postgres
+--
+
+CREATE SEQUENCE "Country_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Country_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2192 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: Country_id_seq; Type: SEQUENCE OWNED BY; Schema: footballstat; Owner: postgres
+--
+
+ALTER SEQUENCE "Country_id_seq" OWNED BY "Country".id;
+
+
+--
+-- TOC entry 196 (class 1259 OID 16609)
+-- Name: Plaer_Country; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "Plaer_Country" (
+    "playerId" bigint NOT NULL,
+    "countryId" bigint NOT NULL
+);
+
+
+ALTER TABLE "Plaer_Country" OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 16558)
+-- Name: Player; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "Player" (
+    id bigint NOT NULL,
+    name character varying(200) NOT NULL,
+    surame character varying(200) NOT NULL,
+    "secondName" character varying(200),
+    "dateOfBirth" bigint NOT NULL,
+    role character varying(200) NOT NULL,
+    "workingLeg" character varying(10),
+    weight integer,
+    height integer
+);
+
+
+ALTER TABLE "Player" OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 16556)
+-- Name: Player_id_seq; Type: SEQUENCE; Schema: footballstat; Owner: postgres
+--
+
+CREATE SEQUENCE "Player_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Player_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2193 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: Player_id_seq; Type: SEQUENCE OWNED BY; Schema: footballstat; Owner: postgres
+--
+
+ALTER SEQUENCE "Player_id_seq" OWNED BY "Player".id;
+
+
+--
+-- TOC entry 192 (class 1259 OID 16569)
+-- Name: Team; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "Team" (
+    id bigint NOT NULL,
+    name character varying(200) NOT NULL,
+    "countryId" bigint NOT NULL,
+    "shortName" character varying(200) NOT NULL
+);
+
+
+ALTER TABLE "Team" OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 16582)
+-- Name: TeamDetails; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "TeamDetails" (
+    id bigint NOT NULL,
+    points smallint,
+    place smallint,
+    "teamId" bigint NOT NULL
+);
+
+
+ALTER TABLE "TeamDetails" OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 16594)
+-- Name: TeamDetails_Player; Type: TABLE; Schema: footballstat; Owner: postgres
+--
+
+CREATE TABLE "TeamDetails_Player" (
+    "teamDetailsId" bigint NOT NULL,
+    "playerId" bigint NOT NULL
+);
+
+
+ALTER TABLE "TeamDetails_Player" OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 16580)
+-- Name: TeamDetails_id_seq; Type: SEQUENCE; Schema: footballstat; Owner: postgres
+--
+
+CREATE SEQUENCE "TeamDetails_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "TeamDetails_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2194 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: TeamDetails_id_seq; Type: SEQUENCE OWNED BY; Schema: footballstat; Owner: postgres
+--
+
+ALTER SEQUENCE "TeamDetails_id_seq" OWNED BY "TeamDetails".id;
+
+
+--
+-- TOC entry 191 (class 1259 OID 16567)
+-- Name: Team_id_seq; Type: SEQUENCE; Schema: footballstat; Owner: postgres
+--
+
+CREATE SEQUENCE "Team_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Team_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2195 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: Team_id_seq; Type: SEQUENCE OWNED BY; Schema: footballstat; Owner: postgres
+--
+
+ALTER SEQUENCE "Team_id_seq" OWNED BY "Team".id;
+
+
+--
+-- TOC entry 2045 (class 2604 OID 16629)
+-- Name: Coach id; Type: DEFAULT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Coach" ALTER COLUMN id SET DEFAULT nextval('"Coach_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2041 (class 2604 OID 16553)
+-- Name: Country id; Type: DEFAULT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Country" ALTER COLUMN id SET DEFAULT nextval('"Country_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2042 (class 2604 OID 16561)
+-- Name: Player id; Type: DEFAULT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Player" ALTER COLUMN id SET DEFAULT nextval('"Player_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2043 (class 2604 OID 16572)
+-- Name: Team id; Type: DEFAULT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Team" ALTER COLUMN id SET DEFAULT nextval('"Team_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2044 (class 2604 OID 16585)
+-- Name: TeamDetails id; Type: DEFAULT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "TeamDetails" ALTER COLUMN id SET DEFAULT nextval('"TeamDetails_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2061 (class 2606 OID 16649)
+-- Name: Coach_Country CoachCitizenships; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Coach_Country"
+    ADD CONSTRAINT "CoachCitizenships" PRIMARY KEY ("coachId", "countryId");
+
+
+--
+-- TOC entry 2059 (class 2606 OID 16634)
+-- Name: Coach Coach_pkey; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Coach"
+    ADD CONSTRAINT "Coach_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 16555)
+-- Name: Country Country_pkey; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Country"
+    ADD CONSTRAINT "Country_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2057 (class 2606 OID 16613)
+-- Name: Plaer_Country PlayerCitizenships; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Plaer_Country"
+    ADD CONSTRAINT "PlayerCitizenships" PRIMARY KEY ("playerId", "countryId");
+
+
+--
+-- TOC entry 2049 (class 2606 OID 16566)
+-- Name: Player Player_pkey; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Player"
+    ADD CONSTRAINT "Player_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2053 (class 2606 OID 16587)
+-- Name: TeamDetails TeamDetails_pkey; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "TeamDetails"
+    ADD CONSTRAINT "TeamDetails_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2051 (class 2606 OID 16574)
+-- Name: Team Team_pkey; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Team"
+    ADD CONSTRAINT "Team_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2055 (class 2606 OID 16598)
+-- Name: TeamDetails_Player playerInTeam; Type: CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "TeamDetails_Player"
+    ADD CONSTRAINT "playerInTeam" PRIMARY KEY ("teamDetailsId", "playerId");
+
+
+--
+-- TOC entry 2068 (class 2606 OID 16650)
+-- Name: Coach_Country Coach; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Coach_Country"
+    ADD CONSTRAINT "Coach" FOREIGN KEY ("coachId") REFERENCES "Coach"(id);
+
+
+--
+-- TOC entry 2062 (class 2606 OID 16575)
+-- Name: Team Country; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Team"
+    ADD CONSTRAINT "Country" FOREIGN KEY ("countryId") REFERENCES "Country"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2067 (class 2606 OID 16619)
+-- Name: Plaer_Country Country; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Plaer_Country"
+    ADD CONSTRAINT "Country" FOREIGN KEY ("countryId") REFERENCES "Country"(id);
+
+
+--
+-- TOC entry 2069 (class 2606 OID 16655)
+-- Name: Coach_Country Country; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Coach_Country"
+    ADD CONSTRAINT "Country" FOREIGN KEY ("countryId") REFERENCES "Country"(id);
+
+
+--
+-- TOC entry 2066 (class 2606 OID 16614)
+-- Name: Plaer_Country Player; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "Plaer_Country"
+    ADD CONSTRAINT "Player" FOREIGN KEY ("playerId") REFERENCES "Player"(id);
+
+
+--
+-- TOC entry 2065 (class 2606 OID 16604)
+-- Name: TeamDetails_Player player; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "TeamDetails_Player"
+    ADD CONSTRAINT player FOREIGN KEY ("playerId") REFERENCES "Player"(id);
+
+
+--
+-- TOC entry 2063 (class 2606 OID 16588)
+-- Name: TeamDetails team; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "TeamDetails"
+    ADD CONSTRAINT team FOREIGN KEY ("teamId") REFERENCES "Team"(id);
+
+
+--
+-- TOC entry 2064 (class 2606 OID 16599)
+-- Name: TeamDetails_Player teamDetails; Type: FK CONSTRAINT; Schema: footballstat; Owner: postgres
+--
+
+ALTER TABLE ONLY "TeamDetails_Player"
+    ADD CONSTRAINT "teamDetails" FOREIGN KEY ("teamDetailsId") REFERENCES "TeamDetails"(id);
+
+
+-- Completed on 2017-05-26 08:55:23
+
+--
+-- PostgreSQL database dump complete
+--
+
