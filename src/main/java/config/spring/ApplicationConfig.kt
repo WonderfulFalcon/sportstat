@@ -1,5 +1,6 @@
-package config
+package config.spring
 
+import config.application.ConfigurationDataBase
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
 
 

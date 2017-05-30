@@ -16,7 +16,7 @@ open class HomeController
     open fun mainTable(): ModelAndView
     {
         val view : ModelAndView = ModelAndView("home")
-        view.addObject("countries", sportData.getCountries())
+        view.addObject("countries", sportData.getTeam(0))
         return view
     }
 }

@@ -29,7 +29,7 @@ class CountryProvider
     }
 
     @Component
-    class ApiCountryProvider : DataItems.Countries
+    class ExternalCountryProvider : DataItems.Countries
     {
         override fun getCountries(): Collection<Country>
         {
