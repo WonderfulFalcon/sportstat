@@ -1,6 +1,6 @@
 package database
 
-import config.ConfigurationDataBase
+import config.application.ConfigurationDataBase
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import java.io.File
 import java.nio.charset.Charset
@@ -18,7 +18,7 @@ fun main(args: Array<String>)
     {
         val conn: Connection = dataSource.getConnection();
         val ps: PreparedStatement = conn.prepareStatement(sql);
-        ps.executeQuery();
+        ps.execute()
         println("SUCCESS")
     }
     catch (e: SQLException)
