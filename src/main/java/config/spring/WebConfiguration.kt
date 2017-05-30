@@ -1,5 +1,6 @@
 package config.spring
 
+import config.business.ExternalProviderConfig
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import services.DataItems
@@ -22,4 +23,7 @@ open class WebConfiguration
 
     @Bean
     open fun sportData() : SportData = SportData()
+
+    @Bean
+    open fun externalProviderConfig() : ExternalProviderConfig = ExternalProviderConfig()
 }
