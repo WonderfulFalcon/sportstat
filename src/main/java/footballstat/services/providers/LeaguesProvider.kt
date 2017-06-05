@@ -1,6 +1,6 @@
 package footballstat.services.providers
 
-import footballstat.config.external.ExternalProviderConfig
+import footballstat.config.business.ExternalProviderConfig
 import footballstat.model.football.League
 import footballstat.model.football.Team
 import footballstat.model.football.TournamentStatistic

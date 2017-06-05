@@ -1,4 +1,4 @@
-package footballstat.config.external
+package footballstat.config.business
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.PropertySource
@@ -17,7 +17,4 @@ open class ExternalProviderConfig
     var competitionUrl : String = ""
 
     var leagueSuffix : String =""
-
-    var defaultLeagueId : Int = 426
-
 }

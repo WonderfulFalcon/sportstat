@@ -1,13 +1,12 @@
 package footballstat.controllers
 
-import footballstat.config.external.ExternalProviderConfig
+import footballstat.config.business.UserConfig
+import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.ModelAndView
-import footballstat.services.SportData
-import org.springframework.web.bind.annotation.CookieValue
-import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
 open class HomeController
@@ -16,23 +15,13 @@ open class HomeController
     lateinit var sportData : SportData
 
     @Autowired
-    lateinit var externalConfig: ExternalProviderConfig
+    lateinit var userConfig: UserConfig
 
     @RequestMapping(value = "/home.htm")
-    open fun mainTable(@RequestParam(value = "leagueId", required = false) userLeagueId: Int?) : ModelAndView
+    open fun mainTable(@CookieValue(value = "leagueId", required = false) userLeagueId: Int?) : ModelAndView
     {
-        val leagueId : Int
-        if (userLeagueId == null)
-        {
-            leagueId = externalConfig.defaultLeagueId
-        }
-        else
-        {
-            leagueId = userLeagueId.toInt()
-        }
-
         val view : ModelAndView = ModelAndView("home")
-        view.addObject("league", sportData.getCurrentLeague(leagueId))
+        view.addObject("league", sportData.getCurrentLeague(userLeagueId ?: userConfig.defaultLeagueId))
         return view
     }
 }
