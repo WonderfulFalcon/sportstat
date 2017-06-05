@@ -10,7 +10,7 @@ import footballstat.services.ExternalProvider
 class TeamsProvider
 {
     @Component
-    open class ExternalCountriesProvider : DataItems.Teams
+    open class ExternalTeamsProvider : DataItems.Teams
     {
         @Autowired
         lateinit var externalProvider: ExternalProvider

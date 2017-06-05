@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import footballstat.services.DataItems
 import footballstat.services.providers.CountryProvider
+import footballstat.services.providers.LeaguesProvider
 import footballstat.services.providers.TeamsProvider
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.boot.web.support.ErrorPageFilter
@@ -15,7 +16,10 @@ open class ConfigurationWeb
     open fun countries() : DataItems.Countries = CountryProvider.InternalCountryProvider()
 
     @Bean
-    open fun teams() : DataItems.Teams = TeamsProvider.ExternalCountriesProvider()
+    open fun teams() : DataItems.Teams = TeamsProvider.ExternalTeamsProvider()
+
+    @Bean
+    open fun leagues() : DataItems.Leagues = LeaguesProvider.ExternalLeaguesProvider()
 
     @Bean
     open fun errorPageFilter() : ErrorPageFilter = ErrorPageFilter()
