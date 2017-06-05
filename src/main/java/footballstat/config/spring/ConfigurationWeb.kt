@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration
 import footballstat.services.DataItems
 import footballstat.services.providers.CountryProvider
 import footballstat.services.providers.TeamsProvider
+import org.springframework.boot.web.servlet.FilterRegistrationBean
+import org.springframework.boot.web.support.ErrorPageFilter
 
 @Configuration
 open class ConfigurationWeb
@@ -14,4 +16,16 @@ open class ConfigurationWeb
 
     @Bean
     open fun teams() : DataItems.Teams = TeamsProvider.ExternalCountriesProvider()
+
+    @Bean
+    open fun errorPageFilter() : ErrorPageFilter = ErrorPageFilter()
+
+    @Bean
+    open fun disableSpringBootErrorFilter(filter : ErrorPageFilter) : FilterRegistrationBean
+    {
+        val filterRegistrationBean = FilterRegistrationBean()
+        filterRegistrationBean.filter = filter
+        filterRegistrationBean.isEnabled = false
+        return filterRegistrationBean
+    }
 }
