@@ -2,13 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <title></title>
+    <title>TITLE</title>
     </head>
     <body>
-    <ul>
-        <c:forEach items="${countries}" var="item">
-            <li>${item.toString()}</li>
-        </c:forEach>
-    </ul>
+        <p>HOME</p>
     </body>
 </html>
