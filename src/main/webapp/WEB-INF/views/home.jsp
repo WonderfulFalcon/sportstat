@@ -5,6 +5,10 @@
     <title>TITLE</title>
     </head>
     <body>
-        <p>HOME</p>
+        <ul>
+            <c:forEach items="${teams}" var="team">
+                <li>${team.name}</li>
+            </c:forEach>
+        </ul>
     </body>
 </html>

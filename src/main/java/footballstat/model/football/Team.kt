@@ -3,12 +3,12 @@ package footballstat.model.football
 import footballstat.model.Country
 import java.util.*
 
-class Team(name : String, country: Country)
+class Team(name : String)
 {
     val Name : String = name
         get
 
-    val Country : Country = country
+    val Country : Country? = null
         get
 
     var LineUp : Collection<Player> = ArrayList()
