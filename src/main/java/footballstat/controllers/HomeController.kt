@@ -18,10 +18,10 @@ open class HomeController
     lateinit var userConfig: UserConfig
 
     @RequestMapping(value = "/home.htm")
-    open fun mainTable(@CookieValue(value = "leagueId", required = false) userLeagueId: Int?) : ModelAndView
+    open fun mainTable(@CookieValue(value = "leagueId", required = false) leagueId: Int?) : ModelAndView
     {
         val view : ModelAndView = ModelAndView("home")
-        view.addObject("league", sportData.getCurrentLeague(userLeagueId ?: userConfig.defaultLeagueId))
+        view.addObject("league", sportData.getCurrentLeague(leagueId ?: userConfig.defaultLeagueId))
         return view
     }
 }
