@@ -1,10 +1,11 @@
 package footballstat.services.providers
 
+import footballstat.config.business.FootballDataOrgConfig
 import footballstat.model.football.League
 import footballstat.model.football.Team
 import footballstat.model.football.TournamentStatistic
 import footballstat.services.DataItems
-import footballstat.services.ExternalProvider
+import org.apache.http.client.fluent.Request
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
 import org.codehaus.jackson.node.ArrayNode
@@ -19,19 +20,34 @@ class LeaguesProvider
     open class ExternalLeaguesProvider : DataItems.Leagues
     {
         @Autowired
-        lateinit var externalProvider : ExternalProvider
+        lateinit var externalConfig : FootballDataOrgConfig
+
+        private val objectMapper = ObjectMapper()
+
+        override fun getCurrentLeague(leagueId: Int): League
+        {
+            val response = Request.Get(externalConfig.competitionUrl + leagueId + externalConfig.requestSuffixes.leagueTable)
+                    .execute().returnContent().asString()
+
+            return parseLeague(response)
+        }
 
         override fun getLeague(leagueId: Int, year: Int) : League
         {
-            val response = externalProvider.getResponse("http://api.football-data.org/v1/competitions/426/leagueTable")
-            val mapper = ObjectMapper()
+            //TODO: add here filter at year
+            val response = Request.Get(externalConfig.competitionUrl + leagueId + externalConfig.requestSuffixes.leagueTable)
+                    .execute().returnContent().asString()
 
-            val jsonNode = mapper.readTree(response)
+            return parseLeague(response)
+        }
+
+        private fun parseLeague(response: String): League
+        {
+            val jsonNode = objectMapper.readTree(response)
             val league = league(jsonNode)
 
             val standings = jsonNode.get("standing") as? ArrayNode
-            for (element in standings!!.elements)
-            {
+            for (element in standings!!.elements) {
                 val team = Team()
 
                 team.Name = (element.get("teamName") as? TextNode)?.textValue
@@ -42,7 +58,8 @@ class LeaguesProvider
             return league
         }
 
-        private fun league(jsonNode: JsonNode): League {
+        private fun league(jsonNode: JsonNode): League
+        {
             return with(League())
             {
                 Name = (jsonNode.get("leagueCaption") as? TextNode)?.textValue
