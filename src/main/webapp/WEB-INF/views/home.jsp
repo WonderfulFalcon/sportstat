@@ -17,12 +17,80 @@
 </div>
 <div id="gutter"></div>
 <div id="col1">
-    <h2>ENGLAND LEGUE</h2>
-    <ul>
-        <c:forEach items="${teams}" var="team">
-            <li>${team.name}</li>
-        </c:forEach>
-    </ul>
+    <h2>${league.name}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Pos.
+                </th>
+                <th>
+                    Team
+                </th>
+                <th>
+                    P
+                </th>
+                <th>
+                    W
+                </th>
+                <th>
+                    D
+                </th>
+                <th>
+                    L
+                </th>
+                <th>
+                    GS
+                </th>
+                <th>
+                    GA
+                </th>
+                <th>
+                    GD
+                </th>
+                <th>
+                    Points
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${league.teams}" var="team">
+                <tr>
+                    <td>
+                        ${team.statistic.position}
+                    </td>
+                    <td>
+                        ${team.name}
+                    </td>
+                    <td>
+                        ${team.statistic.playedGames}
+                    </td>
+                    <td>
+                        ${team.statistic.wins}
+                    </td>
+                    <td>
+                        ${team.statistic.draws}
+                    </td>
+                    <td>
+                        ${team.statistic.losses}
+                    </td>
+                    <td>
+                        ${team.statistic.goalsScored}
+                    </td>
+                    <td>
+                        ${team.statistic.goalsAgainst}
+                    </td>
+                    <td>
+                        ${team.statistic.goalsDifference}
+                    </td>
+                    <td>
+                        ${team.statistic.points}
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
 </div>
 <div id="col2">
     <h2> News </h2>
