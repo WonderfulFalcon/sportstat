@@ -1,5 +1,6 @@
 package footballstat.services.providers
 
+import footballstat.model.football.League
 import footballstat.model.football.Team
 import footballstat.model.football.TournamentStatistic
 import footballstat.services.DataItems
@@ -11,7 +12,6 @@ import org.codehaus.jackson.node.IntNode
 import org.codehaus.jackson.node.TextNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.util.*
 
 class LeaguesProvider
 {
@@ -21,14 +21,15 @@ class LeaguesProvider
         @Autowired
         lateinit var externalProvider : ExternalProvider
 
-        override fun getLeague(leagueId: Int, year: Int): Collection<Team>
+        override fun getLeague(leagueId: Int, year: Int) : League
         {
             val response = externalProvider.getResponse("http://api.football-data.org/v1/competitions/426/leagueTable")
             val mapper = ObjectMapper()
 
-            val standings = mapper.readTree(response).get("standing") as? ArrayNode
-            val league = ArrayList<Team>()
+            val jsonNode = mapper.readTree(response)
+            val league = league(jsonNode)
 
+            val standings = jsonNode.get("standing") as? ArrayNode
             for (element in standings!!.elements)
             {
                 val team = Team()
@@ -36,9 +37,18 @@ class LeaguesProvider
                 team.Name = (element.get("teamName") as? TextNode)?.textValue
                 team.Statistic = tournamentStatistic(element)
 
-                league.add(team)
+                league.Teams.add(team)
             }
             return league
+        }
+
+        private fun league(jsonNode: JsonNode): League {
+            return with(League())
+            {
+                Name = (jsonNode.get("leagueCaption") as? TextNode)?.textValue
+                MatchDay = (jsonNode.get("matchday") as? IntNode)?.intValue
+                this
+            }
         }
 
         private fun tournamentStatistic(element: JsonNode): TournamentStatistic

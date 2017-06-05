@@ -8,6 +8,10 @@ class League
         get
         set
 
+    var MatchDay : Int? = null
+        get
+        set
+
     var Year : Int? = null
         get
         set
