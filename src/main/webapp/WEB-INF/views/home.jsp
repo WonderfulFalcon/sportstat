@@ -3,176 +3,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>TemplateWorld.com Template - Web 2.0</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="images/style.css" rel="stylesheet" type="text/css" />
+    <title>FOOTBALLstat</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<!--top start -->
-<div id="top">
-    <p class="ph">
-        <span>+01-4456-6678</span>
-    </p>
+<div id="header">
+    <p class="logotext">Football<strong>Stat</strong><br>
+        <span class="logotext2">Your slogan goes here</span></p>
+    <div id="headinfo">
+        <img src="css/images/sitemap.gif"> <a href="#">Sitemap</a> | <img src="css/images/contact.gif"> <a href="#">Contact Us</a>
+    </div>
+
+</div>
+<div id="gutter"></div>
+<div id="col1">
+    <h2>ENGLAND LEGUE</h2>
     <ul>
-        <li><a href="#" class="hover">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Solutions</a></li>
-        <li><a href="#">Support</a></li>
-        <li><a href="#">Testimonials</a></li>
-        <li><a href="#">News and Events</a></li>
-        <li><a href="#">Location</a></li>
-        <li><a href="#">blog</a></li>
-        <li class="noImg"><a href="#">Contact&nbsp;Us</a></li>
+        <c:forEach items="${teams}" var="team">
+            <li>${team.name}</li>
+        </c:forEach>
     </ul>
 </div>
-<!--top end -->
-<!--body start -->
-<div id="body">
-    <!--left start -->
-    <div id="left">
-        <a href="index.html">
-            <img src="images/logo.gif" alt="pot" width="149" height="106" class="logo" title="pot" />
-        </a>
-        <h2 class="moreLink">More Links</h2>
-        <ul class="lftNav">
-            <li><a href="#">Lectus aenean suscipit</a></li>
-            <li><a href="#">Nunc ut dui</a></li>
-            <li><a href="#">Aliquam ut augue morbi</a></li>
-            <li><a href="#">Sem lacus</a></li>
-            <li><a href="#">Vestibulum vitae</a></li>
-            <li><a href="#">Sagittis atsagittis nec </a></li>
-            <li><a href="#">Turpis</a></li>
-            <li><a href="#">Pellentesque pharetra </a></li>
-            <li class="noImg2"><a href="#">Leout adipiscing</a></li>
-        </ul>
-        <p class="lftBot"></p>
-        <h2 class="catagory">Categories</h2>
-        <ul class="lftNav">
-            <li><a href="#">Cras commodo</a></li>
-            <li><a href="#">Suspendisse purrasut</a></li>
-            <li><a href="#">Leo neurna dictum</a></li>
-            <li><a href="#">Consectetuer quisque</a></li>
-            <li><a href="#">Felis</a></li>
-            <li><a href="#">Aliquam erat volutpat</a></li>
-            <li><a href="#">Ut ultrices nisi</a></li>
-            <li><a href="#">Euismod accumsan</a></li>
-            <li class="noImg2"><a href="#">Lectus nisi mollis arcu</a></li>
-        </ul>
-        <p class="lftBot"></p>
-        <ul class="botLink">
-            <li class="subscribe"><a href="#">Subscribe Here</a></li>
-            <li class="tellFriend"><a href="#">Tell A Friend</a></li>
-        </ul>
+<div id="col2">
+    <h2> News </h2>
+    <div class="box">
+        <span style="color:#FF9934; font-weight:bold;">Text1</span>
     </div>
-    <!--left end -->
-    <!--right start -->
-    <div id="right">
-        <!--rightTop start -->
-
-        <div id="rightTop">
-            <h1>containing most valuable informations</h1>
-            <img src="images/free_registration.gif" alt="" width="121" height="110" border="0" usemap="#Map" class="freeReg" />
-            <map name="Map" id="Map">
-                <area shape="rect" coords="17,17,89,97" href="#" alt="" />
-            </map>
-            <form name="memberLogin" action="#" method="post">
-                <label class="mem">Member Login</label>
-                <input type="text" name="name" value="Enter Name" class="txtBox" />
-                <input type="password" name="password" value="**********" class="txtBox" />
-                <input type="submit" name="login" value="Login" class="btnLogin" />
-                <label class="blank"></label>
-                <label class="fp"><a href="#">Forgot Password ?</a></label>
-                <label class="signup"><a href="#">Sign Up Now</a></label>
-            </form>
-            <ul>
-                <li><a href="#" class="download">Download</a></li>
-                <li><a href="#" class="question">Questions</a></li>
-                <li><a href="#" class="addItem">Add Items</a></li>
-                <li><a href="#" class="idea">Ideas</a></li>
-                <li><a href="#" class="policy">Policies</a></li>
-            </ul>
-        </div>
-        <!--rightTop end -->
-        <!--rightLeft start -->
-        <div id="rightLeft">
-            <h2>England legue</h2>
-            <ul>
-                <c:forEach items="${teams}" var="team">
-                    <li>${team.name}</li>
-                </c:forEach>
-            </ul>
-        </div>
-        <!--rightLeft end -->
-        <!--last start -->
-        <div id="last">
-            <h2 class="sponsor">Sponsors Links</h2>
-            <ul class="rightNav">
-                <li><a href="#">Lectus @ aenean.com</a></li>
-                <li><a href="#">suscipit@ Nunc.com</a></li>
-                <li><a href="#">Aliquam@ut&nbsp;augue.com</a></li>
-                <li><a href="#">morbi@Sem.com</a></li>
-                <li class="noImg3"><a href="#">Vestibulum@vitae.com</a></li>
-            </ul>
-            <p class="rightBot"></p>
-            <ul class="rightBotLink">
-                <li class="job"><a href="#">Join Now</a></li>
-                <li class="event"><a href="#">Join Now</a></li>
-                <li class="bookmark"><a href="#">Bookmark The Page</a></li>
-            </ul>
-        </div>
-        <!--last end -->
-        <!--update start -->
-        <div id="update">
-            <h2>Latest Updates</h2>
-            <h3>On 01st October 2007</h3>
-            <p class="updateTxt">
-                Mauris tempus mi vehicula ipsum. Donec gravida mattis dui. Etiam tempor <span>neque non tellus.</span> Nunc vite 	 				velit ut purus pellentesque adipiscing. Integer estIn justo elit, pellentesque at,
-            </p>
-            <a href="#" class="more">Read More</a>
-            <br class="spacer" />
-        </div>
-        <!--update end -->
-        <!--update start -->
-        <div id="service">
-            <h2>Current Services</h2>
-            <h3>Fusce tempus</h3>
-            <ul>
-                <li><a href="#">Mauris tempus mi vehicula ipsum. Donec gravida</a></li>
-                <li><a href="#">Etiam tempor neque non tellus</a></li>
-                <li><a href="#">Nunc vitae velit ut purus pellentesque</a></li>
-            </ul>
-            <a href="#" class="more2">Read More</a>
-            <br class="spacer" />
-        </div>
-        <!--update end -->
-        <br class="spacer" />
+    <div class="box">
+        <span style="color:#FF9934; font-weight:bold;">Text2</span>
     </div>
-    <!--right end -->
-    <br class="spacer" />
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Search</legend>
+            <div> <span>
+      <label for="txtsearch"> <img src="css/images/search.gif" alt="search" /> :search</label>
+      </span> <span>
+      <input type="text" value="demo only" name="txtsearch" title="Text input: search" id="txtsearch" size="25" />
+      </span> </div>
+        </fieldset>
+    </form>
 </div>
-<!--body end -->
-<!--footer start -->
-<div id="footerMain">
-
-    <div id="footer">
-        <ul>
-            <li><a href="#">Home</a> |</li>
-            <li><a href="#">About Us</a> |</li>
-            <li><a href="#">Solutions</a> |</li>
-            <li><a href="#">Support</a> |</li>
-            <li><a href="#">Testimonials</a> |</li>
-            <li><a href="#">News and Events</a> |</li>
-            <li><a href="#">Location</a> |</li>
-            <li><a href="#">blog</a> |</li>
-            <li><a href="#">Contact&nbsp;Us</a></li>
+<div id="col3">
+    <div id="navcontainer">
+        <ul id="navlist">
+            <li class="links">Navigate</li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Contact</a></li>
+            <li class="links">Articles</li>
+            <li><a href="#">Article 1</a></li>
+            <li><a href="#">Article 2</a></li>
+            <li><a href="#">Article 3</a></li>
+            <li><a href="#">Article 4</a></li>
+            <li><a href="#">Article 5</a></li>
+            <li><a href="#">Article 6</a> </li>
+            <li class="links">Archives</li>
+            <li><a href="#">April 2007</a></li>
+            <li><a href="#">March 2007</a></li>
+            <li><a href="#">Feb 2007</a></li>
+            <li><a href="#">Jan 2007</a></li>
+            <li><a href="#">Dec 2006</a></li>
+            <li><a href="#">Nov 2006</a></li>
         </ul>
-        <p class="copyright">Copyright © Pot 20XX. All Rights Reserved.</p>
-        <a href="http://validator.w3.org/check?uri=referer" class="xhtml">XHTML</a>
-        <a href="http://jigsaw.w3.org/css-validator/check/referer" class="css">Css</a>
-
     </div>
 </div>
-<!--footer end -->
+<div id="footer"> <a href="#">homepage</a> | <a href="#">contact</a> | &copy; 2017 Anyone | Design by no-name | Licensed under a free </div>
 </body>
 </html>
+
 
