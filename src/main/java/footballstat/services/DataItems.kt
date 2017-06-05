@@ -2,6 +2,7 @@ package footballstat.services
 
 import footballstat.model.Country
 import footballstat.model.football.Team
+import java.time.Year
 
 interface DataItems
 {
@@ -17,6 +18,6 @@ interface DataItems
 
     interface Leagues
     {
-        fun getLeague(countryId : Int) : Collection<Team>
+        fun getLeague(leagueId : Int, year: Int) : Collection<Team>
     }
 }

@@ -1,39 +1,26 @@
 package footballstat.services
 
 
-import footballstat.model.Country
 import footballstat.model.football.Team
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-open class SportData : DataItems.Leagues, DataItems.Countries, DataItems.Teams
+open class SportData : DataItems.Leagues, DataItems.Teams
 {
     @Autowired
-    lateinit var countries : DataItems.Countries
+    lateinit var teams : DataItems.Teams
 
     @Autowired
-    lateinit var teams : DataItems.Teams
+    lateinit var leagues : DataItems.Leagues
 
     override fun getTeam(teamId: Int): Team
     {
         return teams.getTeam(teamId)
     }
 
-    override fun getLeague(countryId: Int): Collection<Team>
+    override fun getLeague(leagueId: Int, year: Int): Collection<Team>
     {
-        throw UnsupportedOperationException()
-    }
-
-    override fun getCountries(): Collection<Country>
-    {
-        try
-        {
-            return countries.getCountries()
-        }
-        catch(e : RuntimeException)
-        {
-            return emptyList()
-        }
+        return leagues.getLeague(leagueId, year)
     }
 }
