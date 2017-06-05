@@ -10,6 +10,14 @@ import org.springframework.stereotype.Component
 @PropertySource("classpath:config/externalProvider.cfg.yml")
 open class ExternalProviderConfig
 {
-    public var userAgent : String = ""
-    public var xAuthToken : String = ""
+    var userAgent : String = ""
+
+    var xAuthToken : String = ""
+
+    var competitionUrl : String = ""
+
+    var leagueSuffix : String =""
+
+    var defaultLeagueId : Int = 426
+
 }

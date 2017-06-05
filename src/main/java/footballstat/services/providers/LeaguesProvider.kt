@@ -1,6 +1,6 @@
 package footballstat.services.providers
 
-import footballstat.config.business.FootballDataOrgConfig
+import footballstat.config.external.ExternalProviderConfig
 import footballstat.model.football.League
 import footballstat.model.football.Team
 import footballstat.model.football.TournamentStatistic
@@ -20,24 +20,20 @@ class LeaguesProvider
     open class ExternalLeaguesProvider : DataItems.Leagues
     {
         @Autowired
-        lateinit var externalConfig : FootballDataOrgConfig
+        lateinit var externalConfig: ExternalProviderConfig
 
         private val objectMapper = ObjectMapper()
 
         override fun getCurrentLeague(leagueId: Int): League
         {
-            val response = Request.Get(externalConfig.competitionUrl + leagueId + externalConfig.requestSuffixes.leagueTable)
-                    .execute().returnContent().asString()
-
+            val response = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/").execute().returnContent().asString()
             return parseLeague(response)
         }
 
         override fun getLeague(leagueId: Int, year: Int) : League
         {
             //TODO: add here filter at year
-            val response = Request.Get(externalConfig.competitionUrl + leagueId + externalConfig.requestSuffixes.leagueTable)
-                    .execute().returnContent().asString()
-
+            val response = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/").execute().returnContent().asString()
             return parseLeague(response)
         }
 
