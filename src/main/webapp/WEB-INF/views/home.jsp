@@ -5,13 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>FOOTBALLstat</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/HomeController.js" /> "></script>
 </head>
 <body>
 <div id="header">
     <p class="logotext">Football<strong>Stat</strong><br>
         <span class="logotext2">Your slogan goes here</span></p>
     <div id="headinfo">
-        <img src="css/images/sitemap.gif"> <a href="#">Sitemap</a> | <img src="css/images/contact.gif"> <a href="#">Contact Us</a>
+        <img src="images/sitemap.gif"> <a href="#">Sitemap</a> | <img src="images/contact.gif"> <a href="#">Contact Us</a>
     </div>
 
 </div>

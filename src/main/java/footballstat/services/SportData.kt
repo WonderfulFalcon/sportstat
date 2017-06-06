@@ -20,17 +20,17 @@ open class SportData : DataItems.Leagues, DataItems.Teams
         return teams.getTeam(teamId)
     }
 
-    override fun getCurrentLeague(leagueId: Int): League
+    override fun getCurrentLeague(leagueId: Int) : League
     {
         return leagues.getCurrentLeague(leagueId)
     }
 
-    override fun getLeague(leagueId: Int, year: Int): League
+    override fun getLeague(leagueId: Int, year: Int) : League
     {
         return leagues.getLeague(leagueId, year)
     }
 
-    override fun getLeague(leagueId: Int, year: Int, matchDay: Int)
+    override fun getLeague(leagueId: Int, year: Int, matchDay: Int) : League
     {
         throw UnsupportedOperationException()
     }
