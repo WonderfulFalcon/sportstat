@@ -26,8 +26,9 @@ open class HomeController
 
     @PostMapping(value = "/leagueTable")
     open fun leagueTable(@RequestParam("leagueId", required = true) leagueId : Int,
-                         @RequestParam("matchDay", required = true) matchDay : Int)
+                         @RequestParam("matchDay", required = true) matchDay : Int) : ModelAndView
     {
         val view : ModelAndView = ModelAndView("leagueTable")
+        return view
     }
 }

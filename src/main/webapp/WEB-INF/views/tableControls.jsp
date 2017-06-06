@@ -4,7 +4,7 @@
 <div id="league-filters">
     <h1>Match day</h1>
     <div>
-        <select name="Match Day">
+        <select id="matchDay" name="Match Day">
             <c:forEach begin="1" end="${league.matchDay}" varStatus="loop">
                 <option>
                         ${loop.count}
@@ -13,5 +13,5 @@
         </select>
     </div>
 
-    <input id="leagueTable" type="button" value="Load league table">
+    <input id="leagueTable" type="button" value="Load">
 </div>
