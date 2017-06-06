@@ -1,1 +1,3 @@
-alert("HUI")
+$(document).ready(function() {
+    console.log("document ready!!!")
+});

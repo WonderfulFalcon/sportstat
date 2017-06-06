@@ -1,7 +1,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <h2>${league.name}</h2>
-<table>
+<table class="league-table">
   <thead>
   <tr>
     <th>
