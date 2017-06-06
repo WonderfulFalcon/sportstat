@@ -26,7 +26,7 @@ class LeaguesProvider
 
         override fun getCurrentLeague(leagueId: Int): League
         {
-            val response = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/").execute().returnContent().asString()
+            val response = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}").execute().returnContent().asString()
             return parseLeague(response)
         }
 

@@ -20,23 +20,7 @@
     <jsp:include page="leagueTable.jsp" flush="true" />
 </div>
 <div id="col2">
-    <h2> News </h2>
-    <div class="box">
-        <span style="color:#FF9934; font-weight:bold;">Text1</span>
-    </div>
-    <div class="box">
-        <span style="color:#FF9934; font-weight:bold;">Text2</span>
-    </div>
-    <form action="#" method="post">
-        <fieldset>
-            <legend>Search</legend>
-            <div> <span>
-      <label for="txtsearch"> <img src="css/images/search.gif" alt="search" /> :search</label>
-      </span> <span>
-      <input type="text" value="demo only" name="txtsearch" title="Text input: search" id="txtsearch" size="25" />
-      </span> </div>
-        </fieldset>
-    </form>
+    <jsp:include page="tableControls.jsp" flush="true" />
 </div>
 <div id="col3">
     <div id="navcontainer">
@@ -48,13 +32,6 @@
             <li><a href="#">Portfolio</a></li>
             <li><a href="#">Resources</a></li>
             <li><a href="#">Contact</a></li>
-            <li class="links">Articles</li>
-            <li><a href="#">Article 1</a></li>
-            <li><a href="#">Article 2</a></li>
-            <li><a href="#">Article 3</a></li>
-            <li><a href="#">Article 4</a></li>
-            <li><a href="#">Article 5</a></li>
-            <li><a href="#">Article 6</a> </li>
             <li class="links">Archives</li>
             <li><a href="#">April 2007</a></li>
             <li><a href="#">March 2007</a></li>

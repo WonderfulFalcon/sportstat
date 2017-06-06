@@ -163,4 +163,8 @@ legend {
 }
 input {
 	background : #ffd090;
-} 
+}
+
+select {
+	width: 100px;
+}
