@@ -3,7 +3,6 @@ package footballstat.database.dao.javasql
 import footballstat.database.dao.DAO
 import footballstat.database.entity.CountryEntity
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.springframework.stereotype.Service
 import java.sql.Connection
 import java.sql.PreparedStatement
