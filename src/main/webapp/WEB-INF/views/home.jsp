@@ -15,7 +15,7 @@
     </p>
 </div>
 <div id="gutter"></div>
-<div id="col2">
+<div id="col2" data-league-container>
     <jsp:include page="leagueTable.jsp" flush="true" />
 </div>
 <div id="col3">

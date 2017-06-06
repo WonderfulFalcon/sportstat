@@ -29,6 +29,7 @@ open class HomeController
                          @RequestParam("matchDay", required = true) matchDay : Int) : ModelAndView
     {
         val view : ModelAndView = ModelAndView("leagueTable")
+        view.addObject("league", sportData.getLeague(leagueId, 2016, matchDay))
         return view
     }
 }
