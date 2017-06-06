@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 @Component
 @ConfigurationProperties
 @PropertySource("classpath:config/externalProvider.cfg.yml")
-open class ExternalProviderConfig
+open class FootballDataOrgConfig
 {
     var userAgent : String = ""
 
@@ -16,5 +16,7 @@ open class ExternalProviderConfig
 
     var competitionUrl : String = ""
 
-    var leagueSuffix : String =""
+    var leagueSuffix : String = ""
+
+    var matchDayFilter : String = ""
 }

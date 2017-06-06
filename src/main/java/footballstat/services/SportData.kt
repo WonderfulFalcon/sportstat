@@ -29,4 +29,9 @@ open class SportData : DataItems.Leagues, DataItems.Teams
     {
         return leagues.getLeague(leagueId, year)
     }
+
+    override fun getLeague(leagueId: Int, year: Int, matchDay: Int)
+    {
+        throw UnsupportedOperationException()
+    }
 }

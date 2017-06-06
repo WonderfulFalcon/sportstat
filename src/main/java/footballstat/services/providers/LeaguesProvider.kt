@@ -1,6 +1,6 @@
 package footballstat.services.providers
 
-import footballstat.config.business.ExternalProviderConfig
+import footballstat.config.business.FootballDataOrgConfig
 import footballstat.model.football.League
 import footballstat.model.football.Team
 import footballstat.model.football.TournamentStatistic
@@ -20,7 +20,7 @@ class LeaguesProvider
     open class ExternalLeaguesProvider : DataItems.Leagues
     {
         @Autowired
-        lateinit var externalConfig: ExternalProviderConfig
+        lateinit var externalConfig: FootballDataOrgConfig
 
         private val objectMapper = ObjectMapper()
 
@@ -32,8 +32,13 @@ class LeaguesProvider
 
         override fun getLeague(leagueId: Int, year: Int) : League
         {
-            //TODO: add here filter at year
-            val response = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/").execute().returnContent().asString()
+            throw UnsupportedOperationException("Year is not supported in FootballDataOrg api")
+        }
+
+        override fun getLeague(leagueId: Int, year: Int, matchDay: Int) : League
+        {
+            val response = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/?${externalConfig.matchDayFilter}=${matchDay}")
+                    .execute().returnContent().asString()
             return parseLeague(response)
         }
 

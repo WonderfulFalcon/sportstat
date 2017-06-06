@@ -22,5 +22,7 @@ interface DataItems
         fun getCurrentLeague(leagueId: Int) : League
 
         fun getLeague(leagueId : Int, year: Int) : League
+
+        fun getLeague(leagueId: Int, year: Int, matchDay : Int) : League
     }
 }
