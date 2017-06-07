@@ -32,6 +32,6 @@ open class SportData : DataItems.Leagues, DataItems.Teams
 
     override fun getLeague(leagueId: Int, year: Int, matchDay: Int) : League
     {
-        throw UnsupportedOperationException()
+        return leagues.getLeague(leagueId, year, matchDay)
     }
 }
