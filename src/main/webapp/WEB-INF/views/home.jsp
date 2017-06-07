@@ -6,21 +6,23 @@
     <title>Football stat</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="<c:url value="/js/HomeController.js" /> "></script>
+    <script type="text/javascript" src="<c:url value="/js/home.js" /> "></script>
 </head>
 <body>
-<div id="header">
-    <p class="logotext">Football<strong>Stat</strong><br>
-        <span class="logotext2">Your slogan goes here</span>
-    </p>
-</div>
-<div id="gutter"></div>
-<div id="col2" data-league-container>
-    <jsp:include page="leagueTable.jsp" flush="true" />
-</div>
-<div id="col3">
-    <jsp:include page="tableControls.jsp" flush="true" />
-</div>
+    <div id="header">
+        <p class="logotext">Football<strong>Stat</strong><br>
+            <span class="logotext2">Your slogan goes here</span>
+        </p>
+    </div>
+    <div id="gutter"></div>
+    <div id="col1">
+        <jsp:include page="tableControls.jsp" flush="true" />
+    </div>
+    <div id="col2" data-league-container>
+        <jsp:include page="leagueTable.jsp" flush="true" />
+    </div>
+    <div id="col3" data-players-container>
+    </div>
 <div id="footer"> <a href="#">homepage</a></div>
 </body>
 </html>

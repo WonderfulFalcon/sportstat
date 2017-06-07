@@ -32,4 +32,12 @@ open class HomeController
         view.addObject("league", sportData.getLeague(leagueId, 2016, matchDay))
         return view
     }
+
+    @PostMapping(value = "/teamPlayers")
+    open fun teamPlayers(@RequestParam("teamId", required = true) teamId : Int) : ModelAndView
+    {
+        val view : ModelAndView = ModelAndView("teamPlayers")
+        view.addObject("players", sportData.getTeamSquad(teamId))
+        return view
+    }
 }

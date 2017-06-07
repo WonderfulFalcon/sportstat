@@ -19,6 +19,7 @@ open class FootballDataOrgConfig
     var competitions : String = ""
     var teams : String = ""
     var leagueTable : String = ""
+    var players : String = ""
 
     var matchDayFilter : String =""
 }

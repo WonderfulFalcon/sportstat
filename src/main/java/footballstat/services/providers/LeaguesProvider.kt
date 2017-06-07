@@ -56,12 +56,18 @@ class LeaguesProvider
 
             val standings = jsonNode.get("standing") as? ArrayNode
             for (element in standings!!.elements) {
-                val team = Team()
+                val urlArray = (element.get("_links").get("team").get("href") as? TextNode)?.textValue?.split('/')
+                val id = if (urlArray != null) urlArray[urlArray.size - 1].toInt() else null
 
-                team.Name = (element.get("teamName") as? TextNode)?.textValue
-                team.Statistic = tournamentStatistic(element)
+                if (id != null)
+                {
+                    val team = Team(id)
 
-                league.Teams.add(team)
+                    team.Name = (element.get("teamName") as? TextNode)?.textValue
+                    team.Statistic = tournamentStatistic(element)
+
+                    league.Teams.add(team)
+                }
             }
             return league
         }

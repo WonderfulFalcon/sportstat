@@ -12,6 +12,4 @@
             </c:forEach>
         </select>
     </div>
-
-    <input id="leagueTable" type="button" value="Load">
 </div>

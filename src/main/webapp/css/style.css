@@ -104,11 +104,7 @@ a {
 	color : #006699;
 	background-color : inherit;
 }
-a:hover {
-	text-decoration : underline;
-	color : #444;
-	background : inherit;
-}
+
 a img {
 	border : 0;
 }
@@ -158,13 +154,17 @@ a img {
 }
 
 .league-table {
-	margin: auto;
 	width: 700px;
 }
 
-.league-table td {
+table {
+	margin: auto;
+}
+
+table td {
 	text-align: center;
 }
+
 
 /*SEARCH BOX*/
 input {
@@ -184,4 +184,12 @@ select {
 	text-transform : uppercase;
 	color : #015990;
 	background : transparent;
+}
+
+[data-clickable-team] {
+	cursor: pointer;
+}
+
+[data-clickable-team]:hover {
+	background-color: #ffd090;
 }

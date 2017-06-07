@@ -1,25 +1,26 @@
 package footballstat.model.football
 
-import footballstat.model.Country
 import java.util.*
 
-class Player(name: String, surname : String)
+class Player()
 {
-    val Name : String = name
-        get
-
-    val Surname : String = surname
-        get
-
-    var SecondName : String? = null
+    var Name : String? = null
         get
         set
 
-    var Citizenships : Collection<Country> = ArrayList()
+    var Citizenships : MutableSet<String> = HashSet()
         get
         set
 
     var Age : Int? = null
+        get
+        set
+
+    var Number : Int? = null
+        get
+        set
+
+    var Position : String? = null
         get
         set
 }
