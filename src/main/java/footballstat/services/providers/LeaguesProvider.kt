@@ -27,7 +27,7 @@ class LeaguesProvider
         override fun getCurrentLeague(leagueId: Int): League
         {
             val request = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}")
-            request.setHeader("X-Auth-Token", externalConfig.xAuthToken)
+            request.addHeader("X-Auth-Token", externalConfig.xAuthToken)
 
             val response = request.execute().returnContent().asString()
             return parseLeague(response)
@@ -41,7 +41,7 @@ class LeaguesProvider
         override fun getLeague(leagueId: Int, year: Int, matchDay: Int) : League
         {
             val request = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/?${externalConfig.matchDayFilter}=${matchDay}")
-            request.setHeader("X-Auth-Token", externalConfig.xAuthToken)
+            request.addHeader("X-Auth-Token", externalConfig.xAuthToken)
 
             val response = request.execute().returnContent().asString()
             return parseLeague(response)
