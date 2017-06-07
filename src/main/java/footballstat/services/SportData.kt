@@ -2,6 +2,7 @@ package footballstat.services
 
 
 import footballstat.model.football.League
+import footballstat.model.football.Player
 import footballstat.model.football.Team
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -15,9 +16,9 @@ open class SportData : DataItems.Leagues, DataItems.Teams
     @Autowired
     lateinit var leagues : DataItems.Leagues
 
-    override fun getTeam(teamId: Int): Team
+    override fun getTeamSquad(teamId: Int): Collection<Player>
     {
-        return teams.getTeam(teamId)
+        return teams.getTeamSquad(teamId)
     }
 
     override fun getCurrentLeague(leagueId: Int) : League

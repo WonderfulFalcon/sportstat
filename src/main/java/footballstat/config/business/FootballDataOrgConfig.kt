@@ -11,12 +11,14 @@ import org.springframework.stereotype.Component
 open class FootballDataOrgConfig
 {
     var userAgent : String = ""
-
     var xAuthToken : String = ""
 
-    var competitionUrl : String = ""
+    var apiUrl : String = ""
+    var apiVersion : String = ""
 
-    var leagueSuffix : String = ""
+    var competitions : String = ""
+    var teams : String = ""
+    var leagueTable : String = ""
 
-    var matchDayFilter : String = ""
+    var matchDayFilter : String =""
 }

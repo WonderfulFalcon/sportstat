@@ -20,14 +20,15 @@ class LeaguesProvider
     open class ExternalLeaguesProvider : DataItems.Leagues
     {
         @Autowired
-        lateinit var externalConfig: FootballDataOrgConfig
+        lateinit var config: FootballDataOrgConfig
 
         private val objectMapper = ObjectMapper()
 
         override fun getCurrentLeague(leagueId: Int): League
         {
-            val request = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}")
-            request.addHeader("X-Auth-Token", externalConfig.xAuthToken)
+            val url = with(config) { "${apiUrl}/${apiVersion}/${competitions}/$leagueId/${leagueTable}" }
+            val request = Request.Get(url)
+            request.addHeader("X-Auth-Token", config.xAuthToken)
 
             val response = request.execute().returnContent().asString()
             return parseLeague(response)
@@ -40,8 +41,9 @@ class LeaguesProvider
 
         override fun getLeague(leagueId: Int, year: Int, matchDay: Int) : League
         {
-            val request = Request.Get("${externalConfig.competitionUrl}/$leagueId/${externalConfig.leagueSuffix}/?${externalConfig.matchDayFilter}=${matchDay}")
-            request.addHeader("X-Auth-Token", externalConfig.xAuthToken)
+            val url = with(config) { "${apiUrl}/${apiVersion}/${competitions}/$leagueId/${leagueTable}/?${matchDayFilter}=$matchDay" }
+            val request = Request.Get(url)
+            request.addHeader("X-Auth-Token", config.xAuthToken)
 
             val response = request.execute().returnContent().asString()
             return parseLeague(response)

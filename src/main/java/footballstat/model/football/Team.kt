@@ -12,10 +12,6 @@ class Team()
     val Country : Country? = null
         get
 
-    var LineUp : Collection<Player> = ArrayList()
-        get
-        set
-
     var Statistic : TournamentStatistic? = null
         get
         set
