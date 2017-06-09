@@ -2,7 +2,7 @@ $(document).ready(function() {
     $(document).on("change", "#matchDay", function() {
         var matchDay = parseInt(this.value);
         $.ajax({
-            url: "/leagueTable",
+            url: "/league",
             type: "POST",
             dataType: "html",
             data: {

@@ -8,7 +8,7 @@ class League
         get
         set
 
-    var MatchDay : Int? = null
+    var MatchDay : Int = 0
         get
         set
 

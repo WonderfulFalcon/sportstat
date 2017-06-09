@@ -15,7 +15,7 @@ class Team(id : Int)
     val Country : Country? = null
         get
 
-    var Statistic : TournamentStatistic? = null
+    var Statistic : TournamentStatistic = TournamentStatistic()
         get
         set
 }

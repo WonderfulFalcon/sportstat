@@ -77,7 +77,7 @@ class LeaguesProvider
             return with(League())
             {
                 Name = (jsonNode.get("leagueCaption") as? TextNode)?.textValue
-                MatchDay = (jsonNode.get("matchday") as? IntNode)?.intValue
+                MatchDay =  (jsonNode.get("matchday") as? IntNode)!!.intValue
                 this
             }
         }
@@ -86,15 +86,15 @@ class LeaguesProvider
         {
             return with(TournamentStatistic())
             {
-                PlayedGames = (element.get("playedGames") as? IntNode)?.intValue
-                Position = (element.get("position") as? IntNode)?.intValue
-                Points = (element.get("points") as? IntNode)?.intValue
-                GoalsScored = (element.get("goals") as? IntNode)?.intValue
-                GoalsAgainst = (element.get("goalsAgainst") as? IntNode)?.intValue
-                GoalsDifference = (element.get("goalDifference") as? IntNode)?.intValue
-                Wins = (element.get("wins") as? IntNode)?.intValue
-                Draws = (element.get("draws") as? IntNode)?.intValue
-                Losses = (element.get("losses") as? IntNode)?.intValue
+                PlayedGames = (element.get("playedGames") as? IntNode)?.intValue!!
+                Position = (element.get("position") as? IntNode)?.intValue!!
+                Points = (element.get("points") as? IntNode)?.intValue!!
+                GoalsScored = (element.get("goals") as? IntNode)?.intValue!!
+                GoalsAgainst = (element.get("goalsAgainst") as? IntNode)?.intValue!!
+                GoalsDifference = (element.get("goalDifference") as? IntNode)?.intValue!!
+                Wins = (element.get("wins") as? IntNode)?.intValue!!
+                Draws = (element.get("draws") as? IntNode)?.intValue!!
+                Losses = (element.get("losses") as? IntNode)?.intValue!!
                 this
             }
         }

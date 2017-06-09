@@ -15,14 +15,17 @@
         </p>
     </div>
     <div id="gutter"></div>
-    <div id="col1">
+
+
+    <div id="leagueFilters">
         <jsp:include page="tableControls.jsp" flush="true" />
     </div>
-    <div id="col2" data-league-container>
-        <jsp:include page="leagueTable.jsp" flush="true" />
+
+    <div data-league-container>
+        <jsp:include page="league.jsp" flush="true" />
     </div>
+
     <div id="col3" data-players-container>
     </div>
-<div id="footer"> <a href="#">homepage</a></div>
 </body>
 </html>

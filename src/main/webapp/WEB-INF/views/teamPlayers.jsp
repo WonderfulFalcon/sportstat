@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<h2>Team squad</h2>
+<h3>Team squad</h3>
 <table>
     <thead>
         <tr>
