@@ -14,3 +14,4 @@ players : players
 
 #filters
 matchDayFilter : matchday
+forbiddenLeagueIds : 424

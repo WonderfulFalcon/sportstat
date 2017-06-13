@@ -2,6 +2,7 @@ package footballstat.services.providers
 
 import footballstat.config.business.FootballDataOrgConfig
 import footballstat.model.football.League
+import footballstat.model.football.LeagueInfo
 import footballstat.model.football.Team
 import footballstat.model.football.TournamentStatistic
 import footballstat.services.DataItems
@@ -24,24 +25,34 @@ class LeaguesProvider
 
         private val objectMapper = ObjectMapper()
 
-        override fun getCurrentLeague(leagueId: Int): League
+        override fun getAvailableLeagues(): List<LeagueInfo>
         {
-            val url = with(config) { "${apiUrl}/${apiVersion}/${competitions}/$leagueId/${leagueTable}" }
+            val url = with(config) { "$apiUrl/$apiVersion/$competitions" }
             val request = Request.Get(url)
             request.addHeader("X-Auth-Token", config.xAuthToken)
 
             val response = request.execute().returnContent().asString()
-            return parseLeague(response)
+            val jsonNode = objectMapper.readTree(response) as ArrayNode
+
+            return jsonNode.map {
+                it ->  LeagueInfo(
+                    it.get("id").intValue,
+                    it.get("caption").textValue,
+                    it.get("currentMatchday").intValue)
+            }.filter {
+                it -> !config.forbiddenLeagueIds.contains(it.Id)
+            }
         }
 
-        override fun getLeague(leagueId: Int, year: Int) : League
+        override fun getLeague(leagueId: Int, matchDay: Int?) : League
         {
-            throw UnsupportedOperationException("Year is not supported in FootballDataOrg api")
-        }
+            var url = with(config) { "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable" }
 
-        override fun getLeague(leagueId: Int, year: Int, matchDay: Int) : League
-        {
-            val url = with(config) { "${apiUrl}/${apiVersion}/${competitions}/$leagueId/${leagueTable}/?${matchDayFilter}=$matchDay" }
+            if (matchDay != null)
+            {
+                url = "$url/?${config.matchDayFilter}=$matchDay"
+            }
+
             val request = Request.Get(url)
             request.addHeader("X-Auth-Token", config.xAuthToken)
 
@@ -54,8 +65,8 @@ class LeaguesProvider
             val jsonNode = objectMapper.readTree(response)
             val league = league(jsonNode)
 
-            val standings = jsonNode.get("standing") as? ArrayNode
-            for (element in standings!!.elements) {
+            val standings = jsonNode.get("standing") as ArrayNode
+            for (element in standings.elements) {
                 val urlArray = (element.get("_links").get("team").get("href") as? TextNode)?.textValue?.split('/')
                 val id = if (urlArray != null) urlArray[urlArray.size - 1].toInt() else null
 
@@ -63,7 +74,7 @@ class LeaguesProvider
                 {
                     val team = Team(id)
 
-                    team.Name = (element.get("teamName") as? TextNode)?.textValue
+                    team.Name = (element.get("teamName") as TextNode).textValue
                     team.Statistic = tournamentStatistic(element)
 
                     league.Teams.add(team)
@@ -76,8 +87,8 @@ class LeaguesProvider
         {
             return with(League())
             {
-                Name = (jsonNode.get("leagueCaption") as? TextNode)?.textValue
-                MatchDay =  (jsonNode.get("matchday") as? IntNode)!!.intValue
+                Name = (jsonNode.get("leagueCaption") as TextNode).textValue
+                MatchDay =  (jsonNode.get("matchday") as IntNode).intValue
                 this
             }
         }
@@ -86,15 +97,15 @@ class LeaguesProvider
         {
             return with(TournamentStatistic())
             {
-                PlayedGames = (element.get("playedGames") as? IntNode)?.intValue!!
-                Position = (element.get("position") as? IntNode)?.intValue!!
-                Points = (element.get("points") as? IntNode)?.intValue!!
-                GoalsScored = (element.get("goals") as? IntNode)?.intValue!!
-                GoalsAgainst = (element.get("goalsAgainst") as? IntNode)?.intValue!!
-                GoalsDifference = (element.get("goalDifference") as? IntNode)?.intValue!!
-                Wins = (element.get("wins") as? IntNode)?.intValue!!
-                Draws = (element.get("draws") as? IntNode)?.intValue!!
-                Losses = (element.get("losses") as? IntNode)?.intValue!!
+                PlayedGames = (element.get("playedGames") as IntNode).intValue
+                Position = (element.get("position") as IntNode).intValue
+                Points = (element.get("points") as IntNode).intValue
+                GoalsScored = (element.get("goals") as IntNode).intValue
+                GoalsAgainst = (element.get("goalsAgainst") as IntNode).intValue
+                GoalsDifference = (element.get("goalDifference") as IntNode).intValue
+                Wins = (element.get("wins") as IntNode).intValue
+                Draws = (element.get("draws") as IntNode).intValue
+                Losses = (element.get("losses") as IntNode).intValue
                 this
             }
         }

@@ -136,11 +136,14 @@ table td {
 
 select {
 	margin: 5px;
-	width: 80px;
+	width: 150px;
 
-	text-transform : uppercase;
 	color : #015990;
 	background : transparent;
+}
+
+#leagueInfo option {
+	width: 150px;
 }
 
 [data-clickable-team] {

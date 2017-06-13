@@ -1,18 +1,17 @@
 $(document).ready(function() {
+
+    loadLeague($("#leagueInfo").find(":selected").data("leagueId"));
+
+    $(document).on("change", "#leagueInfo", function() {
+        var leagueId = $(this).find(":selected").data("leagueId");
+        loadLeague(leagueId);
+    });
+
     $(document).on("change", "#matchDay", function() {
+        var leagueId = parseInt($("#leagueInfo").find(":selected").data("leagueId"));
         var matchDay = parseInt(this.value);
-        $.ajax({
-            url: "/league",
-            type: "POST",
-            dataType: "html",
-            data: {
-                leagueId : 426,
-                matchDay : matchDay
-            },
-            success : function(response) {
-                $("[data-league-container]").html(response);
-            }
-        });
+
+        loadLeague(leagueId, matchDay);
     });
 
     $(document).on("click", "[data-clickable-team]", function() {
@@ -30,4 +29,19 @@ $(document).ready(function() {
             }
         });
     });
+
+    function loadLeague(leagueId, matchDay) {
+        $.ajax({
+            url: "/league",
+            type: "POST",
+            dataType: "html",
+            data: {
+                leagueId : leagueId,
+                matchDay : matchDay
+            },
+            success: function (response) {
+                $("[data-league-container]").html(response);
+            }
+        });
+    }
 });

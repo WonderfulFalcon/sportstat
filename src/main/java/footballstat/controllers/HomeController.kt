@@ -21,24 +21,23 @@ open class HomeController
     lateinit var leagueHandler : LeagueHandler
 
     @RequestMapping(value = "/home.htm")
-    open fun mainTable(@CookieValue(value = "leagueId", required = false) leagueId: Int?) : ModelAndView
+    open fun home() : ModelAndView
     {
-        val view : ModelAndView = ModelAndView("home")
-        val league = sportData.getCurrentLeague(leagueId ?: userConfig.defaultLeagueId)
+        val view = ModelAndView("home")
+        val leagues = sportData.getAvailableLeagues()
 
-        view.addObject("league", league)
-        view.addObject("leagueSummary", leagueHandler.getSummary(league))
+        view.addObject("leagueInfo", leagues)
         return view
     }
 
     @PostMapping(value = "/league")
     open fun league(@RequestParam("leagueId", required = true) leagueId : Int,
-                         @RequestParam("matchDay", required = true) matchDay : Int) : ModelAndView
+                         @RequestParam("matchDay", required = false) matchDay : Int?) : ModelAndView
     {
         val view : ModelAndView = ModelAndView("league")
-        val league = sportData.getLeague(leagueId, 2016, matchDay)
+        val league = sportData.getLeague(leagueId, matchDay)
 
-        view.addObject("league", sportData.getLeague(leagueId, 2016, matchDay))
+        view.addObject("league", sportData.getLeague(leagueId, matchDay))
         view.addObject("leagueSummary", leagueHandler.getSummary(league))
         return view
     }

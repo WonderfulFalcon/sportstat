@@ -2,6 +2,7 @@ package footballstat.services
 
 import footballstat.model.Country
 import footballstat.model.football.League
+import footballstat.model.football.LeagueInfo
 import footballstat.model.football.Player
 
 interface DataItems
@@ -18,10 +19,8 @@ interface DataItems
 
     interface Leagues
     {
-        fun getCurrentLeague(leagueId: Int) : League
+        fun getAvailableLeagues() : List<LeagueInfo>
 
-        fun getLeague(leagueId : Int, year: Int) : League
-
-        fun getLeague(leagueId: Int, year: Int, matchDay : Int) : League
+        fun getLeague(leagueId: Int, matchDay : Int?) : League
     }
 }

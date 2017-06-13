@@ -16,10 +16,7 @@
     </div>
     <div id="gutter"></div>
 
-
-    <div id="leagueFilters">
-        <jsp:include page="tableControls.jsp" flush="true" />
-    </div>
+    <jsp:include page="tableControls.jsp" flush="true" />
 
     <div data-league-container>
         <jsp:include page="league.jsp" flush="true" />
