@@ -1,10 +1,7 @@
 package footballstat.services.providers
 
 import footballstat.config.business.FootballDataOrgConfig
-import footballstat.model.football.League
-import footballstat.model.football.LeagueInfo
-import footballstat.model.football.Team
-import footballstat.model.football.TournamentStatistic
+import footballstat.model.football.*
 import footballstat.services.DataItems
 import org.apache.http.client.fluent.Request
 import org.codehaus.jackson.JsonNode
@@ -58,6 +55,11 @@ class LeaguesProvider
 
             val response = request.execute().returnContent().asString()
             return parseLeague(response)
+        }
+
+        override fun getMatches(leagueId: Int, matchDay: Int?): Set<Match>
+        {
+            throw UnsupportedOperationException()
         }
 
         private fun parseLeague(response: String): League
