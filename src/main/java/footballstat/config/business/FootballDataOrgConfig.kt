@@ -21,6 +21,7 @@ open class FootballDataOrgConfig
     var teams : String = ""
     var leagueTable : String = ""
     var players : String = ""
+    var matches : String = ""
 
     var matchDayFilter : String =""
     var forbiddenLeagueIds : Set<Int> = HashSet()

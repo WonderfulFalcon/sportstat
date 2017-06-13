@@ -11,6 +11,7 @@ import org.codehaus.jackson.node.IntNode
 import org.codehaus.jackson.node.TextNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.util.*
 
 class LeaguesProvider
 {
@@ -57,9 +58,35 @@ class LeaguesProvider
             return parseLeague(response)
         }
 
-        override fun getMatches(leagueId: Int, matchDay: Int?): Set<Match>
+        override fun getMatches(leagueId: Int, matchDay: Int): Set<Match>
         {
-            throw UnsupportedOperationException()
+            val url = with(config) { "$apiUrl/$apiVersion/$competitions/$leagueId/$matches/?$matchDayFilter=$matchDay" }
+
+            val request = Request.Get(url)
+            request.addHeader("X-Auth-Token", config.xAuthToken)
+
+            val response = request.execute().returnContent().asString()
+            val fixtures = objectMapper.readTree(response).get("fixtures") as ArrayNode
+
+            val result : HashSet<Match> = HashSet()
+
+            for (fixture in fixtures)
+            {
+                val match = Match()
+                match.leagueId = leagueId
+                match.MatchDay = fixture.get("matchday").intValue
+                match.HomeTeamName = fixture.get("homeTeamName").textValue
+                match.AwayTeamName = fixture.get("awayTeamName").textValue
+
+                val matchResult = MatchResult()
+//                matchResult.HomeTeamGoals = fixture.get()
+
+                match.Result = matchResult
+
+                result.add(match)
+            }
+
+            return result
         }
 
         private fun parseLeague(response: String): League

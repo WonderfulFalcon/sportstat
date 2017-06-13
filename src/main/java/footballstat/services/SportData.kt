@@ -31,7 +31,7 @@ open class SportData : DataItems.Leagues, DataItems.Teams
         return leagues.getLeague(leagueId, matchDay)
     }
 
-    override fun getMatches(leagueId : Int, matchDay : Int?) : Set<Match>
+    override fun getMatches(leagueId : Int, matchDay : Int) : Set<Match>
     {
         return leagues.getMatches(leagueId, matchDay)
     }

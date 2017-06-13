@@ -1,16 +1,7 @@
 package footballstat.model.football
 
-import java.time.LocalDateTime
-
-class Match(id : Int)
+class Match
 {
-    val Id : Int = id
-        get
-
-    var Date : LocalDateTime? = null
-        get
-        set
-
     var leagueId : Int? = null
         get
         set
@@ -19,11 +10,11 @@ class Match(id : Int)
         get
         set
 
-    var HomeTeam : Team? = null
+    var HomeTeamName : String? = null
         get
         set
 
-    var AwayTeam : Team? = null
+    var AwayTeamName : String? = null
         get
         set
 

@@ -11,6 +11,7 @@ competitions : competitions
 teams : teams
 leagueTable : leagueTable
 players : players
+matches : fixtures
 
 #filters
 matchDayFilter : matchday
