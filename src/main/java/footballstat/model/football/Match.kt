@@ -2,7 +2,7 @@ package footballstat.model.football
 
 class Match
 {
-    var leagueId : Int? = null
+    var LeagueId : Int? = null
         get
         set
 
@@ -18,7 +18,11 @@ class Match
         get
         set
 
-    var Result : MatchResult? = null
+    var GoalsHomeTeam : Int? = null
+        get
+        set
+
+    var GoalsAwayTeam : Int? = null
         get
         set
 }

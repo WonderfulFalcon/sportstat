@@ -6,12 +6,8 @@ import footballstat.services.DataItems
 import org.apache.http.client.fluent.Request
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
-import org.codehaus.jackson.node.ArrayNode
-import org.codehaus.jackson.node.IntNode
-import org.codehaus.jackson.node.TextNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.util.*
 
 class LeaguesProvider
 {
@@ -23,14 +19,17 @@ class LeaguesProvider
 
         private val objectMapper = ObjectMapper()
 
+        private fun getResponse(requestUrl : String) : String
+        {
+            val request = Request.Get(requestUrl)
+            request.addHeader("X-Auth-Token", config.xAuthToken)
+            return request.execute().returnContent().asString()
+        }
+
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
             val url = with(config) { "$apiUrl/$apiVersion/$competitions" }
-            val request = Request.Get(url)
-            request.addHeader("X-Auth-Token", config.xAuthToken)
-
-            val response = request.execute().returnContent().asString()
-            val jsonNode = objectMapper.readTree(response) as ArrayNode
+            val jsonNode = objectMapper.readTree(getResponse(url))
 
             return jsonNode.map {
                 it ->  LeagueInfo(
@@ -50,43 +49,27 @@ class LeaguesProvider
             {
                 url = "$url/?${config.matchDayFilter}=$matchDay"
             }
-
-            val request = Request.Get(url)
-            request.addHeader("X-Auth-Token", config.xAuthToken)
-
-            val response = request.execute().returnContent().asString()
-            return parseLeague(response)
+            return parseLeague(getResponse(url))
         }
 
         override fun getMatches(leagueId: Int, matchDay: Int): Set<Match>
         {
             val url = with(config) { "$apiUrl/$apiVersion/$competitions/$leagueId/$matches/?$matchDayFilter=$matchDay" }
+            val fixtures = objectMapper.readTree(getResponse(url)).get("fixtures")
+            return fixtures.map<JsonNode, Match> { parseMatch(leagueId, it) }.toSet()
+        }
 
-            val request = Request.Get(url)
-            request.addHeader("X-Auth-Token", config.xAuthToken)
-
-            val response = request.execute().returnContent().asString()
-            val fixtures = objectMapper.readTree(response).get("fixtures") as ArrayNode
-
-            val result : HashSet<Match> = HashSet()
-
-            for (fixture in fixtures)
-            {
-                val match = Match()
-                match.leagueId = leagueId
-                match.MatchDay = fixture.get("matchday").intValue
-                match.HomeTeamName = fixture.get("homeTeamName").textValue
-                match.AwayTeamName = fixture.get("awayTeamName").textValue
-
-                val matchResult = MatchResult()
-//                matchResult.HomeTeamGoals = fixture.get()
-
-                match.Result = matchResult
-
-                result.add(match)
+        private fun parseMatch(leagueId: Int, it: JsonNode): Match
+        {
+            return with(Match()) {
+                LeagueId = leagueId
+                MatchDay = it.get("matchday").intValue
+                HomeTeamName = it.get("homeTeamName")?.textValue
+                AwayTeamName = it.get("awayTeamName")?.textValue
+                GoalsHomeTeam = it.get("result").get("goalsHomeTeam")?.intValue
+                GoalsAwayTeam = it.get("result").get("goalsAwayTeam")?.intValue
+                this
             }
-
-            return result
         }
 
         private fun parseLeague(response: String): League
@@ -94,18 +77,17 @@ class LeaguesProvider
             val jsonNode = objectMapper.readTree(response)
             val league = league(jsonNode)
 
-            val standings = jsonNode.get("standing") as ArrayNode
+            val standings = jsonNode.get("standing")
             for (element in standings.elements) {
-                val urlArray = (element.get("_links").get("team").get("href") as? TextNode)?.textValue?.split('/')
+                val urlArray = (element.get("_links").get("team").get("href")).textValue?.split('/')
                 val id = if (urlArray != null) urlArray[urlArray.size - 1].toInt() else null
 
                 if (id != null)
                 {
                     val team = Team(id)
 
-                    team.Name = (element.get("teamName") as TextNode).textValue
+                    team.Name = element.get("teamName")?.textValue
                     team.Statistic = tournamentStatistic(element)
-
                     league.Teams.add(team)
                 }
             }
@@ -116,8 +98,8 @@ class LeaguesProvider
         {
             return with(League())
             {
-                Name = (jsonNode.get("leagueCaption") as TextNode).textValue
-                MatchDay =  (jsonNode.get("matchday") as IntNode).intValue
+                Name = jsonNode.get("leagueCaption")?.textValue
+                MatchDay =  jsonNode.get("matchday").intValue
                 this
             }
         }
@@ -126,15 +108,15 @@ class LeaguesProvider
         {
             return with(TournamentStatistic())
             {
-                PlayedGames = (element.get("playedGames") as IntNode).intValue
-                Position = (element.get("position") as IntNode).intValue
-                Points = (element.get("points") as IntNode).intValue
-                GoalsScored = (element.get("goals") as IntNode).intValue
-                GoalsAgainst = (element.get("goalsAgainst") as IntNode).intValue
-                GoalsDifference = (element.get("goalDifference") as IntNode).intValue
-                Wins = (element.get("wins") as IntNode).intValue
-                Draws = (element.get("draws") as IntNode).intValue
-                Losses = (element.get("losses") as IntNode).intValue
+                PlayedGames = element.get("playedGames").intValue
+                Position = element.get("position").intValue
+                Points = element.get("points").intValue
+                GoalsScored = element.get("goals").intValue
+                GoalsAgainst = element.get("goalsAgainst").intValue
+                GoalsDifference = element.get("goalDifference").intValue
+                Wins = element.get("wins").intValue
+                Draws = element.get("draws").intValue
+                Losses = element.get("losses").intValue
                 this
             }
         }

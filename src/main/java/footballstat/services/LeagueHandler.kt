@@ -13,7 +13,7 @@ class LeagueHandler
         {
             Round = league.MatchDay
             TotalGoals = league.Teams.map { it.Statistic.GoalsScored }.sum()
-            AverageMatchGoals = TotalGoals / (league.MatchDay.toFloat() * league.Teams.size / 2)
+            AverageMatchGoals = TotalGoals / (Round.toFloat() * league.Teams.size / 2)
             this
         }
     }

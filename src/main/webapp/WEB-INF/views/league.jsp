@@ -111,5 +111,39 @@
         </c:forEach>
         </tbody>
     </table>
+    <h3>
+        Match results:
+    </h3>
+    <table>
+        <c:forEach items="${matches}" var="match">
+            <tr>
+                <td>
+                    <span>
+                        ${match.homeTeamName}
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        ${match.goalsHomeTeam}
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        -
+                    </span>
+                </td>
+                <td>
+                    <span>
+                            ${match.goalsAwayTeam}
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        ${match.awayTeamName}
+                    </span>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
 </div>
 

@@ -4,11 +4,11 @@ import java.util.*
 
 class League
 {
-    var Name : String? = null
+    var MatchDay : Int = 1
         get
         set
 
-    var MatchDay : Int = 0
+    var Name : String? = null
         get
         set
 

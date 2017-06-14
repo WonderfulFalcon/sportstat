@@ -8,7 +8,7 @@ class Player()
         get
         set
 
-    var Citizenships : MutableSet<String> = HashSet()
+    var Citizenships : String? = null
         get
         set
 

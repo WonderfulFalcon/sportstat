@@ -4,6 +4,7 @@ import footballstat.config.business.FootballDataOrgConfig
 import footballstat.model.football.Player
 import footballstat.services.DataItems
 import org.apache.http.client.fluent.Request
+import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
 import org.codehaus.jackson.node.ArrayNode
 import org.codehaus.jackson.node.IntNode
@@ -33,26 +34,24 @@ class TeamsProvider
             val jsonNode = objectMapper.readTree(response)
 
             val result = ArrayList<Player>()
-            val elements = jsonNode.get("players") as? ArrayNode
-            for (element in elements!!.elements)
+            val elements = jsonNode.get("players")
+
+            for (element in elements.elements)
             {
-                val player = Player()
-                player.Name = (element.get("name") as? TextNode)?.textValue
-
-                val nationality = (element.get("nationality") as? TextNode)?.textValue
-
-                if (nationality != null)
-                {
-                    player.Citizenships.add(nationality)
-                }
-
-                player.Number = (element.get("jerseyNumber") as? IntNode)?.intValue
-                player.Position = (element.get("jerseyNumber") as? TextNode)?.textValue
-
-                result.add(player)
+                result.add(player(element))
             }
-
             return result
+        }
+
+        private fun player(element: JsonNode): Player
+        {
+            return with(Player()) {
+                Name = element.get("name")?.textValue
+                Citizenships = element.get("nationality")?.textValue
+                Number = element.get("jerseyNumber")?.intValue
+                Position = element.get("jerseyNumber")?.textValue
+                this
+            }
         }
     }
 }
