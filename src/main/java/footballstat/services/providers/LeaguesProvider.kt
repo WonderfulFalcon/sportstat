@@ -24,7 +24,7 @@ class LeaguesProvider
 
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
-            val url = with(config) { "$apiUrl/$apiVersion/$competitions" }
+            val url = with(config) { "$apiUrl/$apiVersion/$competitions/?season=2016" } //HACK: FIX LATER
             val jsonNode = objectMapper.readTree(request.getResponse(url))
 
             return jsonNode.map {

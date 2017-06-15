@@ -4,9 +4,9 @@ $(document).ready(function() {
         $("#matchDay").find(":selected").val());
 
     $(document).on("change", "#leagueInfo", function() {
-        var leagueId = $(this).find(":selected").data("leagueId");
-        var matchDay = $("#matchDay").find(":selected").val();
-        loadLeague(leagueId);
+        var leagueId = parseInt($(this).find(":selected").data("leagueId"));
+        var matchDay = parseInt($("#matchDay").find(":selected").val());
+        loadLeague(leagueId, matchDay);
     });
 
     $(document).on("change", "#matchDay", function() {
