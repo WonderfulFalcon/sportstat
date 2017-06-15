@@ -1,9 +1,9 @@
 package footballstat.services.providers
 
-import footballstat.config.business.FootballDataOrgConfig
+import footballstat.config.business.FDOConfig
 import footballstat.model.football.*
 import footballstat.services.DataItems
-import org.apache.http.client.fluent.Request
+import footballstat.services.request.FDORequest
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,21 +15,17 @@ class LeaguesProvider
     open class ExternalLeaguesProvider : DataItems.Leagues
     {
         @Autowired
-        lateinit var config: FootballDataOrgConfig
+        lateinit var config : FDOConfig
+
+        @Autowired
+        lateinit var request : FDORequest
 
         private val objectMapper = ObjectMapper()
-
-        private fun getResponse(requestUrl : String) : String
-        {
-            val request = Request.Get(requestUrl)
-            request.addHeader("X-Auth-Token", config.xAuthToken)
-            return request.execute().returnContent().asString()
-        }
 
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
             val url = with(config) { "$apiUrl/$apiVersion/$competitions" }
-            val jsonNode = objectMapper.readTree(getResponse(url))
+            val jsonNode = objectMapper.readTree(request.getResponse(url))
 
             return jsonNode.map {
                 it ->  LeagueInfo(
@@ -46,13 +42,13 @@ class LeaguesProvider
             val url = with(config) {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable/?${config.matchDayFilter}=$matchDay"
             }
-            return parseLeague(getResponse(url))
+            return parseLeague(request.getResponse(url))
         }
 
         override fun getMatches(leagueId: Int, matchDay: Int): Set<Match>
         {
             val url = with(config) { "$apiUrl/$apiVersion/$competitions/$leagueId/$matches/?$matchDayFilter=$matchDay" }
-            val fixtures = objectMapper.readTree(getResponse(url)).get("fixtures")
+            val fixtures = objectMapper.readTree(request.getResponse(url)).get("fixtures")
             return fixtures.map<JsonNode, Match> { parseMatch(leagueId, it) }.toSet()
         }
 

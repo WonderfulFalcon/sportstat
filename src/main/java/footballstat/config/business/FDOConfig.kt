@@ -9,7 +9,7 @@ import java.util.*
 @Component
 @ConfigurationProperties
 @PropertySource("classpath:config/externalProvider.cfg.yml")
-open class FootballDataOrgConfig
+open class FDOConfig
 {
     var userAgent : String = ""
     var xAuthToken : String = ""
