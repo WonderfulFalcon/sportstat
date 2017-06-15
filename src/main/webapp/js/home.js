@@ -5,6 +5,7 @@ $(document).ready(function() {
 
     $(document).on("change", "#leagueInfo", function() {
         var leagueId = $(this).find(":selected").data("leagueId");
+        var matchDay = $("#matchDay").find(":selected").val();
         loadLeague(leagueId);
     });
 
