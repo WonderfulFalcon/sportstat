@@ -1,6 +1,5 @@
 package footballstat.controllers
 
-import footballstat.config.business.UserConfig
 import footballstat.services.LeagueHandler
 import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,9 +12,6 @@ open class HomeController
 {
     @Autowired
     lateinit var sportData : SportData
-
-    @Autowired
-    lateinit var userConfig : UserConfig
 
     @Autowired
     lateinit var leagueHandler : LeagueHandler

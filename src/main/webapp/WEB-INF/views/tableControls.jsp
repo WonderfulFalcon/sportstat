@@ -8,7 +8,8 @@
     </label>
     <select id="leagueInfo">
         <c:forEach items="${leagueInfo}" var="info">
-            <option data-league-id="${info.id}">
+            <option data-league-id="${info.id}"
+                    data-league-tours-played="${info.toursPlayed}">
                     ${info.name}
             </option>
         </c:forEach>
@@ -18,10 +19,5 @@
         Match day:
     </label>
     <select id="matchDay" name="Match Day">
-        <c:forEach begin="1" end="${leagueInfo.get(0).toursPlayed}" varStatus="loop">
-            <option>
-                ${loop.count}
-            </option>
-        </c:forEach>
     </select>
 </div>

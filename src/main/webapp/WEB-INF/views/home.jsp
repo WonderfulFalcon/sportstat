@@ -10,12 +10,9 @@
 </head>
 <body>
     <div id="header">
-        <p class="logotext">Football<strong>Stat</strong><br>
-            <span class="logotext2">Your slogan goes here</span>
-        </p>
+        <p class="logotext">Football<strong>Stat</strong></p>
     </div>
     <div id="gutter"></div>
-
     <jsp:include page="tableControls.jsp" flush="true" />
 
     <div data-league-container>

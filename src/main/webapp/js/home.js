@@ -1,18 +1,27 @@
 $(document).ready(function() {
+    var leagueSelect = $("#leagueInfo");
+    var toursPlayed = leagueSelect.find(":selected").data("leagueToursPlayed");
+    var leagueId = leagueSelect.find(":selected").data("leagueId");
 
-    loadLeague($("#leagueInfo").find(":selected").data("leagueId"),
-        $("#matchDay").find(":selected").val());
+    loadLeague(leagueId, toursPlayed);
+    resetMatchDaySelect(toursPlayed);
 
     $(document).on("change", "#leagueInfo", function() {
-        var leagueId = parseInt($(this).find(":selected").data("leagueId"));
-        var matchDay = parseInt($("#matchDay").find(":selected").val());
-        loadLeague(leagueId, matchDay);
+        var matchDaySelect = $("#matchDay");
+        var currentLeague = $(this).find(":selected");
+
+        var leagueId = parseInt(currentLeague.data("leagueId"));
+
+        matchDaySelect.find("option").remove();
+        var toursPlayed =  parseInt(currentLeague.data("leagueToursPlayed"));
+
+        resetMatchDaySelect(toursPlayed, matchDaySelect);
+        loadLeague(leagueId, toursPlayed);
     });
 
     $(document).on("change", "#matchDay", function() {
         var leagueId = parseInt($("#leagueInfo").find(":selected").data("leagueId"));
         var matchDay = parseInt(this.value);
-
         loadLeague(leagueId, matchDay);
     });
 
@@ -31,6 +40,14 @@ $(document).ready(function() {
             }
         });
     });
+
+    function resetMatchDaySelect(toursPlayed) {
+        var matchDaySelect = $("#matchDay");
+        for (var i = 0; i <= toursPlayed; i++) {
+            matchDaySelect.append($('<option>', {value: i, text: i}));
+        }
+        matchDaySelect.find("option:last-child").prop('selected', true)
+    }
 
     function loadLeague(leagueId, matchDay) {
         $.ajax({
