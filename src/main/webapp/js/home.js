@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    loadLeague($("#leagueInfo").find(":selected").data("leagueId"));
+    loadLeague($("#leagueInfo").find(":selected").data("leagueId"),
+        $("#matchDay").find(":selected").val());
 
     $(document).on("change", "#leagueInfo", function() {
         var leagueId = $(this).find(":selected").data("leagueId");

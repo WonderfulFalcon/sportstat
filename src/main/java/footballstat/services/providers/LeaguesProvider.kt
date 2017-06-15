@@ -41,13 +41,10 @@ class LeaguesProvider
             }
         }
 
-        override fun getLeague(leagueId: Int, matchDay: Int?) : League
+        override fun getLeague(leagueId: Int, matchDay: Int) : League
         {
-            var url = with(config) { "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable" }
-
-            if (matchDay != null)
-            {
-                url = "$url/?${config.matchDayFilter}=$matchDay"
+            val url = with(config) {
+                "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable/?${config.matchDayFilter}=$matchDay"
             }
             return parseLeague(getResponse(url))
         }

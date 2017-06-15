@@ -32,15 +32,17 @@ open class HomeController
 
     @PostMapping(value = "/league")
     open fun league(@RequestParam("leagueId", required = true) leagueId : Int,
-                         @RequestParam("matchDay", required = false) matchDay : Int?) : ModelAndView
+                         @RequestParam("matchDay", required = true) matchDay : Int) : ModelAndView
     {
         val view : ModelAndView = ModelAndView("league")
-        val league = sportData.getLeague(leagueId, matchDay)
-        val matches = sportData.getMatches(leagueId, matchDay ?: league.MatchDay)
 
-        view.addObject("league", sportData.getLeague(leagueId, matchDay))
-        view.addObject("leagueSummary", leagueHandler.getSummary(league))
+        val league = sportData.getLeague(leagueId, matchDay)
+        val matches = sportData.getMatches(leagueId, matchDay)
+        val summary = leagueHandler.getSummary(league)
+
+        view.addObject("league", league)
         view.addObject("matches", matches)
+        view.addObject("leagueSummary", summary)
         return view
     }
 
