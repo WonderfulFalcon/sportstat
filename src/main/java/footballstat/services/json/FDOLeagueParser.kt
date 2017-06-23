@@ -2,14 +2,17 @@ package footballstat.services.json
 
 import footballstat.model.football.*
 import org.codehaus.jackson.JsonNode
+import org.codehaus.jackson.map.ObjectMapper
 import org.springframework.stereotype.Component
 
 @Component
 class FDOLeagueParser : LeagueParser
 {
-    override fun availableLeagues(jsonNode: JsonNode) : List<LeagueInfo>
+    private val mapper = ObjectMapper()
+
+    override fun availableLeagues(json: String) : List<LeagueInfo>
     {
-        return jsonNode.map {
+        return mapper.readTree(json).map {
             it ->  LeagueInfo(
                 it.get("id").intValue,
                 it.get("caption").textValue,
@@ -17,20 +20,15 @@ class FDOLeagueParser : LeagueParser
         }
     }
 
-    override fun match(jsonNode: JsonNode) : Match
+    override fun matches(json: String): List<Match>
     {
-        return with(Match()) {
-            MatchDay = jsonNode.get("matchday").intValue
-            HomeTeamName = jsonNode.get("homeTeamName")?.textValue
-            AwayTeamName = jsonNode.get("awayTeamName")?.textValue
-            GoalsHomeTeam = jsonNode.get("result").get("goalsHomeTeam")?.intValue
-            GoalsAwayTeam = jsonNode.get("result").get("goalsAwayTeam")?.intValue
-            this
-        }
+        val fixtures = mapper.readTree(json).get("fixtures")
+        return fixtures.map<JsonNode, Match> { match(it) }
     }
 
-    override fun league(jsonNode: JsonNode) : League
+    override fun league(json: String) : League
     {
+        val jsonNode = mapper.readTree(json)
         val league = with(League()) {
             Name = jsonNode.get("leagueCaption")?.textValue
             MatchDay =  jsonNode.get("matchday").intValue
@@ -55,7 +53,19 @@ class FDOLeagueParser : LeagueParser
         return league
     }
 
-    override fun tournamentStatistic(jsonNode: JsonNode) : TournamentStatistic
+    private fun match(jsonNode: JsonNode) : Match
+    {
+        return with(Match()) {
+            MatchDay = jsonNode.get("matchday").intValue
+            HomeTeamName = jsonNode.get("homeTeamName")?.textValue
+            AwayTeamName = jsonNode.get("awayTeamName")?.textValue
+            GoalsHomeTeam = jsonNode.get("result").get("goalsHomeTeam")?.intValue
+            GoalsAwayTeam = jsonNode.get("result").get("goalsAwayTeam")?.intValue
+            this
+        }
+    }
+
+    private fun tournamentStatistic(jsonNode: JsonNode) : TournamentStatistic
     {
         return with(TournamentStatistic())
         {

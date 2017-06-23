@@ -25,14 +25,11 @@ class LeaguesProvider
         @Autowired
         lateinit var json : LeagueParser
 
-        private val objectMapper = ObjectMapper()
-
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
             val url = with(config) { "$apiUrl/$apiVersion/$competitions/?season=2016" } //HACK: FIX LATER
-            val jsonNode = objectMapper.readTree(request.getResponse(url))
 
-            return json.availableLeagues(jsonNode).filter {
+            return json.availableLeagues(request.getResponse(url)).filter {
                 it -> !config.forbiddenLeagueIds.contains(it.Id)
             }
         }
@@ -42,14 +39,13 @@ class LeaguesProvider
             val url = with(config) {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable/?${config.matchDayFilter}=$matchDay"
             }
-            return json.league(objectMapper.readTree(request.getResponse(url)))
+            return json.league(request.getResponse(url))
         }
 
         override fun getMatches(leagueId: Int, matchDay: Int): Set<Match>
         {
             val url = with(config) { "$apiUrl/$apiVersion/$competitions/$leagueId/$matches/?$matchDayFilter=$matchDay" }
-            val fixtures = objectMapper.readTree(request.getResponse(url)).get("fixtures")
-            return fixtures.map<JsonNode, Match> { json.match(it) }.toSet()
+            return json.matches(request.getResponse(url)).toSet()
         }
     }
 }

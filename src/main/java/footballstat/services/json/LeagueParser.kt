@@ -3,16 +3,12 @@ package footballstat.services.json
 import footballstat.model.football.League
 import footballstat.model.football.LeagueInfo
 import footballstat.model.football.Match
-import footballstat.model.football.TournamentStatistic
-import org.codehaus.jackson.JsonNode
 
 interface LeagueParser
 {
-    fun availableLeagues(jsonNode: JsonNode) : List<LeagueInfo>
+    fun availableLeagues(json: String) : List<LeagueInfo>
 
-    fun match(jsonNode: JsonNode) : Match
+    fun matches(json: String) : List<Match>
 
-    fun league(jsonNode: JsonNode) : League
-
-    fun tournamentStatistic(jsonNode: JsonNode) : TournamentStatistic
+    fun league(json: String) : League
 }
