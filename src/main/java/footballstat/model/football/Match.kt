@@ -2,10 +2,6 @@ package footballstat.model.football
 
 class Match
 {
-    var LeagueId : Int? = null
-        get
-        set
-
     var MatchDay : Int = 0
         get
         set
