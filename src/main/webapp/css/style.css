@@ -142,6 +142,10 @@ select {
 	background : transparent;
 }
 
+.teamColumn {
+	width: 200px;
+}
+
 #leagueInfo option {
 	width: 150px;
 }

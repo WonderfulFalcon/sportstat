@@ -77,7 +77,7 @@
                     <td>
                         ${team.statistic.position}
                     </td>
-                    <td>
+                    <td class="teamColumn">
                         <div data-clickable-team="${team.id}">
                             <span>
                                 ${team.name}
@@ -138,7 +138,7 @@
                 </td>
                 <td>
                     <span>
-                            ${match.goalsAwayTeam}
+                        ${match.goalsAwayTeam}
                     </span>
                 </td>
                 <td>
