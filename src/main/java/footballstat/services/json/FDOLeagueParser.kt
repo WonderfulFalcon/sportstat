@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component
 class FDOLeagueParser : LeagueParser
 {
     @Autowired
-    private lateinit var teamsParser : FDOTeamsParser
+    private lateinit var parserFactory : ParserFactory
 
     private val mapper = ObjectMapper()
 
@@ -43,12 +43,13 @@ class FDOLeagueParser : LeagueParser
         }
 
         val type = getLeagueType(jsonNode)
+        val parser = parserFactory.getParser(getLeagueType(jsonNode))
 
         if (type == League.LeagueType.TOURNAMENT)
         {
             val table = Table()
             table.Name = jsonNode.get("leagueCaption")?.textValue
-            table.Teams = teamsParser.getTeams(jsonNode.get("standing"), type)
+            table.Teams = parser.getTeams(jsonNode.get("standing"))
             league.Tables.add(table)
         }
         else if (type == League.LeagueType.CUP)
@@ -58,14 +59,14 @@ class FDOLeagueParser : LeagueParser
             {
                 val table = Table()
                 table.Name = standing.get("group")?.textValue
-                table.Teams = teamsParser.getTeams(standing, type)
+                table.Teams = parser.getTeams(standing)
                 league.Tables.add(table)
             }
         }
         return league
     }
 
-    private fun getLeagueType(jsonNode: JsonNode) : League.LeagueType?
+    private fun getLeagueType(jsonNode: JsonNode) : League.LeagueType
     {
         if (jsonNode.has("standing"))
         {
@@ -75,7 +76,7 @@ class FDOLeagueParser : LeagueParser
         {
             return League.LeagueType.CUP
         }
-        return null
+        throw IllegalArgumentException("Cannot parse league type")
     }
 
     private fun match(jsonNode: JsonNode) : Match
