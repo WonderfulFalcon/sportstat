@@ -34,9 +34,8 @@
 </div>
 
 <div id="col2">
-    <h3>${league.name}</h3>
-
     <c:forEach items="${league.tables}" var="league">
+        <h3>${league.name}</h3>
         <table class="league-table">
             <thead>
             <tr>

@@ -6,6 +6,7 @@ import footballstat.model.football.Match
 import footballstat.model.football.Table
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
+import org.codehaus.jackson.node.ObjectNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -54,12 +55,14 @@ class FDOLeagueParser : LeagueParser
         }
         else if (type == League.LeagueType.CUP)
         {
-            val standings = jsonNode.get("standings")
-            for (standing in standings)
+            val standings = jsonNode.get("standings") as ObjectNode
+            val groups = standings.fieldNames
+
+            for (group in groups)
             {
                 val table = Table()
-                table.Name = standing.get("group")?.textValue
-                table.Teams = parser.getTeams(standing)
+                table.Name = group
+                table.Teams = parser.getTeams(standings.get(group))
                 league.Tables.add(table)
             }
         }
