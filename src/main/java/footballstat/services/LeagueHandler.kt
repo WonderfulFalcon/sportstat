@@ -11,9 +11,10 @@ class LeagueHandler
     {
         return with(LeagueSummary())
         {
+            val table = league.Tables[0] // return in dependencies at league type !!!
             Round = league.MatchDay
-            TotalGoals = league.Teams.map { it.Statistic.GoalsScored }.sum()
-            AverageMatchGoals = TotalGoals / (Round.toFloat() * league.Teams.size / 2)
+            TotalGoals = table.Teams.map { it.Statistic.GoalsScored }.sum()
+            AverageMatchGoals = TotalGoals / (Round.toFloat() * table.Teams.size / 2)
             this
         }
     }

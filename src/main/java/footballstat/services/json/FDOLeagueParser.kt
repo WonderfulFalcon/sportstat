@@ -37,6 +37,9 @@ class FDOLeagueParser : LeagueParser
 
         val standings = jsonNode.get("standing")
 
+        val table = Table()
+        table.Name = jsonNode.get("leagueCaption")?.textValue
+
         for (element in standings.elements) {
             val urlArray = (element.get("_links").get("team").get("href")).textValue?.split('/')
             val id = if (urlArray != null) urlArray[urlArray.size - 1].toInt() else null
@@ -47,9 +50,10 @@ class FDOLeagueParser : LeagueParser
 
                 team.Name = element.get("teamName")?.textValue
                 team.Statistic = tournamentStatistic(element)
-                league.Teams.add(team)
+                table.Teams.add(team)
             }
         }
+        league.Tables.add(table)
         return league
     }
 

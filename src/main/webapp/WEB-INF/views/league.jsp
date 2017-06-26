@@ -35,85 +35,90 @@
 
 <div id="col2">
     <h3>${league.name}</h3>
-    <table class="league-table">
-        <thead>
-        <tr>
-            <th>
-                Pos.
-            </th>
-            <th>
-                Team
-            </th>
-            <th>
-                P
-            </th>
-            <th>
-                W
-            </th>
-            <th>
-                D
-            </th>
-            <th>
-                L
-            </th>
-            <th>
-                GS
-            </th>
-            <th>
-                GA
-            </th>
-            <th>
-                GD
-            </th>
-            <th>
-                Points
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${league.teams}" var="team">
+
+    <c:forEach items="${league.tables}" var="league">
+        <table class="league-table">
+            <thead>
             <tr>
-                <td>
-                    ${team.statistic.position}
-                </td>
-                <td>
-                    <div data-clickable-team="${team.id}">
-                    <span>
-                        ${team.name}
-                    </span>
-                    </div>
-                </td>
-                <td>
-                    ${team.statistic.playedGames}
-                </td>
-                <td>
-                    ${team.statistic.wins}
-                </td>
-                <td>
-                    ${team.statistic.draws}
-                </td>
-                <td>
-                    ${team.statistic.losses}
-                </td>
-                <td>
-                    ${team.statistic.goalsScored}
-                </td>
-                <td>
-                    ${team.statistic.goalsAgainst}
-                </td>
-                <td>
-                    ${team.statistic.goalsDifference}
-                </td>
-                <td>
-                    ${team.statistic.points}
-                </td>
+                <th>
+                    Pos.
+                </th>
+                <th>
+                    Team
+                </th>
+                <th>
+                    P
+                </th>
+                <th>
+                    W
+                </th>
+                <th>
+                    D
+                </th>
+                <th>
+                    L
+                </th>
+                <th>
+                    GS
+                </th>
+                <th>
+                    GA
+                </th>
+                <th>
+                    GD
+                </th>
+                <th>
+                    Points
+                </th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach items="${league.teams}" var="team">
+                <tr>
+                    <td>
+                        ${team.statistic.position}
+                    </td>
+                    <td>
+                        <div data-clickable-team="${team.id}">
+                            <span>
+                                ${team.name}
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        ${team.statistic.playedGames}
+                    </td>
+                    <td>
+                        ${team.statistic.wins}
+                    </td>
+                    <td>
+                        ${team.statistic.draws}
+                    </td>
+                    <td>
+                        ${team.statistic.losses}
+                    </td>
+                    <td>
+                        ${team.statistic.goalsScored}
+                    </td>
+                    <td>
+                        ${team.statistic.goalsAgainst}
+                    </td>
+                    <td>
+                        ${team.statistic.goalsDifference}
+                    </td>
+                    <td>
+                        ${team.statistic.points}
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:forEach>
+
     <h3>
         Match results:
     </h3>
+
     <table>
         <c:forEach items="${matches}" var="match">
             <tr>

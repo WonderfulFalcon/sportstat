@@ -16,7 +16,17 @@ class League
         get
         set
 
-    var Teams : ArrayList<Team> = ArrayList()
+    var Type : LeagueType = League.LeagueType.TOURNAMENT
         get
         set
+
+    var Tables : ArrayList<Table> = ArrayList()
+        get
+        set
+
+    enum class LeagueType
+    {
+        TOURNAMENT,
+        CUP
+    }
 }
