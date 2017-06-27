@@ -1,18 +1,13 @@
 body {
 	margin : 0;
 	padding : 0;
-	font : 75% "Trebuchet MS", arial, helvetica, sans-serif;
+	font : 100% "Trebuchet MS", arial, helvetica, sans-serif;
 	color : #666;
 	background : #fff;
 }
-/*TOP BANNER*/
-#wrapper { width:760px; margin:0 auto; padding:0; }
 
 #header { position:relative; width:100%; height:70px; }
 #header .logo { float:left; }
-#headinfo { position:absolute; right:15px; top:7px;}
-#headinfo a { font-size: 10px; color:#000000; }
-#headinfo a:hover { text-decoration:underline; }
 
 .logotext { position:absolute; left:30px; font-family:Trebuchet MS; font-size:22px; }
 .logotext strong { color:#015990; }
@@ -45,21 +40,6 @@ body {
 	width : 20%;
 	margin-left : 3%;
 	margin-bottom : 1em;
-}
-/*TOP NAV*/
-#navcontainer ul {
-	margin-top : 10px;
-	list-style-type : none;
-	background : #fff;
-	color : #666;
-}
-#navcontainer ul li a {
-	padding : 20px;
-	color : #666;
-	background : transparent url(../images/list-off.gif) no-repeat left center;
-	text-align : left;
-	font : normal 1.2em "Trebuchet MS", "Lucida Grande", verdana, "Lucida Sans Unicode", lucida, sans-serif;
-	text-decoration : none;
 }
 
 /*FOOTER*/
@@ -146,12 +126,18 @@ select {
 	width: 200px;
 }
 
+.scoreColumn {
+	width: 150px;
+	font-weight: bold;
+}
+
 #leagueInfo option {
 	width: 150px;
 }
 
 [data-clickable-team] {
 	cursor: pointer;
+	text-align: left;
 }
 
 [data-clickable-team]:hover {

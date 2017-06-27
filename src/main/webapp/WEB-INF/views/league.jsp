@@ -6,28 +6,16 @@
     <table>
         <tbody>
             <tr>
-                <td>
-                    Match days
-                </td>
-                <td>
-                    ${leagueSummary.round}
-                </td>
+                <td><span>Match days</span></td>
+                <td><span>${leagueSummary.round}</span></td>
             </tr>
             <tr>
-                <td>
-                    Total goals
-                </td>
-                <td>
-                    ${leagueSummary.totalGoals}
-                </td>
+                <td><span>Total goals</span></td>
+                <td><span>${leagueSummary.totalGoals}</span></td>
             </tr>
             <tr>
-                <td>
-                    Match average goals
-                </td>
-                <td>
-                    ${leagueSummary.averageMatchGoals}
-                </td>
+                <td><span>Match average goals</span></td>
+                <td>${leagueSummary.averageMatchGoals}</td>
             </tr>
         </tbody>
     </table>
@@ -38,114 +26,54 @@
         <h3>${league.name}</h3>
         <table class="league-table">
             <thead>
-            <tr>
-                <th>
-                    Pos.
-                </th>
-                <th>
-                    Team
-                </th>
-                <th>
-                    P
-                </th>
-                <th>
-                    W
-                </th>
-                <th>
-                    D
-                </th>
-                <th>
-                    L
-                </th>
-                <th>
-                    GS
-                </th>
-                <th>
-                    GA
-                </th>
-                <th>
-                    GD
-                </th>
-                <th>
-                    Points
-                </th>
-            </tr>
+                <tr>
+                    <th><span>Pos.</span></th>
+                    <th><span>Team</span></th>
+                    <th><span>P</span></th>
+                    <th><span>W</span></th>
+                    <th><span>D</span></th>
+                    <th><span>L</span></th>
+                    <th><span>GS</span></th>
+                    <th><span>GA</span></th>
+                    <th><span>GD</span></th>
+                    <th><span>Points</span></th>
+                </tr>
             </thead>
             <tbody>
             <c:forEach items="${league.teams}" var="team">
                 <tr>
-                    <td>
-                        ${team.statistic.position}
-                    </td>
+                    <td><span>${team.statistic.position}</span></td>
                     <td class="teamColumn">
                         <div data-clickable-team="${team.id}">
-                            <span>
-                                ${team.name}
-                            </span>
+                            <span>${team.name}</span>
                         </div>
                     </td>
-                    <td>
-                        ${team.statistic.playedGames}
-                    </td>
-                    <td>
-                        ${team.statistic.wins}
-                    </td>
-                    <td>
-                        ${team.statistic.draws}
-                    </td>
-                    <td>
-                        ${team.statistic.losses}
-                    </td>
-                    <td>
-                        ${team.statistic.goalsScored}
-                    </td>
-                    <td>
-                        ${team.statistic.goalsAgainst}
-                    </td>
-                    <td>
-                        ${team.statistic.goalsDifference}
-                    </td>
-                    <td>
-                        ${team.statistic.points}
-                    </td>
+                    <td><span>${team.statistic.playedGames}</span></td>
+                    <td><span>${team.statistic.wins}</span></td>
+                    <td><span>${team.statistic.draws}</span></td>
+                    <td><span>${team.statistic.losses}</span></td>
+                    <td><span>${team.statistic.goalsScored}</span></td>
+                    <td><span>${team.statistic.goalsAgainst}</span></td>
+                    <td><span>${team.statistic.goalsDifference}</span></td>
+                    <td><span><b>${team.statistic.points}</b></span></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </c:forEach>
 
-    <h3>
-        Match results:
-    </h3>
+    <h3>Match results:</h3>
 
     <table>
         <c:forEach items="${matches}" var="match">
             <tr>
-                <td>
-                    <span>
-                        ${match.homeTeamName}
-                    </span>
+                <td><span>${match.homeTeamName}</span></td>
+                <td class="scoreColumn">
+                    <span>${match.goalsHomeTeam}</span>
+                    <span>-</span>
+                    <span>${match.goalsAwayTeam}</span>
                 </td>
-                <td>
-                    <span>
-                        ${match.goalsHomeTeam}
-                    </span>
-                </td>
-                <td>
-                    <span>
-                        -
-                    </span>
-                </td>
-                <td>
-                    <span>
-                        ${match.goalsAwayTeam}
-                    </span>
-                </td>
-                <td>
-                    <span>
-                        ${match.awayTeamName}
-                    </span>
-                </td>
+                <td><span>${match.awayTeamName}</span></td>
             </tr>
         </c:forEach>
     </table>

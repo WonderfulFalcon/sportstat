@@ -45,7 +45,7 @@ class TeamsProvider
                 Name = element.get("name")?.textValue
                 Citizenships = element.get("nationality")?.textValue
                 Number = element.get("jerseyNumber")?.intValue
-                Position = element.get("jerseyNumber")?.textValue
+                Position = element.get("position")?.textValue
                 this
             }
         }
