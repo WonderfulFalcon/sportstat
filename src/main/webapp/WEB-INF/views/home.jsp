@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Football stat</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/flags.css" rel="stylesheet" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="<c:url value="/js/home.js" /> "></script>
 </head>

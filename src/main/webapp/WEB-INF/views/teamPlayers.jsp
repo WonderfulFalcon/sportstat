@@ -1,4 +1,3 @@
-
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -6,6 +5,9 @@
 <table>
     <thead>
         <tr>
+            <th>
+                Country
+            </th>
             <th>
                 Name
             </th>
@@ -15,14 +17,14 @@
             <th>
                 Number
             </th>
-            <th>
-                Citizenships
-            </th>
         </tr>
     </thead>
     <tbody>
     <c:forEach items="${players}" var="player">
         <tr>
+            <td>
+                ${player.citizenships}
+            </td>
             <td>
                 ${player.name}
             </td>
@@ -31,9 +33,6 @@
             </td>
             <td>
                 ${player.number}
-            </td>
-            <td>
-                ${player.citizenships}
             </td>
         </tr>
     </c:forEach>
