@@ -27,6 +27,10 @@ $(document).ready(function() {
 
     $(document).on("click", "[data-clickable-team]", function() {
         var teamId = $(this).data("clickableTeam");
+        var teamName = $(this).find(".team-name span").text();
+
+        $(".teamColumn").css("background-color", "");
+        $(this).css("background-color", "#ffd090");
 
         $.ajax({
             url: "/teamPlayers",
@@ -37,6 +41,7 @@ $(document).ready(function() {
             },
             success: function (response) {
                 $("[data-players-container]").html(response);
+                $("#team-squad").text(teamName);
             }
         });
     });

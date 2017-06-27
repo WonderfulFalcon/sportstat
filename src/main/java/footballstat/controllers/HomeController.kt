@@ -34,11 +34,9 @@ open class HomeController
 
         val league = sportData.getLeague(leagueId, matchDay)
         val matches = sportData.getMatches(leagueId, matchDay)
-        val summary = leagueHandler.getSummary(league)
 
         view.addObject("league", league)
         view.addObject("matches", matches)
-        view.addObject("leagueSummary", summary)
         return view
     }
 

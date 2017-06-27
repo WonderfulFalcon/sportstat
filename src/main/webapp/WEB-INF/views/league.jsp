@@ -7,33 +7,15 @@
         <tbody>
             <c:forEach items="${matches}" var="match">
                 <tr>
-                    <td class="home-team"><span>${match.homeTeamName}</span></td>
+                    <td><span>${match.homeTeamName}</span></td>
                     <td class="scoreColumn">
                         <span>${match.goalsHomeTeam}</span>
                         <span>-</span>
                         <span>${match.goalsAwayTeam}</span>
                     </td>
-                    <td class="away-team"><span>${match.awayTeamName}</span></td>
+                    <td><span>${match.awayTeamName}</span></td>
                 </tr>
             </c:forEach>
-        </tbody>
-    </table>
-
-    <h3>League summary</h3>
-    <table class="match-results">
-        <tbody>
-            <tr>
-                <td class="home-team"><span>Match days</span></td>
-                <td class="scoreColumn"><span>${leagueSummary.round}</span></td>
-            </tr>
-            <tr>
-                <td class="home-team"><span>Total goals</span></td>
-                <td class="scoreColumn"><span>${leagueSummary.totalGoals}</span></td>
-            </tr>
-            <tr>
-                <td class="home-team"><span>Match average goals</span></td>
-                <td class="scoreColumn">${leagueSummary.averageMatchGoals}</td>
-            </tr>
         </tbody>
     </table>
 </div>
