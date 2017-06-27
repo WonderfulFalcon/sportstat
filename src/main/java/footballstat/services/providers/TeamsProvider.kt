@@ -43,7 +43,7 @@ class TeamsProvider
         {
             return with(Player()) {
                 Name = element.get("name")?.textValue
-                Citizenships = element.get("nationality")?.textValue
+                Country = element.get("nationality")?.textValue
                 Number = element.get("jerseyNumber")?.intValue
                 Position = element.get("position")?.textValue
                 this

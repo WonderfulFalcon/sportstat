@@ -44,6 +44,9 @@
                 <tr>
                     <td><span>${team.statistic.position}</span></td>
                     <td class="teamColumn">
+                        <div class="club-logo">
+                            <img src="/images/clubs/England/${team.name}.svg" />
+                        </div>
                         <div data-clickable-team="${team.id}">
                             <span>${team.name}</span>
                         </div>

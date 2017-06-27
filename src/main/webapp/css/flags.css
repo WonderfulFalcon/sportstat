@@ -1,4 +1,4 @@
-.flag-NOWHERE, .flag-ABKHAZIA, .flag-AD, .flag-AE, .flag-AF, .flag-AG, .flag-AI, .flag-AL, .flag-AM, .flag-AN, .flag-AO, .flag-AQ, .flag-AR, .flag-AS, .flag-AT, .flag-AU, .flag-AW, .flag-AX, .flag-AZ, .flag-BA, .flag-BB, .flag-BD, .flag-BE, .flag-BF, .flag-BG, .flag-BH, .flag-BI, .flag-BJ, .flag-BL, .flag-BM, .flag-BN, .flag-BO, .flag-BR, .flag-BS, .flag-BT, .flag-BV, .flag-BW, .flag-BY, .flag-BZ, .flag-CA, .flag-CC, .flag-CD, .flag-CF, .flag-CG, .flag-CH, .flag-CI, .flag-CK, .flag-CL, .flag-CM, .flag-CN, .flag-CO, .flag-CR, .flag-CU, .flag-CV, .flag-CX, .flag-CY, .flag-CZ, .flag-DE, .flag-DJ, .flag-DK, .flag-DM, .flag-DO, .flag-DZ, .flag-EC, .flag-EE, .flag-EG, .flag-EH, .flag-ER, .flag-ES-CE, .flag-ES-ML, .flag-ES, .flag-ET, .flag-EU, .flag-FI, .flag-FJ, .flag-FK, .flag-FM, .flag-FO, .flag-FR, .flag-GA, .flag-GB, .flag-GD, .flag-GE, .flag-GF, .flag-GG, .flag-GH, .flag-GI, .flag-GL, .flag-GM, .flag-GN, .flag-GP, .flag-GQ, .flag-GR, .flag-GS, .flag-GT, .flag-GU, .flag-GW, .flag-GY, .flag-HK, .flag-HM, .flag-HN, .flag-HR, .flag-HT, .flag-HU, .flag-IC, .flag-ID, .flag-IE, .flag-IL, .flag-IM, .flag-IN, .flag-IO, .flag-IQ, .flag-IR, .flag-IS, .flag-IT, .flag-JE, .flag-JM, .flag-JO, .flag-JP, .flag-KE, .flag-KG, .flag-KH, .flag-KI, .flag-KM, .flag-KN, .flag-KOSOVO, .flag-KP, .flag-KR, .flag-KW, .flag-KY, .flag-KZ, .flag-LA, .flag-LB, .flag-LC, .flag-LI, .flag-LK, .flag-LR, .flag-LS, .flag-LT, .flag-LU, .flag-LV, .flag-LY, .flag-MA, .flag-MC, .flag-MD, .flag-ME, .flag-MF, .flag-MG, .flag-MH, .flag-MK, .flag-ML, .flag-MM, .flag-MN, .flag-MO, .flag-MP, .flag-MQ, .flag-MR, .flag-MS, .flag-MT, .flag-MU, .flag-MV, .flag-MW, .flag-MX, .flag-MY, .flag-MZ, .flag-NA, .flag-NC, .flag-NE, .flag-NF, .flag-NG, .flag-NI, .flag-NKR, .flag-NL, .flag-NO, .flag-NP, .flag-NR, .flag-NU, .flag-NZ, .flag-OM, .flag-PA, .flag-PE, .flag-PF, .flag-PG, .flag-PH, .flag-PK, .flag-PL, .flag-PM, .flag-PN, .flag-PR, .flag-PS, .flag-PT, .flag-PW, .flag-PY, .flag-QA, .flag-RE, .flag-RO, .flag-RS, .flag-RU, .flag-RW, .flag-SA, .flag-SB, .flag-SC, .flag-SD, .flag-SE, .flag-SG, .flag-SH, .flag-SI, .flag-SJ, .flag-SK, .flag-SL, .flag-SM, .flag-SN, .flag-SO, .flag-SOUTH-OSSETIA, .flag-SR, .flag-SS, .flag-ST, .flag-SV, .flag-SY, .flag-SZ, .flag-TC, .flag-TD, .flag-TF, .flag-TG, .flag-TH, .flag-TJ, .flag-TK, .flag-TL, .flag-TM, .flag-TN, .flag-TO, .flag-TR, .flag-TT, .flag-TV, .flag-TW, .flag-TZ, .flag-UA, .flag-UG, .flag-UM, .flag-US, .flag-UY, .flag-UZ, .flag-VA, .flag-VC, .flag-VE, .flag-VG, .flag-VI, .flag-VN, .flag-VU, .flag-WF, .flag-WS, .flag-YE, .flag-YT, .flag-ZA, .flag-ZM, .flag-ZW { background: url("../images/flags.png") no-repeat 0 9px; display: -moz-inline-box; -moz-box-orient: vertical; display: inline-block; *display: inline; *zoom: 1; vertical-align: baseline; position: relative; overflow: hidden; width: 16px; height: 9px; font-size: 0; line-height: 0; margin: 0; padding: 0; }
+.flag-NOWHERE, .flag-ABKHAZIA, .flag-AD, .flag-AE, .flag-AF, .flag-AG, .flag-AI, .flag-AL, .flag-AM, .flag-AN, .flag-AO, .flag-AQ, .flag-AR, .flag-AS, .flag-Austria, .flag-AU, .flag-AW, .flag-AX, .flag-AZ, .flag-Bosnia-Herzegovina, .flag-BB, .flag-BD, .flag-Belgium, .flag-BF, .flag-BG, .flag-BH, .flag-BI, .flag-BJ, .flag-BL, .flag-BM, .flag-BN, .flag-BO, .flag-Brazil, .flag-BS, .flag-BT, .flag-BV, .flag-BW, .flag-BY, .flag-BZ, .flag-CA, .flag-CC, .flag-CD, .flag-CF, .flag-CG, .flag-CH, .flag-CI, .flag-CK, .flag-CL, .flag-CM, .flag-CN, .flag-CO, .flag-CR, .flag-CU, .flag-CV, .flag-CX, .flag-CY, .flag-CZ, .flag-DE, .flag-DJ, .flag-DK, .flag-DM, .flag-DO, .flag-DZ, .flag-EC, .flag-EE, .flag-EG, .flag-EH, .flag-ER, .flag-ES-CE, .flag-ES-ML, .flag-Spain, .flag-ET, .flag-EU, .flag-FI, .flag-FJ, .flag-FK, .flag-FM, .flag-FO, .flag-France, .flag-GA, .flag-England, .flag-GD, .flag-GE, .flag-GF, .flag-GG, .flag-GH, .flag-GI, .flag-GL, .flag-GM, .flag-GN, .flag-GP, .flag-GQ, .flag-GR, .flag-GS, .flag-GT, .flag-GU, .flag-GW, .flag-GY, .flag-HK, .flag-HM, .flag-HN, .flag-HR, .flag-HT, .flag-HU, .flag-IC, .flag-ID, .flag-IE, .flag-IL, .flag-IM, .flag-IN, .flag-IO, .flag-IQ, .flag-IR, .flag-IS, .flag-IT, .flag-JE, .flag-JM, .flag-JO, .flag-JP, .flag-KE, .flag-KG, .flag-KH, .flag-KI, .flag-KM, .flag-KN, .flag-KOSOVO, .flag-KP, .flag-KR, .flag-KW, .flag-KY, .flag-KZ, .flag-LA, .flag-LB, .flag-LC, .flag-LI, .flag-LK, .flag-LR, .flag-LS, .flag-LT, .flag-LU, .flag-LV, .flag-LY, .flag-MA, .flag-MC, .flag-MD, .flag-ME, .flag-MF, .flag-MG, .flag-MH, .flag-MK, .flag-ML, .flag-MM, .flag-MN, .flag-MO, .flag-MP, .flag-MQ, .flag-MR, .flag-MS, .flag-MT, .flag-MU, .flag-MV, .flag-MW, .flag-MX, .flag-MY, .flag-MZ, .flag-NA, .flag-NC, .flag-NE, .flag-NF, .flag-Nigeria, .flag-NI, .flag-NKR, .flag-Netherlands, .flag-NO, .flag-NP, .flag-NR, .flag-NU, .flag-NZ, .flag-OM, .flag-PA, .flag-PE, .flag-PF, .flag-PG, .flag-PH, .flag-PK, .flag-PL, .flag-PM, .flag-PN, .flag-PR, .flag-PS, .flag-PT, .flag-PW, .flag-PY, .flag-QA, .flag-RE, .flag-RO, .flag-Serbia, .flag-RU, .flag-RW, .flag-SA, .flag-SB, .flag-SC, .flag-SD, .flag-SE, .flag-SG, .flag-SH, .flag-SI, .flag-SJ, .flag-SK, .flag-SL, .flag-SM, .flag-SN, .flag-SO, .flag-SOUTH-OSSETIA, .flag-SR, .flag-SS, .flag-ST, .flag-SV, .flag-SY, .flag-SZ, .flag-TC, .flag-TD, .flag-TF, .flag-TG, .flag-TH, .flag-TJ, .flag-TK, .flag-TL, .flag-TM, .flag-TN, .flag-TO, .flag-TR, .flag-TT, .flag-TV, .flag-TW, .flag-TZ, .flag-UA, .flag-UG, .flag-UM, .flag-US, .flag-UY, .flag-UZ, .flag-VA, .flag-VC, .flag-VE, .flag-VG, .flag-VI, .flag-VN, .flag-VU, .flag-WF, .flag-WS, .flag-YE, .flag-YT, .flag-ZA, .flag-ZM, .flag-ZW { background: url("../images/flags.png") no-repeat 0 9px; display: -moz-inline-box; -moz-box-orient: vertical; display: inline-block; *display: inline; *zoom: 1; vertical-align: baseline; position: relative; overflow: hidden; width: 16px; height: 9px; font-size: 0; line-height: 0; margin: 0; padding: 0; }
 
 .flag-ABKHAZIA { background-position: 0 0px; }
 
@@ -26,7 +26,7 @@
 
 .flag-AS { background-position: 0 -108px; }
 
-.flag-AT { background-position: 0 -117px; }
+.flag-Austria { background-position: 0 -117px; }
 
 .flag-AU { background-position: 0 -126px; }
 
@@ -36,13 +36,13 @@
 
 .flag-AZ { background-position: 0 -153px; }
 
-.flag-BA { background-position: 0 -162px; }
+.flag-Bosnia-Herzegovina { background-position: 0 -162px; }
 
 .flag-BB { background-position: 0 -171px; }
 
 .flag-BD { background-position: 0 -180px; }
 
-.flag-BE { background-position: 0 -189px; }
+.flag-Belgium { background-position: 0 -189px; }
 
 .flag-BF { background-position: 0 -198px; }
 
@@ -62,7 +62,7 @@
 
 .flag-BO { background-position: 0 -270px; }
 
-.flag-BR { background-position: 0 -279px; }
+.flag-Brazil { background-position: 0 -279px; }
 
 .flag-BS { background-position: 0 -288px; }
 
@@ -138,7 +138,7 @@
 
 .flag-ES-ML { background-position: 0 -612px; }
 
-.flag-ES { background-position: 0 -621px; }
+.flag-Spain { background-position: 0 -621px; }
 
 .flag-ET { background-position: 0 -630px; }
 
@@ -154,11 +154,11 @@
 
 .flag-FO { background-position: 0 -684px; }
 
-.flag-FR { background-position: 0 -693px; }
+.flag-France { background-position: 0 -693px; }
 
 .flag-GA { background-position: 0 -702px; }
 
-.flag-GB { background-position: 0 -711px; }
+.flag-England { background-position: 0 -711px; }
 
 .flag-GD { background-position: 0 -720px; }
 
@@ -336,13 +336,13 @@
 
 .flag-NF { background-position: 0 -1503px; }
 
-.flag-NG { background-position: 0 -1512px; }
+.flag-Nigeria { background-position: 0 -1512px; }
 
 .flag-NI { background-position: 0 -1521px; }
 
 .flag-NKR { background-position: 0 -1530px; }
 
-.flag-NL { background-position: 0 -1539px; }
+.flag-Netherlands { background-position: 0 -1539px; }
 
 .flag-NO { background-position: 0 -1548px; }
 
@@ -390,7 +390,7 @@
 
 .flag-RO { background-position: 0 -1746px; }
 
-.flag-RS { background-position: 0 -1755px; }
+.flag-Serbia { background-position: 0 -1755px; }
 
 .flag-RU { background-position: 0 -1764px; }
 

@@ -11,9 +11,9 @@
             <th>
                 Name
             </th>
-            <th>
-                Position
-            </th>
+            <%--<th>--%>
+                <%--Position--%>
+            <%--</th>--%>
             <th>
                 Number
             </th>
@@ -22,15 +22,15 @@
     <tbody>
     <c:forEach items="${players}" var="player">
         <tr>
-            <td>
-                ${player.citizenships}
+            <td class="player-country">
+                <i class="flag-${player.country}"></i>
             </td>
             <td>
                 ${player.name}
             </td>
-            <td>
-                ${player.position}
-            </td>
+            <%--<td>--%>
+                <%--${player.position}--%>
+            <%--</td>--%>
             <td>
                 ${player.number}
             </td>

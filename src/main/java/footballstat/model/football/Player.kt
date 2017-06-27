@@ -1,14 +1,12 @@
 package footballstat.model.football
 
-import java.util.*
-
 class Player()
 {
     var Name : String? = null
         get
         set
 
-    var Citizenships : String? = null
+    var Country: String? = null
         get
         set
 
