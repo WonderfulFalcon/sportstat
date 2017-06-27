@@ -21,7 +21,7 @@ body {
 }
 #col1 {
 	float : left;
-	width : 20%;
+	width : 25%;
 	margin-bottom : 1em;
 	padding-right : 3%;
 }
@@ -79,8 +79,7 @@ a {
 }
 
 h3 {
-	text-align: center;
-	color: #015990;
+	margin-left: 20px;
 }
 
 a img {
@@ -123,11 +122,16 @@ select {
 }
 
 .teamColumn {
-	width: 220px;
+	width: 250px;
 }
 
+.teamColumn:hover {
+	background-color: #ffd090;
+}
+
+
 .scoreColumn {
-	width: 150px;
+	width: 80px;
 	font-weight: bold;
 }
 
@@ -140,18 +144,31 @@ select {
 	text-align: left;
 }
 
-.teamColumn:hover {
-	background-color: #ffd090;
+[data-clickable-team] .team-name {
+	margin-top: 5px;
+	margin-left: 50px;
 }
 
 #league-filters {
-	margin-left: 30%;
+	margin-left: 40%;
 	margin-right: 30%;
 }
 
 .club-logo img {
-	height: 30px;
-	width: 30px;
+	height: 35px;
+	width: 35px;
 	float: left;
 	margin-right: 5px;
+}
+
+.match-results {
+	margin-left: 20px;
+}
+
+.match-results .home-team {
+	text-align: left;
+}
+
+.match-results .away-team {
+	text-align: right;
 }

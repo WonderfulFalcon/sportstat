@@ -2,20 +2,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div id="col1">
+    <h3>Match results:</h3>
+    <table class="match-results">
+        <tbody>
+            <c:forEach items="${matches}" var="match">
+                <tr>
+                    <td class="home-team"><span>${match.homeTeamName}</span></td>
+                    <td class="scoreColumn">
+                        <span>${match.goalsHomeTeam}</span>
+                        <span>-</span>
+                        <span>${match.goalsAwayTeam}</span>
+                    </td>
+                    <td class="away-team"><span>${match.awayTeamName}</span></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
     <h3>League summary</h3>
-    <table>
+    <table class="match-results">
         <tbody>
             <tr>
-                <td><span>Match days</span></td>
-                <td><span>${leagueSummary.round}</span></td>
+                <td class="home-team"><span>Match days</span></td>
+                <td class="scoreColumn"><span>${leagueSummary.round}</span></td>
             </tr>
             <tr>
-                <td><span>Total goals</span></td>
-                <td><span>${leagueSummary.totalGoals}</span></td>
+                <td class="home-team"><span>Total goals</span></td>
+                <td class="scoreColumn"><span>${leagueSummary.totalGoals}</span></td>
             </tr>
             <tr>
-                <td><span>Match average goals</span></td>
-                <td>${leagueSummary.averageMatchGoals}</td>
+                <td class="home-team"><span>Match average goals</span></td>
+                <td class="scoreColumn">${leagueSummary.averageMatchGoals}</td>
             </tr>
         </tbody>
     </table>
@@ -43,11 +60,11 @@
             <c:forEach items="${league.teams}" var="team">
                 <tr>
                     <td><span>${team.statistic.position}</span></td>
-                    <td class="teamColumn">
+                    <td class="teamColumn" data-clickable-team="${team.id}">
                         <div class="club-logo">
                             <img src="/images/clubs/England/${team.name}.svg" />
                         </div>
-                        <div data-clickable-team="${team.id}">
+                        <div class="team-name">
                             <span>${team.name}</span>
                         </div>
                     </td>
@@ -64,21 +81,5 @@
             </tbody>
         </table>
     </c:forEach>
-
-    <h3>Match results:</h3>
-
-    <table>
-        <c:forEach items="${matches}" var="match">
-            <tr>
-                <td><span>${match.homeTeamName}</span></td>
-                <td class="scoreColumn">
-                    <span>${match.goalsHomeTeam}</span>
-                    <span>-</span>
-                    <span>${match.goalsAwayTeam}</span>
-                </td>
-                <td><span>${match.awayTeamName}</span></td>
-            </tr>
-        </c:forEach>
-    </table>
 </div>
 
