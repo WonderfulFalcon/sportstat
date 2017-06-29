@@ -1,19 +1,40 @@
 const path = require('path');
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
-    entry : path.resolve(__dirname, './src/main/webapp/js/main.js'),
-    output : {
-        path: path.resolve(__dirname, 'src/main/webapp/dist'),
-        filename: 'main.js'
+    entry : {
+        bundle : path.resolve(__dirname, './src/main/webapp/js/main.js'),
+        styles : path.resolve(__dirname, './src/main/webapp/css/main.js')
     },
+    output : {
+        path: path.resolve(__dirname, 'src/main/webapp/dist/'),
+        filename: '[name].js',
+        library: 'home'
+    },
+    //devtool : "source-map",
     module: {
-        loaders: [{
-            test: /\.js?$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015','react']
+        loaders: [
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015','react']
+                }
             }
-        }]
-    }
+        ],
+        rules: [
+            {
+                test: /\.less/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'less-loader']
+                })
+            }
+        ]
+    },
+    plugins: [
+        new ExtractTextPlugin('style.css')
+    ]
 };
