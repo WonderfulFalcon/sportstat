@@ -1,5 +1,4 @@
-//require("./style.less");
-//require("./flags.css");
+require("./../css/style.less");
 
 import React, {Component} from 'react';
 import {render} from 'react-dom';
