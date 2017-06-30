@@ -1,10 +1,11 @@
 package footballstat.controllers
 
-import footballstat.services.LeagueHandler
 import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.ModelAndView
 
 @Controller
@@ -12,9 +13,6 @@ open class HomeController
 {
     @Autowired
     lateinit var sportData : SportData
-
-    @Autowired
-    lateinit var leagueHandler : LeagueHandler
 
     @RequestMapping(value = "/home.htm")
     open fun home() : ModelAndView
