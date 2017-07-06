@@ -2,6 +2,34 @@ require("./../css/style.less");
 
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import { createStore } from 'redux';
+
+function activeLeagues(state = [], action = {}) {
+    console.log(action);
+    return state;
+}
+
+const store = createStore(activeLeagues);
+
+$(document).ready(function() {
+    loadAvailableLeagues();
+});
+
+function loadAvailableLeagues() {
+    return {
+        type: "POST",
+        payload: fetch('/availableLeagues', { method: 'POST'})
+            .then(response => response.json())
+            .then(json =>  console.log(json))
+    }
+}
+
+
+store.subscribe(() => {
+    console.log('subscribe', store.getState());
+});
+
+store.dispatch({ type : "ADD_LEAGUES", payload: "AE" });
 
 class App extends Component {
     render() {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.servlet.ModelAndView
 
 @Controller
@@ -21,7 +22,8 @@ open class HomeController
         return ModelAndView("home")
     }
 
-    @RequestMapping(value = "/availableLeagues")
+    @PostMapping(value = "/availableLeagues")
+    @ResponseBody
     open fun availableLeagues() : List<LeagueInfo>
     {
         return sportData.getAvailableLeagues()
