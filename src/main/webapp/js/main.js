@@ -5,31 +5,20 @@ import {render} from 'react-dom';
 import { createStore } from 'redux';
 
 function activeLeagues(state = [], action = {}) {
-    console.log(action);
     return state;
 }
-
-const store = createStore(activeLeagues);
-
-$(document).ready(function() {
-    loadAvailableLeagues();
-});
 
 function loadAvailableLeagues() {
     return {
         type: "POST",
         payload: fetch('/availableLeagues', { method: 'POST'})
             .then(response => response.json())
-            .then(json =>  console.log(json))
+            .then(json => store.dispatch({ type : "LOAD_LEAGUES", payload: json }))
     }
 }
 
-
-store.subscribe(() => {
-    console.log('subscribe', store.getState());
-});
-
-store.dispatch({ type : "ADD_LEAGUES", payload: "AE" });
+const store = createStore(activeLeagues);
+loadAvailableLeagues();
 
 class App extends Component {
     render() {
