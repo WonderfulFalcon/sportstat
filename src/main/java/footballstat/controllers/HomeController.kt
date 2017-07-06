@@ -1,5 +1,6 @@
 package footballstat.controllers
 
+import footballstat.model.football.LeagueInfo
 import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -17,11 +18,13 @@ open class HomeController
     @RequestMapping(value = "/home.htm")
     open fun home() : ModelAndView
     {
-        val view = ModelAndView("home")
-        val leagues = sportData.getAvailableLeagues()
+        return ModelAndView("home")
+    }
 
-        view.addObject("leagueInfo", leagues)
-        return view
+    @RequestMapping(value = "/availableLeagues")
+    open fun availableLeagues() : List<LeagueInfo>
+    {
+        return sportData.getAvailableLeagues()
     }
 
     @PostMapping(value = "/league")
