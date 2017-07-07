@@ -1,10 +1,15 @@
 require("./../css/style.less");
 
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import App from './App'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-function activeLeagues(state = [], action = {}) {
+function leaguesReducer(state = [], action = {}) {
+    if (action.type == 'LOAD_LEAGUES') {
+        return action.payload;
+    }
     return state;
 }
 
@@ -17,17 +22,15 @@ function loadAvailableLeagues() {
     }
 }
 
-const store = createStore(activeLeagues);
+const store = createStore(leaguesReducer);
 loadAvailableLeagues();
 
-class App extends Component {
-    render() {
-        return (
-            <h1>Hello World with REACT JS</h1>
-        );
-    }
-}
-render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
 
 //$(document).ready(function() {
 //    var leagueSelect = $("#leagueInfo");
