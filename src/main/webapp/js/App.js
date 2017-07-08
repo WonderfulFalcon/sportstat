@@ -1,39 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-class Header extends Component {
-    render() {
-        return (
-            <div>
-                <p class="logotext">
-                    Football<strong>Stat</strong>
-                </p>
-            </div>
-        )
-    }
-}
+import Header from './Header';
+import Gutter from './Gutter';
+import ControlsPanel from './ControlsPanel';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <select id="leagueInfo">
-                        {this.props.testStore.map((league, index) =>
-                                <option key={index} data-league-id={league.id} data-league-tours-played={league.toursPlayed}>
-                                    {league.name}
-                                </option>
-                        )}
-                    </select>
-                </div>
+                <Header />
+                <Gutter />
+                <ControlsPanel />
             </div>
         );
     }
 }
 
-export default connect(
-        state => ({
-            testStore : state
-        }),
-        dispatch => ({})
-)(App);
+export default App;

@@ -22,15 +22,11 @@ function loadAvailableLeagues() {
     }
 }
 
-const store = createStore(leaguesReducer);
+export const store = createStore(leaguesReducer);
 loadAvailableLeagues();
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
+
 
 //$(document).ready(function() {
 //    var leagueSelect = $("#leagueInfo");
