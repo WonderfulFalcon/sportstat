@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 
 class LeagueSelect extends Component {
     leagueChanged(event) {
-        {console.log(event)}
+        let leagueId = $(event.target).find(":selected").data("leagueId");
+        let matchDay = $(event.target).find(":selected").data("toursPlayed");
+
+        console.log(leagueId + " " + matchDay);
     }
 
     render () {
@@ -11,13 +14,21 @@ class LeagueSelect extends Component {
             <div>
                 <select id="leagueInfo" onChange={this.leagueChanged}>
                     {this.props.testStore.map((league, index) =>
-                        <option key={index} data-league-id={league.id}
-                                data-league-tours-played={league.toursPlayed}>
-                            {league.name}
-                        </option>
+                        <LeagueItem key={league.id} league={league} />
                     )}
                 </select>
             </div>
+        )
+    }
+}
+
+class LeagueItem extends Component {
+    render () {
+        return (
+            <option key={this.props.league.id} data-league-id={this.props.league.id}
+                    data-tours-played={this.props.league.toursPlayed}>
+                {this.props.league.name}
+            </option>
         )
     }
 }
