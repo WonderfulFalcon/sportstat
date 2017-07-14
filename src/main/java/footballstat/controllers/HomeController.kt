@@ -1,5 +1,6 @@
 package footballstat.controllers
 
+import footballstat.model.football.League
 import footballstat.model.football.LeagueInfo
 import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,17 +31,11 @@ open class HomeController
     }
 
     @PostMapping(value = "/league")
+    @ResponseBody
     open fun league(@RequestParam("leagueId", required = true) leagueId : Int,
-                         @RequestParam("matchDay", required = true) matchDay : Int) : ModelAndView
+                         @RequestParam("matchDay", required = true) matchDay : Int) : League
     {
-        val view : ModelAndView = ModelAndView("league")
-
-        val league = sportData.getLeague(leagueId, matchDay)
-        val matches = sportData.getMatches(leagueId, matchDay)
-
-        view.addObject("league", league)
-        view.addObject("matches", matches)
-        return view
+        return sportData.getLeague(leagueId, matchDay)
     }
 
     @PostMapping(value = "/teamPlayers")

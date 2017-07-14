@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createStore } from 'redux';
 
 class LeagueSelect extends Component {
     leagueChanged(event) {
         let leagueId = $(event.target).find(":selected").data("leagueId");
         let matchDay = $(event.target).find(":selected").data("toursPlayed");
 
-        console.log(leagueId + " " + matchDay);
+        let data = new FormData();
+        data.append("leagueId", leagueId);
+        data.append("matchDay", matchDay);
+
+        fetch('/league', { method: 'post', body: data })
+            .then(response => store.dispatch({
+                type : "LOAD_TABLES",
+                payload: response.json()
+            }));
     }
 
     render () {

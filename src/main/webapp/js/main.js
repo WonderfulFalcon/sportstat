@@ -4,10 +4,11 @@ import App from './App';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 
 function leaguesReducer(state = [], action = {}) {
     if (action.type == 'LOAD_LEAGUES') {
+        return action.payload;
+    } else if (action.type == 'LOAD_TABLES') {
         return action.payload;
     }
     return state;
