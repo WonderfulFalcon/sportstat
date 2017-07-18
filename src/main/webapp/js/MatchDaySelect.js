@@ -6,7 +6,7 @@ class MatchDaySelect extends Component {
     render () {
         return (
             <select id="matchDay" name="Match Day">
-                {this.props.testStore.map((league, index) =>
+                {this.props.availableLeagues.map((league, index) =>
                     <option key={index}>
                         {index}
                     </option>
@@ -17,6 +17,6 @@ class MatchDaySelect extends Component {
 }
 
 export default connect(
-        state => ({ testStore : state }),
+        state => ({ availableLeagues : state.availableLeagues }),
         dispatch => ({})
 )(MatchDaySelect);

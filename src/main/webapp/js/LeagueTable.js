@@ -4,7 +4,7 @@ class LeagueTable extends Component {
     render () {
         return (
             <div id='col1'>
-                {this.props.testStore.map((table, index) =>
+                {this.props.leagueTable.map((table, index) =>
                     <table key={index}></table>
                 )}
             </div>
@@ -13,6 +13,6 @@ class LeagueTable extends Component {
 }
 
 export default connect(
-        state => ({ testStore : state }),
+        state => ({ leagueTable : state.leagueTable }),
         dispatch => ({})
 )(LeagueTable);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStore } from 'redux';
+import { store } from './main';
 
 class LeagueSelect extends Component {
     leagueChanged(event) {
@@ -12,17 +13,15 @@ class LeagueSelect extends Component {
         data.append("matchDay", matchDay);
 
         fetch('/league', { method: 'post', body: data })
-            .then(response => store.dispatch({
-                type : "LOAD_TABLES",
-                payload: response.json()
-            }));
+            .then(response => response.json())
+            .then(json => store.dispatch({type : "LOAD_TABLES", payload: json }));
     }
 
     render () {
         return (
             <div>
                 <select id="leagueInfo" onChange={this.leagueChanged}>
-                    {this.props.testStore.map((league, index) =>
+                    {this.props.availableLeagues.map((league, index) =>
                         <LeagueItem key={league.id} league={league} />
                     )}
                 </select>
@@ -43,6 +42,8 @@ class LeagueItem extends Component {
 }
 
 export default connect(
-        state => ({ testStore : state }),
+        state => ({
+            availableLeagues : state.availableLeagues
+        }),
         dispatch => ({})
 )(LeagueSelect);

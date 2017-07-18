@@ -4,15 +4,7 @@ import App from './App';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-
-function leaguesReducer(state = [], action = {}) {
-    if (action.type == 'LOAD_LEAGUES') {
-        return action.payload;
-    } else if (action.type == 'LOAD_TABLES') {
-        return action.payload;
-    }
-    return state;
-}
+import reducer from './reducers'
 
 function loadAvailableLeagues() {
     return {
@@ -23,7 +15,9 @@ function loadAvailableLeagues() {
     }
 }
 
-export const store = createStore(leaguesReducer);
+export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__());
+
 loadAvailableLeagues();
 
 ReactDOM.render(<App />, document.getElementById('root'));
