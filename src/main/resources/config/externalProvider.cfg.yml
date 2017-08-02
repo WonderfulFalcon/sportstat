@@ -15,4 +15,4 @@ matches : fixtures
 
 #filters
 matchDayFilter : matchday
-forbiddenLeagueIds : 424
+availableLeagueIds : 426,430,434,436,438,440

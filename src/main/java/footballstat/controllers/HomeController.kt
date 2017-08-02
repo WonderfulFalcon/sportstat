@@ -17,7 +17,7 @@ open class HomeController
     @Autowired
     lateinit var sportData : SportData
 
-    @RequestMapping(value = "/home.htm")
+    @RequestMapping(value = "/")
     open fun home() : ModelAndView
     {
         return ModelAndView("home")

@@ -30,7 +30,7 @@ class LeaguesProvider
             val url = with(config) { "$apiUrl/$apiVersion/$competitions/?season=2016" } //HACK: FIX LATER
 
             return json.availableLeagues(request.getResponse(url)).filter {
-                it -> !config.forbiddenLeagueIds.contains(it.Id)
+                it -> config.availableLeagueIds.contains(it.Id)
             }
         }
 
