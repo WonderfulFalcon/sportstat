@@ -16,7 +16,7 @@ class ControlsPanel extends Component {
 
     render () {
         return (
-            <div>
+            <div className="leagueControls">
                 {this.renderSelect(<LeagueSelect />)}
                 {this.renderSelect(<MatchDaySelect />)}
             </div>

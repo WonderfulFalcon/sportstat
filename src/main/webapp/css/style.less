@@ -28,14 +28,17 @@ body {
 }
 
 #col2 {
-  float : left;
-  width : 40%;
-  margin-left : 3%;
-  margin-bottom : 1em;
-  border-right : 1px solid #eee;
-  border-left: 1px solid #eee;
-  padding-right : 3%;
+  div {
+    float : left;
+    width : 40%;
+    margin-left : 3%;
+    margin-bottom : 1em;
+    border-right : 1px solid #eee;
+    border-left: 1px solid #eee;
+    padding-right : 3%;
+  }
 }
+
 #col3 {
   float : left;
   width : 20%;
@@ -53,6 +56,10 @@ body {
   .away-team {
     text-align: right;
   }
+}
+
+#matchDay {
+  width: 50px !important;
 }
 
 .imgleft {
@@ -74,6 +81,12 @@ body {
   width: 700px;
 }
 
+.leagueControls {
+  justify-content: center;
+  display: inline-flex;
+  width: 100%;
+}
+
 table {
   margin: auto;
   td {
@@ -83,10 +96,13 @@ table {
 
 select {
   margin: 5px;
-  width: 150px;
+  width: 200px;
 
   color : #015990;
   background : transparent;
+
+  text-align: center;
+  text-align-last: center;
 }
 
 .teamColumn {

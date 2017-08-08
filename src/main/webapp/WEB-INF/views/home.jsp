@@ -10,18 +10,7 @@
 
 </head>
 <body>
-    <div id="root">
-        <%--<div id="header">--%>
-            <%--<p class="logotext">Football<strong>Stat</strong></p>--%>
-        <%--</div>--%>
-        <%--<div id="gutter"></div>--%>
-        <%--<jsp:include page="tableControls.jsp" flush="true" />--%>
-
-        <%--<div id="league-target" data-league-container></div>--%>
-
-        <%--<div id="col3" data-players-container>--%>
-        <%--</div>--%>
-    </div>
+    <div id="root"></div>
     <script type="text/javascript" src="<c:url value="dist/bundle.js" /> "></script>
 </body>
 </html>
