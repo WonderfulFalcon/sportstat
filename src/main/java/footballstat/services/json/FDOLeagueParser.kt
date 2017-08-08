@@ -24,7 +24,8 @@ class FDOLeagueParser : LeagueParser
             it ->  LeagueInfo(
                 it.get("id").intValue,
                 it.get("caption").textValue,
-                it.get("currentMatchday").intValue)
+                it.get("currentMatchday").intValue,
+                it.get("league").textValue)
         }
     }
 
