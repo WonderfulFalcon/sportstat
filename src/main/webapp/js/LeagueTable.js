@@ -12,7 +12,7 @@ class LeagueTable extends Component {
             <div id='col2'>
                 {this.tables().map((table, index) =>
                     <div>
-                        <table key={index}>
+                        <table className="leagueTable" key={index}>
                             <TableHeader tableName={table.name} />
                             <TableBody teams={table.teams} />
                         </table>
