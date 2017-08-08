@@ -12,9 +12,8 @@ class LeagueTable extends Component {
             <div id='col2'>
                 {this.tables().map((table, index) =>
                     <div>
-                        <h3>{table.name}</h3>
                         <table key={index}>
-                            <TableHeader />
+                            <TableHeader tableName={table.name} />
                             <TableBody teams={table.teams} />
                         </table>
                     </div>
@@ -28,6 +27,13 @@ class TableHeader extends Component {
     render () {
         return (
             <thead>
+                <tr>
+                    <th>
+                        <h3>
+                            {this.props.tableName}
+                        </h3>
+                    </th>
+                </tr>
                 <tr>
                     <th><span>Pos.</span></th>
                     <th><span>Team</span></th>
