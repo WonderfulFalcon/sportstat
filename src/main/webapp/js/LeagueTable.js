@@ -47,7 +47,7 @@ class TableHeader extends Component {
 
 class TableBody extends Component {
     imagePath (name) {
-        return "/images/clubs/England/" + name + ".svg";
+        return "/images/Clubs/" + name + ".svg";
     }
 
     render () {
