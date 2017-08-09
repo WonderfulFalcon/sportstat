@@ -7,6 +7,7 @@ class LeagueSelect extends Component {
     leagueChanged(event) {
         let leagueId = $(event.target).find(":selected").data("leagueId");
         let matchDay = $(event.target).find(":selected").data("toursPlayed");
+        let shortName = $(event.target).find(":selected").data("shortName");
 
         let data = new FormData();
         data.append("leagueId", leagueId);
@@ -14,7 +15,7 @@ class LeagueSelect extends Component {
 
         fetch('/league', { method: 'post', body: data })
             .then(response => response.json())
-            .then(json => store.dispatch({type : "LOAD_TABLES", payload: json }));
+            .then(json => store.dispatch({type : "LOAD_TABLES", payload: { json : json, shortName : shortName } }));
     }
 
     render () {
@@ -34,7 +35,8 @@ class LeagueItem extends Component {
     render () {
         return (
             <option key={this.props.league.id} data-league-id={this.props.league.id}
-                    data-tours-played={this.props.league.toursPlayed}>
+                    data-tours-played={this.props.league.toursPlayed}
+                    data-short-name={this.props.league.shortName}>
                 {this.props.league.name}
             </option>
         )
