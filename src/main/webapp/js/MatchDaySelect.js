@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
+import { loadLeague } from './main';
+
 class MatchDaySelect extends Component {
     toursPlayed () {
-        const league = this.props.leagueTable;
-        return league ? league.matchDay : 0
+        const league = this.props.availableLeagues[0];
+        return league ? league.toursPlayed : 0;
     }
 
     matchDays () {
@@ -19,7 +21,14 @@ class MatchDaySelect extends Component {
     render () {
         return (
             <div>
-                <select id="matchDay" name="Match Day">
+                <select id="matchDay" name="Match Day" onChange={ function() {
+                        const selectedLeague = $("#leagueInfo").find(":selected");
+                        const leagueId = selectedLeague.data("leagueId");
+
+                        const matchDay = $("#matchDay").find(":selected").val();
+                        loadLeague(leagueId, matchDay);
+                    }
+                }>
                     {this.matchDays().map((item, count) =>
                         <MatchDayOption matchday={item} />
                     )}
@@ -40,6 +49,6 @@ class MatchDayOption extends Component {
 }
 
 export default connect(
-        state => ({ leagueTable : state.leagueTable }),
+        state => ({ availableLeagues : state.availableLeagues }),
         dispatch => ({})
 )(MatchDaySelect);
