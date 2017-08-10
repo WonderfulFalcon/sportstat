@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStore } from 'redux';
 import { store } from './main';
+import { loadLeague } from './main';
 
 class LeagueSelect extends Component {
-    leagueChanged(event) {
-        let leagueId = $(event.target).find(":selected").data("leagueId");
-        let matchDay = $(event.target).find(":selected").data("toursPlayed");
-
-        let data = new FormData();
-        data.append("leagueId", leagueId);
-        data.append("matchDay", matchDay);
-
-        fetch('/league', { method: 'post', body: data })
-            .then(response => response.json())
-            .then(json => store.dispatch({type : "LOAD_TABLES", payload: json }));
-    }
-
     render () {
         return (
             <div>
-                <select id="leagueInfo" onChange={this.leagueChanged}>
+                <select id="leagueInfo" onChange={ function() {
+                        const selectedLeague = $("#leagueInfo").find(":selected");
+                        const leagueId = selectedLeague.data("leagueId");
+                        const matchDay = selectedLeague.data("toursPlayed");
+                        loadLeague(leagueId, matchDay);
+                    }
+                }>
                     {this.props.availableLeagues.map((league, index) =>
                         <LeagueItem key={league.id} league={league} />
                     )}
