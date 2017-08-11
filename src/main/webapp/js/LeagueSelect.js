@@ -15,7 +15,9 @@ class LeagueSelect extends Component {
 
         fetch('/league', { method: 'post', body: data })
             .then(response => response.json())
-            .then(json => store.dispatch({type : "LOAD_TABLES", payload: { json : json, shortName : shortName } }));
+            .then(json => store.dispatch({type : "LOAD_TABLES", payload: json }));
+
+        store.dispatch({type : "LOAD_LEAGUE_TABLE", payload: shortName });
     }
 
     render () {

@@ -8,6 +8,7 @@ import Header from './Header';
 import Gutter from './Gutter';
 import ControlsPanel from './ControlsPanel';
 import LeagueTable from './LeagueTable';
+import LeagueLogo from './LeagueLogo';
 
 class App extends Component {
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
                 <ControlsPanel />
 
                 <Provider store={store}>
+                    <LeagueLogo />
                     <LeagueTable />
                 </Provider>
             </div>

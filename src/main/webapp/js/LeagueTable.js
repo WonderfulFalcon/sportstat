@@ -13,7 +13,7 @@ class LeagueTable extends Component {
                 {this.tables().map((table, index) =>
                     <div>
                         <table key={index}>
-                            <TableHeader tableName={table.name} shortName={this.props.leagueTable.shortName} />
+                            <TableHeader tableName={table.name} />
                             <TableBody teams={table.teams} />
                         </table>
                     </div>
@@ -24,10 +24,6 @@ class LeagueTable extends Component {
 }
 
 class TableHeader extends Component {
-    imagePath (name) {
-        return "/images/League/" + name + ".svg";
-    }
-
     render () {
         return (
             <thead>
@@ -36,9 +32,6 @@ class TableHeader extends Component {
                         <h3>
                             {this.props.tableName}
                         </h3>
-                        <div className="club-logo">
-                            <img src={this.imagePath(this.props.shortName)} />
-                        </div>
                     </th>
                 </tr>
                 <tr>
