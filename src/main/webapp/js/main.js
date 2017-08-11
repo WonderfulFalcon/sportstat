@@ -28,6 +28,15 @@ export function loadLeague(leagueId, matchDay) {
     }
 }
 
+export function loadPlayers (teamId) {
+    let data = new FormData();
+    data.append("teamId", teamId);
+
+    fetch('/teamPlayers', { method: 'post', body: data })
+        .then(response => response.json())
+        .then(json => store.dispatch({type : "LOAD_PLAYERS", payload: json }));
+}
+
 export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__());
 

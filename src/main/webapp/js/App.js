@@ -8,6 +8,7 @@ import Gutter from './Gutter';
 import ControlsPanel from './ControlsPanel';
 import LeagueTable from './LeagueTable';
 import LoadLeague from './LoadLeague';
+import TeamPlayers from './TeamPlayers';
 
 class App extends Component {
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
                 <ControlsPanel />
                 <LoadLeague />
                 <LeagueTable />
+                <TeamPlayers />
             </div>
         );
     }

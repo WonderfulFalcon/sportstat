@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { loadPlayers } from './main';
 
 class LeagueTable extends Component {
     tables () {
@@ -62,7 +63,9 @@ class TableBody extends Component {
             {this.props.teams.map((team, index) =>
                 <tr key={index}>
                     <td><span>{team.statistic.position}</span></td>
-                    <td className="teamColumn" data-clickable-team={team.id}>
+                    <td className="teamColumn" data-clickable-team={team.id} onClick={function () {
+                        loadPlayers(team.id);
+                    }}>
                         <div className="club-logo">
                             <img src={this.imagePath(team.name)} />
                         </div>

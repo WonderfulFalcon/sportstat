@@ -2,6 +2,7 @@ package footballstat.controllers
 
 import footballstat.model.football.League
 import footballstat.model.football.LeagueInfo
+import footballstat.model.football.Player
 import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -39,10 +40,9 @@ open class HomeController
     }
 
     @PostMapping(value = "/teamPlayers")
-    open fun teamPlayers(@RequestParam("teamId", required = true) teamId : Int) : ModelAndView
+    @ResponseBody
+    open fun teamPlayers(@RequestParam("teamId", required = true) teamId : Int) : Collection<Player>
     {
-        val view : ModelAndView = ModelAndView("teamPlayers")
-        view.addObject("players", sportData.getTeamSquad(teamId))
-        return view
+        return sportData.getTeamSquad(teamId);
     }
 }
