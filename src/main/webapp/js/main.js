@@ -4,7 +4,8 @@ import App from './App';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-import reducer from './reducers'
+import reducer from './reducers';
+import { Provider } from 'react-redux';
 
 function loadAvailableLeagues() {
     return {
@@ -20,7 +21,11 @@ export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
 
 loadAvailableLeagues();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root'));
 
 
 //$(document).ready(function() {

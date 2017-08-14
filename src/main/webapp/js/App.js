@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { store } from './main';
 
 import Header from './Header';
@@ -17,11 +16,8 @@ class App extends Component {
                 <Header />
                 <Gutter />
                 <ControlsPanel />
-
-                <Provider store={store}>
-                    <LeagueLogo />
-                    <LeagueTable />
-                </Provider>
+                <LeagueLogo />
+                <LeagueTable />
             </div>
         );
     }
