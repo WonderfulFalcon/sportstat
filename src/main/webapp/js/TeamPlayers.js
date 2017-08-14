@@ -8,26 +8,30 @@ class TeamPlayers extends Component {
 
     render () {
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Country</th>
-                        <th>Name</th>
-                        <th>Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.props.teamPlayers.map((player, index) =>
+            <div id="col3">
+                {this.props.teamPlayers.length > 0 &&
+                    <table>
+                        <thead>
                         <tr>
-                            <td className="player-country">
-                                <i className={this.countryLogoClass(player.country)}></i>
-                            </td>
-                            <td>{player.name}</td>
-                            <td>{player.number}</td>
+                            <th>Country</th>
+                            <th>Name</th>
+                            <th>Number</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                        {this.props.teamPlayers.map((player, index) =>
+                                <tr>
+                                    <td className="player-country">
+                                        <i className={this.countryLogoClass(player.country)}></i>
+                                    </td>
+                                    <td>{player.name}</td>
+                                    <td>{player.number}</td>
+                                </tr>
+                        )}
+                        </tbody>
+                    </table>
+                }
+            </div>
         )
     }
 }
