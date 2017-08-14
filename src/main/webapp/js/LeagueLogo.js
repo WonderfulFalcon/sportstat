@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createStore } from 'redux';
-import { store } from './main';
 
 class LeagueLogo extends Component {
     imagePath (name) {
@@ -9,15 +6,10 @@ class LeagueLogo extends Component {
     }
 
     render() {
-        return (<div className="club-logo">
+        return (<div className="league-logo">
             <img src={ this.imagePath(this.props.shortName) } />
         </div>)
     }
 }
 
-export default connect(
-    state => ({
-        shortName : state.leagueLogo
-    }),
-    dispatch => ({})
-)(LeagueLogo);
+export default LeagueLogo;

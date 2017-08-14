@@ -20,7 +20,6 @@ class App extends Component {
                 <ControlsPanel />
                 <LoadLeague />
                 <LeagueInfo />
-				<LeagueLogo />
                 <LeagueTable />
                 <TeamPlayers />
             </div>

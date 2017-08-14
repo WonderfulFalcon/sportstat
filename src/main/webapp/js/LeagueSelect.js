@@ -12,9 +12,7 @@ class LeagueSelect extends Component {
                         const selectedLeague = $("#leagueInfo").find(":selected");
                         const leagueId = selectedLeague.data("leagueId");
                         const matchDay = selectedLeague.data("toursPlayed");
- 						const shortName = selectedLeague.data("shortName");
                         loadLeague(leagueId, matchDay);
-						store.dispatch({type : "LOAD_LEAGUE_TABLE", payload: shortName });
                     }
                 }>
                     {this.props.availableLeagues.map((league, index) =>

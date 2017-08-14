@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import reducer from './reducers';
 import { Provider } from 'react-redux';
-import { Provider } from 'react-redux';
 
 function loadAvailableLeagues() {
     return {

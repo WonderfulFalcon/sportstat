@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadPlayers } from './main';
+import LeagueLogo from './LeagueLogo';
 
 class LeagueTable extends Component {
     tables () {
@@ -23,10 +24,17 @@ class LeagueTable extends Component {
 }
 
 class TableHeader extends Component {
+    leagueShortName () {
+        return $("#leagueInfo").find(":selected").data("shortName");
+    }
+
     render () {
         return (
             <thead>
                 <tr>
+                    <th>
+                        <LeagueLogo shortName={this.leagueShortName()} />
+                    </th>
                     <th>
                         <h3>
                             {this.props.tableName}
