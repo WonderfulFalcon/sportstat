@@ -8,17 +8,19 @@ class LeagueSelect extends Component {
     render () {
         return (
             <div>
-                <select id="leagueInfo" onChange={ function() {
-                        const selectedLeague = $("#leagueInfo").find(":selected");
-                        const leagueId = selectedLeague.data("leagueId");
-                        const matchDay = selectedLeague.data("toursPlayed");
-                        loadLeague(leagueId, matchDay);
-                    }
-                }>
-                    {this.props.availableLeagues.map((league, index) =>
-                        <LeagueItem key={league.id} league={league} />
-                    )}
-                </select>
+                {this.props.availableLeagues.length > 0 &&
+                    <select id="leagueInfo" onChange={ function() {
+                            const selectedLeague = $("#leagueInfo").find(":selected");
+                            const leagueId = selectedLeague.data("leagueId");
+                            const matchDay = selectedLeague.data("toursPlayed");
+                            loadLeague(leagueId, matchDay);
+                        }
+                    }>
+                        {this.props.availableLeagues.map((league, index) =>
+                            <LeagueItem key={league.id} league={league} />
+                        )}
+                    </select>
+                }
             </div>
         )
     }

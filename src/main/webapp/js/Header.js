@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class Header extends Component {
     render() {
         return (
-            <div>
-                <p>Football<strong>Stat</strong></p>
+            <div id="mainHeader">
+                <p>Football <strong>Stat</strong></p>
             </div>
         )
     }

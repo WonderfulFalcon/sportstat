@@ -21,18 +21,20 @@ class MatchDaySelect extends Component {
     render () {
         return (
             <div>
-                <select id="matchDay" name="Match Day" onChange={ function() {
-                        const selectedLeague = $("#leagueInfo").find(":selected");
-                        const leagueId = selectedLeague.data("leagueId");
+                {this.props.availableLeagues.length > 0 &&
+                    <select id="matchDay" name="Match Day" onChange={ function() {
+                            const selectedLeague = $("#leagueInfo").find(":selected");
+                            const leagueId = selectedLeague.data("leagueId");
 
-                        const matchDay = $("#matchDay").find(":selected").val();
-                        loadLeague(leagueId, matchDay);
-                    }
-                }>
-                    {this.matchDays().map((item, count) =>
-                        <MatchDayOption matchday={item} />
-                    )}
-                </select>
+                            const matchDay = $("#matchDay").find(":selected").val();
+                            loadLeague(leagueId, matchDay);
+                        }
+                    }>
+                        {this.matchDays().map((item, count) =>
+                            <MatchDayOption matchday={item} />
+                        )}
+                    </select>
+                }
             </div>
         );
     }
