@@ -69,7 +69,9 @@ class TableBody extends Component {
             {this.props.teams.map((team, index) =>
                 <tr key={index}>
                     <td><span>{team.statistic.position}</span></td>
-                    <td className="teamColumn" data-clickable-team={team.id} onClick={function () {
+                    <td className="teamColumn" data-clickable-team={team.id} onClick={function (event) {
+                        $('.selected').removeClass('selected');
+                        $(event.target).closest('td').addClass('selected');
                         loadPlayers(team.id);
                     }}>
                         <div className="club-logo">
