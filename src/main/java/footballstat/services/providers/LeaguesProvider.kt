@@ -39,7 +39,10 @@ class LeaguesProvider
             val url = with(config) {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable/?${config.matchDayFilter}=$matchDay"
             }
-            return json.league(request.getResponse(url))
+            val league = json.league(request.getResponse(url));
+            league.Id = leagueId;
+
+            return league;
         }
 
         override fun getMatches(leagueId: Int, matchDay: Int): Set<Match>

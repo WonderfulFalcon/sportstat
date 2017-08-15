@@ -4,6 +4,10 @@ import java.util.*
 
 class League
 {
+    var Id : Int? = null
+        get
+        set
+
     var MatchDay : Int = 1
         get
         set

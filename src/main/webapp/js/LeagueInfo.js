@@ -6,18 +6,16 @@ class LeagueInfo extends Component {
         return (
             <div id="col1">
                 {this.props.leagueMatches.length > 0 &&
-                    <table class="match-results">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <span>
-                                        Match results:
-                                    </span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <LeagueStatistic matches={this.props.leagueMatches} />
-                    </table>
+                    <div>
+                        <div className="match-results-header">
+                            <span>
+                                Match results
+                            </span>
+                        </div>
+                        <table className="match-results">
+                            <LeagueStatistic matches={this.props.leagueMatches} />
+                        </table>
+                    </div>
                 }
             </div>
         )
@@ -32,11 +30,11 @@ class LeagueStatistic extends Component {
                     <tr>
                         <td><span>{match.homeTeamName}</span></td>
                         <td class="scoreColumn">
-                            <span>${match.goalsHomeTeam}</span>
+                            <span>{match.goalsHomeTeam}</span>
                             <span>-</span>
-                            <span>${match.goalsAwayTeam}</span>
+                            <span>{match.goalsAwayTeam}</span>
                         </td>
-                        <td><span>${match.awayTeamName}</span></td>
+                        <td><span>{match.awayTeamName}</span></td>
                     </tr>
                 )}
             </tbody>
@@ -47,4 +45,4 @@ class LeagueStatistic extends Component {
 export default connect(
     state => ({ leagueMatches : state.leagueMatches }),
     dispatch => ({})
-);
+)(LeagueInfo);

@@ -36,7 +36,7 @@ class TableHeader extends Component {
                         <LeagueLogo shortName={this.leagueShortName()} />
                     </th>
                     <th>
-                        <span id="tableNameHeader">
+                        <span className="table-name-header">
                             {this.props.tableName}
                         </span>
                     </th>

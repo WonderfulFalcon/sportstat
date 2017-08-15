@@ -26,7 +26,7 @@ export function loadLeague(leagueId, matchDay) {
             .then(response => response.json())
             .then(league => {
                 store.dispatch({type : "LOAD_TABLES", payload: league });
-                //loadMatches(league.id, league.matchDay);
+                loadMatches(league.id, league.matchDay);
             }
         );
     }
