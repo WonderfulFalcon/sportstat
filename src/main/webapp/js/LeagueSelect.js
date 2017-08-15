@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createStore } from 'redux';
-import { store } from './main';
+import ReactDOM from 'react-dom';
+
 import { loadLeague } from './main';
 
 class LeagueSelect extends Component {
     render () {
         return (
             <div>
-                {this.props.availableLeagues.length > 0 &&
-                    <select id="leagueInfo" onChange={ function() {
-                            const selectedLeague = $("#leagueInfo").find(":selected");
-                            const leagueId = selectedLeague.data("leagueId");
-                            const matchDay = selectedLeague.data("toursPlayed");
-                            loadLeague(leagueId, matchDay);
-                        }
-                    }>
-                        {this.props.availableLeagues.map((league, index) =>
-                            <LeagueItem key={league.id} league={league} />
-                        )}
-                    </select>
-                }
+                <select id="leagueInfo" onChange={ function() {
+                        const selectedLeague = $("#leagueInfo").find(":selected");
+                        const leagueId = selectedLeague.data("leagueId");
+                        const matchDay = selectedLeague.data("toursPlayed");
+                        loadLeague(leagueId, matchDay);
+                    }
+                }>
+                    {this.props.availableLeagues.map((league, index) =>
+                        <LeagueItem key={league.id} league={league} />
+                    )}
+                </select>
             </div>
         )
     }
@@ -38,9 +35,4 @@ class LeagueItem extends Component {
     }
 }
 
-export default connect(
-        state => ({
-            availableLeagues : state.availableLeagues
-        }),
-        dispatch => ({})
-)(LeagueSelect);
+export default LeagueSelect;

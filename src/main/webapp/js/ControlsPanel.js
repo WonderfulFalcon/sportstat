@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 import LeagueSelect from './LeagueSelect';
 import MatchDaySelect from './MatchDaySelect';
+import HomeAwaySelect from './HomeAwaySelect';
 
 class ControlsPanel extends Component {
     render () {
         return (
             <div className="leagueControls">
-                <LeagueSelect />
-                <MatchDaySelect />
+                {this.props.availableLeagues.length > 0 && <div className="controls">
+                    <LeagueSelect availableLeagues={this.props.availableLeagues} />
+                    <MatchDaySelect availableLeagues={this.props.availableLeagues} />
+                    <HomeAwaySelect />
+                </div>}
             </div>
         )
     }
 }
 
-export default ControlsPanel;
+export default connect(
+    state => ({
+        availableLeagues : state.availableLeagues
+    }),
+    dispatch => ({})
+)(ControlsPanel);
