@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadPlayers } from './main';
 import LeagueLogo from './LeagueLogo';
+import TeamName from './TeamName';
 
 class LeagueTable extends Component {
     tables () {
@@ -59,10 +60,6 @@ class TableHeader extends Component {
 }
 
 class TableBody extends Component {
-    imagePath (name) {
-        return "/images/Clubs/" + name + ".svg";
-    }
-
     render () {
         $('.teamColumn.selected').removeClass('selected');
         return (
@@ -73,14 +70,9 @@ class TableBody extends Component {
                     <td className="teamColumn" data-clickable-team={team.id} onClick={function () {
                          $('.teamColumn.selected').removeClass('selected');
                          $('[data-clickable-team=' + team.id + ']').addClass('selected');
-                        loadPlayers(team.id);
+                        loadPlayers(team.id, team.name);
                     }}>
-                        <div className="club-logo">
-                            <img src={this.imagePath(team.name)} />
-                        </div>
-                        <div className="team-name">
-                            <span>{team.name}</span>
-                        </div>
+                    <TeamName teamName={team.name}/>
                     </td>
                     <td><span>{team.statistic.playedGames}</span></td>
                     <td><span>{team.statistic.wins}</span></td>
