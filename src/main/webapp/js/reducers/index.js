@@ -4,7 +4,6 @@ import availableLeagues from './availableLeagues'
 import leagueTable from './leagueTable'
 import teamPlayers from './teamPlayers';
 import leagueMatches from './leagueMatches';
-import loading from './loading';
 import homeAwayState from './homeAwayState';
 
 export default combineReducers({
@@ -12,6 +11,5 @@ export default combineReducers({
     leagueTable,
     teamPlayers,
     leagueMatches,
-    loading,
     homeAwayState
 })

@@ -27,7 +27,6 @@ export function loadLeague(leagueId, matchDay) {
             .then(league => {
                 store.dispatch({type : "LOAD_TABLES", payload: league });
                 loadMatches(league.id, league.matchDay);
-                store.dispatch({type : "FIRST_LOADING", payload: false });
             }
         );
     }

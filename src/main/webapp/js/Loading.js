@@ -7,14 +7,15 @@ class Loading extends Component {
     render () {
         return (
             <div class="loading-gif-container">
-                {this.props.first_loading &&
-                        <img src="/images/loading_football.gif" />}
+                {$.isEmptyObject(this.props.leagueTable) &&
+                    <img src="/images/loading_football.gif" />
+                }
             </div>
         );
     }
 }
 
 export default connect(
-    state => ({ first_loading : state.loading }),
-    dispatch => ({})
+        state => ({ leagueTable : state.leagueTable }),
+        dispatch => ({})
 )(Loading);

@@ -72,7 +72,7 @@ class TableBody extends Component {
                          $('[data-clickable-team=' + team.id + ']').addClass('selected');
                         loadPlayers(team.id, team.name);
                     }}>
-                    <TeamName teamName={team.name}/>
+                        <TeamName teamName={team.name}/>
                     </td>
                     <td><span>{team.statistic.playedGames}</span></td>
                     <td><span>{team.statistic.wins}</span></td>
