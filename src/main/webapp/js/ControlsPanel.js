@@ -12,7 +12,7 @@ class ControlsPanel extends Component {
             <div className="leagueControls">
                 {this.props.availableLeagues.length > 0 && <div className="controls">
                     <LeagueSelect availableLeagues={this.props.availableLeagues} />
-                    <MatchDaySelect availableLeagues={this.props.availableLeagues} />
+                    <MatchDaySelect />
                     <HomeAwaySelect />
                 </div>}
             </div>

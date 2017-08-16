@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 import { loadLeague } from './main';
 
 class MatchDaySelect extends Component {
-    toursPlayed () {
-        const league = this.props.availableLeagues[0];
-        return league ? league.toursPlayed : 0;
-    }
-
-    matchDays () {
+    matchDays() {
         let matchDays = [];
-        for (var i = 1; i < this.toursPlayed() + 1; i++) {
-            matchDays.push(i);
+        for (let matchDay = 1; matchDay < this.props.leagueTable.matchDay + 1; matchDay++) {
+            matchDays.push(matchDay);
         }
         return matchDays;
     }
@@ -20,7 +16,18 @@ class MatchDaySelect extends Component {
     render () {
         return (
             <div>
-                <select id="matchDay" name="Match Day" onChange={ function() {
+                {this.props.leagueTable &&
+                    <Select matchDays={this.matchDays()} />
+                }
+            </div>
+        );
+    }
+}
+
+class Select extends Component {
+    render () {
+        return (
+            <select id="matchDay" name="Match Day" onChange={ function() {
                         const selectedLeague = $("#leagueInfo").find(":selected");
                         const leagueId = selectedLeague.data("leagueId");
 
@@ -28,23 +35,16 @@ class MatchDaySelect extends Component {
                         loadLeague(leagueId, matchDay);
                     }
                 }>
-                    {this.matchDays().map((item, count) =>
-                        <MatchDayOption matchday={item} />
-                    )}
-                </select>
-            </div>
-        );
+                {this.props.matchDays.map((item, count) =>
+                        <option key={item}>
+                            {item}
+                        </option>
+                )}
+            </select>
+        )
     }
 }
 
-class MatchDayOption extends Component {
-    render () {
-        return (
-            <option key={this.props.matchday}>
-                {this.props.matchday}
-            </option>
-        );
-    }
-}
-
-export default MatchDaySelect;
+export default connect(
+    state => ({ leagueTable : state.leagueTable })
+)(MatchDaySelect);
