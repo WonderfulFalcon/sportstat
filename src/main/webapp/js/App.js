@@ -7,6 +7,7 @@ import LeagueTable from './LeagueTable';
 import LoadLeague from './LoadLeague';
 import TeamPlayers from './TeamPlayers';
 import LeagueInfo from './LeagueInfo';
+import Loading from './Loading';
 
 class App extends Component {
     render() {
@@ -14,6 +15,7 @@ class App extends Component {
             <div>
                 <Header />
                 <ControlsPanel />
+                <Loading />
                 <LoadLeague />
                 <LeagueInfo />
                 <LeagueTable />

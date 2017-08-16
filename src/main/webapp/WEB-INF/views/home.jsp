@@ -12,8 +12,5 @@
 <body>
     <div id="root"></div>
     <script type="text/javascript" src="<c:url value="dist/bundle.js" /> "></script>
-    <div class="loading-gif-container">
-        <img src="/images/loading_football.gif" />
-    </div>
 </body>
 </html>
