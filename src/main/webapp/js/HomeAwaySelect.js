@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
+import { store } from './main.js';
+
 import { connect } from 'react-redux';
-import { changeHomeAway } from './actions/mainPageActions.js';
+import { changeHomeAway } from './actions/actions.js';
 
 class HomeAwaySelect extends Component {
-    homeAway () {
-        return this.props.store.dispatch(
-            changeHomeAway(
-                $("#leagueInfo").find(":selected").val()
-            )
-        );
-    }
-
     render () {
         return (
             <div>
-                <select id="homeAwaySelect" onChange={(e) => this.homeAway() }>
+                <select id="homeAwaySelect" onChange={
+                    (e) => this.props.homeAway($(e.target).find(":selected").val())
+                 }>
                     <option key="1">
                         All
                     </option>
@@ -30,13 +26,13 @@ class HomeAwaySelect extends Component {
     }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        changeHomeAway: changeHomeAway
+        homeAway : (value) => dispatch(changeHomeAway(value))
     };
 };
 
 export default connect(
-    state => ({store : state}),
+    state => ({}),
     mapDispatchToProps
 )(HomeAwaySelect);
