@@ -16,6 +16,10 @@ function loadAvailableLeagues() {
     }
 }
 
+function offLoadingGif() {
+    $('.loading-gif-container').hide();
+}
+
 export function loadLeague(leagueId, matchDay) {
     if (leagueId && matchDay) {
         let data = new FormData();
@@ -27,6 +31,7 @@ export function loadLeague(leagueId, matchDay) {
             .then(league => {
                 store.dispatch({type : "LOAD_TABLES", payload: league });
                 loadMatches(league.id, league.matchDay);
+                offLoadingGif();
             }
         );
     }
