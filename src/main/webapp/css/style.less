@@ -65,10 +65,14 @@ div.loading-gif-container {
   margin-bottom: 10px;
 
   span {
-    letter-spacing: 5px;
-    font-size: 18px;
-    font-weight: bold;
+    .header-font
   }
+}
+
+.header-font {
+  letter-spacing: 5px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .match-results {
@@ -197,4 +201,19 @@ h2 {
 
 h3 {
   float: left;
+}
+
+.players-table-header {
+  margin-bottom: 10px;
+  text-align: center;
+  div.club-logo {
+    img {
+      float: none;
+      height: 45px;
+      width: auto;
+    }
+  }
+  div.team-name {
+    .header-font
+  }
 }
