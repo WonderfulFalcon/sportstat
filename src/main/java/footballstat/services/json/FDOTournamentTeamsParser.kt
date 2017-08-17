@@ -1,5 +1,7 @@
 package footballstat.services.json
 
+import footballstat.model.football.HomeAwayStatistic
+import org.codehaus.jackson.node.ObjectNode
 import footballstat.model.football.TournamentStatistic
 import org.codehaus.jackson.JsonNode
 
@@ -35,8 +37,26 @@ class FDOTournamentTeamsParser : TeamsParser()
             Wins = jsonNode.get("wins").intValue
             Draws = jsonNode.get("draws").intValue
             Losses = jsonNode.get("losses").intValue
+
+            val homeJson = jsonNode.get("home") as? ObjectNode
+            val awayJson = jsonNode.get("away") as? ObjectNode
+
+            HomeStatistic = if (homeJson != null) getHomeAwayStatistic(homeJson) else HomeAwayStatistic()
+            AwayStatistic = if (awayJson != null) getHomeAwayStatistic(awayJson) else HomeAwayStatistic();
+
             this
         }
+    }
 
+    private fun getHomeAwayStatistic(json: ObjectNode) : HomeAwayStatistic
+    {
+        return with(HomeAwayStatistic()) {
+            Goals = json.get("goals").intValue
+            GoalsAgainst = json.get("goalsAgainst").intValue
+            Wins = json.get("wins").intValue
+            Draws = json.get("draws").intValue
+            Losses = json.get("losses").intValue
+            this
+        }
     }
 }

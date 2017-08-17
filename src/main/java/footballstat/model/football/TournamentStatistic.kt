@@ -37,4 +37,12 @@ class TournamentStatistic
     var Losses : Int = 0
         get
         set
+
+    var HomeStatistic : HomeAwayStatistic? = null
+        get
+        set
+
+    var AwayStatistic : HomeAwayStatistic? = null
+        get
+        set
 }
