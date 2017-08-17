@@ -6,9 +6,11 @@ import { store } from './main';
 class Loading extends Component {
     render () {
         return (
-            <div class="loading-gif-container">
+            <div>
                 {$.isEmptyObject(this.props.leagueTable) &&
-                    <img src="/images/loading_football.gif" />
+                    <div className="loading-gif-container">
+                        <img src="/images/loading_football.gif" />
+                    </div>
                 }
             </div>
         );
