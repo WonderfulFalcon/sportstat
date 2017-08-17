@@ -5,18 +5,18 @@ import LeagueLogo from './LeagueLogo';
 import TeamName from './TeamName';
 
 class LeagueTable extends Component {
-    tables () {
-        let tables = this.props.leagueTable.tables;
-        return tables ? tables : [];
+    tableIsAvailable () {
+        return this.props.homeAwayState == "All" &&
+            this.props.leagueTable.tables;
     }
 
     render () {
         return (
             <div id='col2'>
-                {this.tables().map((table, index) =>
+                {this.tableIsAvailable() && this.props.leagueTable.tables.map((table, index) =>
                     <table className="leagueTable" key={index}>
-                            <TableHeader tableName={table.name} />
-                            <TableBody teams={table.teams} />
+                        <TableHeader tableName={table.name} />
+                        <TableBody teams={table.teams} />
                     </table>
                 )}
             </div>
@@ -90,6 +90,9 @@ class TableBody extends Component {
 }
 
 export default connect(
-        state => ({ leagueTable : state.leagueTable }),
+        state => ({
+            leagueTable : state.leagueTable,
+            homeAwayState : state.homeAwayState
+        }),
         dispatch => ({})
 )(LeagueTable);
