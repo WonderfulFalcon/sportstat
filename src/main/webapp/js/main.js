@@ -7,12 +7,19 @@ import { createStore } from 'redux';
 import reducer from './reducers';
 import { Provider } from 'react-redux';
 
+import {
+    loadLeaguesAction,
+    loadTablesAction,
+    loadMatchesAction,
+    loadPlayersAction } from './actions/actions.js';
+
+
 function loadAvailableLeagues() {
     return {
         type: "POST",
         payload: fetch('/availableLeagues', { method: 'POST'})
             .then(response => response.json())
-            .then(json => store.dispatch({ type : "LOAD_LEAGUES", payload: json }))
+            .then(json => store.dispatch(loadLeaguesAction(json)))
     }
 }
 
@@ -25,7 +32,7 @@ export function loadLeague(leagueId, matchDay) {
         fetch('/league', { method: 'post', body: data })
             .then(response => response.json())
             .then(league => {
-                store.dispatch({type : "LOAD_TABLES", payload: league });
+                store.dispatch(loadTablesAction(league));
                 loadMatches(league.id, league.matchDay);
             }
         );
@@ -40,7 +47,7 @@ export function loadMatches(leagueId, matchDay) {
     fetch('/matches', { method: 'post', body: data })
         .then(response => response.json())
         .then(matches => {
-            store.dispatch({type : "LOAD_MATCHES", payload: matches });
+            store.dispatch(loadMatchesAction(matches));
         }
     );
 }
@@ -51,7 +58,7 @@ export function loadPlayers (teamId, teamName) {
 
     fetch('/teamPlayers', { method: 'post', body: data })
         .then(response => response.json())
-        .then(json => store.dispatch({type : "LOAD_PLAYERS", payload: { teamPlayers: json, teamName: teamName }}));
+        .then(json => store.dispatch(loadPlayersAction(json, teamName)));
 }
 
 export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
