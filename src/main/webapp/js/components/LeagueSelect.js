@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { loadLeague } from './main';
+import { loadLeague } from './../main';
 
 class LeagueSelect extends Component {
     render () {

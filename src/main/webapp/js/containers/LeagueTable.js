@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadPlayers } from './main';
-import LeagueLogo from './LeagueLogo';
-import TeamName from './TeamName';
+import { loadPlayers } from './../main';
+import LeagueLogo from './../components/LeagueLogo';
+import TeamName from './../components/TeamName';
 
 class LeagueTable extends Component {
     tableIsAvailable () {

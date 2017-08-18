@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-import LeagueSelect from './LeagueSelect';
+import LeagueSelect from './../components/LeagueSelect';
 import MatchDaySelect from './MatchDaySelect';
 import HomeAwaySelect from './HomeAwaySelect';
 

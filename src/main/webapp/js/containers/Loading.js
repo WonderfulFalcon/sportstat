@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStore } from 'redux';
-import { store } from './main';
+import { store } from './../main';
 
 class Loading extends Component {
     render () {

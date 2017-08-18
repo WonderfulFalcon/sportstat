@@ -1,6 +1,6 @@
 require("./../css/style.less");
 
-import App from './App';
+import App from './components/App';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';

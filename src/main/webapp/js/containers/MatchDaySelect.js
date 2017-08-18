@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-import { loadLeague } from './main';
+import { loadLeague } from './../main';
 
 class MatchDaySelect extends Component {
     matchDays() {

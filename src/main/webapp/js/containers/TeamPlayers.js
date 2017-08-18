@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TeamName from './TeamName';
+import TeamName from './../components/TeamName';
 
 class TeamPlayers extends Component {
     countryLogoClass (country) {
