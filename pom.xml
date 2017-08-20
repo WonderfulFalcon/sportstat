@@ -17,6 +17,7 @@
         <servletapi.version>3.1.0</servletapi.version>
         <postgres.jdbc.version>9.4.1212</postgres.jdbc.version>
         <spring.boot.version>1.5.3.RELEASE</spring.boot.version>
+        <maven.surefire.version>2.20</maven.surefire.version>
     </properties>
 
     <parent>
@@ -122,6 +123,16 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>CountryDAOTest</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

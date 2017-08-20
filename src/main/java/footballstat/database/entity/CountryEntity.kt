@@ -1,11 +1,17 @@
 package footballstat.database.entity
 
-class CountryEntity(id : Int, name : String)
+class CountryEntity()
 {
-    val Id : Int = id
+    public constructor(id : Int, name : String) : this()
+    {
+        Id = id
+        Name = name
+
+    }
+    public var Id : Int = 0
         get
 
-    val Name : String = name
+    public var Name : String = ""
         get
 
     override fun toString() : String = "id $Id, name $Name"
