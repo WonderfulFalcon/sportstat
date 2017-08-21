@@ -27,20 +27,20 @@ open class CountryDAO : DAO<CountryEntity>
     @Autowired
     lateinit var jdbcTeamplate: JdbcTemplate
 
-    override fun delete(id: Int): Boolean
+    override fun remove(id: Int): Boolean
     {
         val sql: String = "DELETE FROM \"Country\" WHERE id=$id";
         val deletedRows = jdbcTeamplate.update(sql)
         return deletedRows > 0
     }
 
-    override fun getAll(): Collection<CountryEntity>
+    override fun findAll(): Collection<CountryEntity>
     {
         val sql: String = "SELECT * FROM \"Country\"";
         return jdbcTeamplate.query(sql, BeanPropertyRowMapper(CountryEntity::class.java))
     }
 
-    override fun getById(id: Int): CountryEntity?
+    override fun findOne(id: Int): CountryEntity?
     {
         val sql: String = "SELECT * FROM \"Country\" WHERE id=$id";
         try

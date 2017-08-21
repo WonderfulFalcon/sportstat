@@ -1,21 +1,19 @@
 package footballstat.database
 
-import footballstat.database.dao.javasql.CountryDAO
+import footballstat.database.dao.mongodb.CountryMongoDAO
 import footballstat.database.entity.CountryEntity
 import org.junit.*
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
-import org.springframework.transaction.annotation.Transactional
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@Transactional
-open class CountryDAOTest
+open class CountryMongoTest
 {
     @Autowired
-    lateinit var countryDAO : CountryDAO
+    lateinit var countryDAO : CountryMongoDAO
 
     @Test
     fun getAll()
@@ -32,9 +30,11 @@ open class CountryDAOTest
     {
         val country : CountryEntity = CountryEntity(0, "Test")
         val insertedCountry = countryDAO.insert(country)
-        Assert.assertTrue(countryDAO.remove(insertedCountry.Id))
-        val deletedCountry = countryDAO.findOne(insertedCountry.Id)
-        Assert.assertNull(deletedCountry)
+        if (insertedCountry != null) {
+            countryDAO.remove(insertedCountry.Id)
+            val deletedCountry = countryDAO.findOne(insertedCountry.Id)
+            Assert.assertNull(deletedCountry)
+        }
     }
 
     @Test

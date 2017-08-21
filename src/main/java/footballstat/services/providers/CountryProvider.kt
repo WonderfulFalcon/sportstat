@@ -19,7 +19,7 @@ class CountryProvider
         {
             try
             {
-                return countryDAO.getAll().map{ c -> Country(c.Name) };
+                return countryDAO.findAll().map{ c -> Country(c.Name) };
             }
             catch(e : RuntimeException)
             {

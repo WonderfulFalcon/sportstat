@@ -38,7 +38,7 @@ open class DBService
         catch (e: SQLException)
         {
             logger.error("INIT DATABASE FAILED!", e)
-            throw RuntimeException(e)
+            throw e
         }
     }
 
