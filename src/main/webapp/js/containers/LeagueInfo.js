@@ -27,9 +27,9 @@ class LeagueStatistic extends Component {
         return (
             <tbody>
                 {this.props.matches.map((match, index) =>
-                    <tr>
+                    <tr key={index}>
                         <td><span>{match.homeTeamName}</span></td>
-                        <td class="scoreColumn">
+                        <td className="scoreColumn">
                             <span>{match.goalsHomeTeam}</span>
                             <span>-</span>
                             <span>{match.goalsAwayTeam}</span>

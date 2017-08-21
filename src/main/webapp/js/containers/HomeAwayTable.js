@@ -5,7 +5,7 @@ class HomeAwayTable extends Component {
     getTable() {
         if (this.props.homeAwayState == "Home") {
             return this.props.leagueTable.tables[0].teams.map((team) => {
-                return {} team.statistic.homeStatistic;
+                return team.statistic.homeStatistic;
             });
         } else if (this.props.homeAwayState == "Away") {
             return this.props.leagueTable.tables[0].teams.map((team) => {
