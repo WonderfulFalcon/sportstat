@@ -16,15 +16,17 @@ class TeamPlayers extends Component {
                             <TeamName teamName={this.props.teamPlayers.teamName} />
                         </div>
                         <table>
-                            {this.props.teamPlayers.teamPlayers.map((player, index) =>
-                                <tr>
-                                    <td className="player-country">
-                                        <i className={this.countryLogoClass(player.country)}></i>
-                                    </td>
-                                    <td>{player.name}</td>
-                                    <td>{player.number}</td>
-                                </tr>
-                            )}
+                            <tbody>
+                                {this.props.teamPlayers.teamPlayers.map((player, index) =>
+                                    <tr key={index}>
+                                        <td className="player-country">
+                                            <i className={this.countryLogoClass(player.country)}></i>
+                                        </td>
+                                        <td>{player.name}</td>
+                                        <td>{player.number}</td>
+                                    </tr>
+                                )}
+                            </tbody>
                         </table>
                     </div>
                 }
