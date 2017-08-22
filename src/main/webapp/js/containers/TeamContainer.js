@@ -4,24 +4,36 @@ import {loadPlayers, selectTeam} from "../main";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        team: ownProps.team
+        currentSelectedTeam: state.currentSelectedTeam,
+        team: ownProps.team,
+        teamPlayers: state.teamPlayers
     }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const { currentSelectedTeam, teamPlayers } = stateProps;
+    const { team } = ownProps;
     return {
+        currentSelectedTeam: currentSelectedTeam,
+        team: team,
+        teamPlayers: teamPlayers,
         onTeamClick: () => {
-            $('.teamColumn.selected').removeClass('selected');
-            $('[data-clickable-team=' + ownProps.team.id + ']').addClass('selected');
-            selectTeam({teamId: ownProps.team.id, teamName: ownProps.team.name});
-            loadPlayers(ownProps.team.id, ownProps.team.name);
+            if (currentSelectedTeam.teamId === team.id) {
+                selectTeam();
+            } else if (teamPlayers && teamPlayers.teamName === team.name) {
+                selectTeam({teamId: team.id, teamName: team.name});
+            } else {
+                selectTeam({teamId: team.id, teamName: team.name});
+                loadPlayers(team.id, team.name);
+            }
         }
     }
 };
 
 const TeamContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    null,
+    mergeProps
 )(Team);
 
 export default TeamContainer;

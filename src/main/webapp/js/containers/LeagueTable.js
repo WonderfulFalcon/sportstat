@@ -60,7 +60,6 @@ class TableHeader extends Component {
 
 class TableBody extends Component {
     render () {
-        $('.teamColumn.selected').removeClass('selected');
         return (
             <tbody>
             {this.props.teams.map((team, index) =>

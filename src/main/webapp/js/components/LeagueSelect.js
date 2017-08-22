@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
-import { loadLeague } from './../main';
+import { loadLeague, selectTeam } from './../main';
 
 class LeagueSelect extends Component {
     render () {
@@ -11,6 +9,7 @@ class LeagueSelect extends Component {
                         const selectedLeague = $("#leagueInfo").find(":selected");
                         const leagueId = selectedLeague.data("leagueId");
                         const matchDay = selectedLeague.data("toursPlayed");
+                        selectTeam();
                         loadLeague(leagueId, matchDay);
                     }
                 }>

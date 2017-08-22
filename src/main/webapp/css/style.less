@@ -140,7 +140,14 @@ select {
 }
 
 .teamColumn {
+  cursor: pointer;
+  text-align: left;
   width: 250px;
+
+  .team-name {
+    margin-top: 5px;
+    margin-left: 50px;
+  }
 }
 
 .teamColumn:hover {
@@ -159,16 +166,6 @@ select {
 #leagueInfo {
   option {
     width: 150px;
-  }
-}
-
-[data-clickable-team] {
-  cursor: pointer;
-  text-align: left;
-
-  .team-name {
-    margin-top: 5px;
-    margin-left: 50px;
   }
 }
 

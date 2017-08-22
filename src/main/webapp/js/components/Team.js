@@ -7,7 +7,8 @@ class Team extends Component {
         return (
             <tr>
                 <td><span>{team.statistic.position}</span></td>
-                <td className="teamColumn" data-clickable-team={team.id} onClick={this.props.onTeamClick}>
+                <td className={this.props.currentSelectedTeam.teamId === team.id ? "teamColumn selected" : "teamColumn"}
+                    onClick={this.props.onTeamClick}>
                     <TeamName teamName={team.name}/>
                 </td>
                 <td><span>{team.statistic.playedGames}</span></td>
