@@ -19,6 +19,6 @@ export function loadPlayersAction(json, teamName) {
     return {type : "LOAD_PLAYERS", payload: { teamPlayers: json, teamName: teamName }};
 }
 
-export function currentSelectedTeamAction(selectedTeam) {
+export function currentSelectedTeamAction(selectedTeam = {}) {
     return { type: "SELECT_TEAM", payload: selectedTeam };
 }

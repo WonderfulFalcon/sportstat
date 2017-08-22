@@ -10,7 +10,7 @@ class TeamPlayers extends Component {
     render () {
         return (
             <div id="col3">
-                {this.props.teamPlayers.teamPlayers && this.props.teamPlayers.teamPlayers.length > 0 &&
+                {!$.isEmptyObject(this.props.currentSelectedTeam) && this.props.teamPlayers.teamPlayers && this.props.teamPlayers.teamPlayers.length > 0 &&
                     <div>
                         <div className="players-table-header">
                             <TeamName teamName={this.props.teamPlayers.teamName} />
@@ -36,6 +36,9 @@ class TeamPlayers extends Component {
 }
 
 export default connect(
-    state => ({teamPlayers : state.teamPlayers}),
+    state => ({
+        currentSelectedTeam: state.currentSelectedTeam,
+        teamPlayers : state.teamPlayers
+    }),
     dispatch => ({})
 )(TeamPlayers);
