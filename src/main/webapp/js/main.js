@@ -11,7 +11,8 @@ import {
     loadLeaguesAction,
     loadTablesAction,
     loadMatchesAction,
-    loadPlayersAction } from './actions/actions.js';
+    loadPlayersAction,
+    currentSelectedTeamAction } from './actions/actions.js';
 
 
 function loadAvailableLeagues() {
@@ -59,6 +60,10 @@ export function loadPlayers (teamId, teamName) {
     fetch('/teamPlayers', { method: 'post', body: data })
         .then(response => response.json())
         .then(json => store.dispatch(loadPlayersAction(json, teamName)));
+}
+
+export function selectTeam(selectedTeam) {
+    store.dispatch(currentSelectedTeamAction(selectedTeam));
 }
 
 export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
