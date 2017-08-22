@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadPlayers } from './../main';
 import LeagueLogo from './../components/LeagueLogo';
-import TeamName from './../components/TeamName';
+import TeamContainer from './TeamContainer';
 
 class LeagueTable extends Component {
     tableIsAvailable () {
@@ -65,24 +64,7 @@ class TableBody extends Component {
         return (
             <tbody>
             {this.props.teams.map((team, index) =>
-                <tr key={index}>
-                    <td><span>{team.statistic.position}</span></td>
-                    <td className="teamColumn" data-clickable-team={team.id} onClick={function () {
-                         $('.teamColumn.selected').removeClass('selected');
-                         $('[data-clickable-team=' + team.id + ']').addClass('selected');
-                        loadPlayers(team.id, team.name);
-                    }}>
-                        <TeamName teamName={team.name}/>
-                    </td>
-                    <td><span>{team.statistic.playedGames}</span></td>
-                    <td><span>{team.statistic.wins}</span></td>
-                    <td><span>{team.statistic.draws}</span></td>
-                    <td><span>{team.statistic.losses}</span></td>
-                    <td><span>{team.statistic.goalsScored}</span></td>
-                    <td><span>{team.statistic.goalsAgainst}</span></td>
-                    <td><span>{team.statistic.goalsDifference}</span></td>
-                    <td><span><b>{team.statistic.points}</b></span></td>
-                </tr>
+                <TeamContainer team={team} key={index}/>
             )}
             </tbody>
         )
