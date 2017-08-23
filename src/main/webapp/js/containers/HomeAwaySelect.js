@@ -11,15 +11,9 @@ class HomeAwaySelect extends Component {
                 <select id="homeAwaySelect" onChange={
                     (e) => this.props.homeAway($(e.target).find(":selected").val())
                  }>
-                    <option key="1">
-                        All
-                    </option>
-                    <option key="2">
-                        Home
-                    </option>
-                    <option key="3">
-                        Away
-                    </option>
+                    <option key="1">All</option>
+                    <option key="2">Home</option>
+                    <option key="3">Away</option>
                 </select>
             </div>
         )

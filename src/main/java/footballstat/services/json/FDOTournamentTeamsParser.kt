@@ -2,7 +2,9 @@ package footballstat.services.json
 
 import footballstat.model.football.TournamentStatistic
 import org.codehaus.jackson.JsonNode
+import org.springframework.stereotype.Component
 
+@Component
 class FDOTournamentTeamsParser : TeamsParser()
 {
     override fun teamId(jsonNode: JsonNode) : Int?
@@ -21,7 +23,8 @@ class FDOTournamentTeamsParser : TeamsParser()
         return jsonNode.get("teamName")?.textValue
     }
 
-    override fun tournamentStatistic(jsonNode: JsonNode) : TournamentStatistic {
+    override fun tournamentStatistic(jsonNode: JsonNode) : TournamentStatistic
+    {
         return with(TournamentStatistic())
         {
             PlayedGames = jsonNode.get("playedGames")?.intValue

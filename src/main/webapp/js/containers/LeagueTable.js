@@ -4,20 +4,13 @@ import LeagueLogo from './../components/LeagueLogo';
 import TeamContainer from './TeamContainer';
 
 class LeagueTable extends Component {
-    tableIsAvailable () {
-        return this.props.homeAwayState == "All" &&
-            this.props.leagueTable.tables;
-    }
-
     render () {
         return (
             <div id='col2'>
-                {this.tableIsAvailable() && this.props.leagueTable.tables.map((table, index) =>
-                    <table className="leagueTable" key={index}>
-                        <TableHeader tableName={table.name} />
-                        <TableBody teams={table.teams} />
-                    </table>
-                )}
+                {!($.isEmptyObject(this.props.leagueTable)) && <table className="leagueTable">
+                    <TableHeader tableName={this.props.leagueTable.name} />
+                    <TableBody teams={this.props.leagueTable.table.teams} />
+                </table>}
             </div>
         )
     }
@@ -62,9 +55,9 @@ class TableBody extends Component {
     render () {
         return (
             <tbody>
-            {this.props.teams.map((team, index) =>
-                <TeamContainer team={team} key={index}/>
-            )}
+                {this.props.teams.map((team, index) =>
+                    <TeamContainer team={team} key={index}/>
+                )}
             </tbody>
         )
     }

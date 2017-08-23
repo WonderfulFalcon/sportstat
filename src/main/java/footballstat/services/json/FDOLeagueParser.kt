@@ -6,7 +6,6 @@ import footballstat.model.football.Match
 import footballstat.model.football.Table
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
-import org.codehaus.jackson.node.ObjectNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component
 class FDOLeagueParser : LeagueParser
 {
     @Autowired
-    private lateinit var parserFactory : ParserFactory
+    private lateinit var tournamentParser : FDOTournamentTeamsParser
 
     private val mapper = ObjectMapper()
 
@@ -38,49 +37,18 @@ class FDOLeagueParser : LeagueParser
     override fun league(json: String) : League
     {
         val jsonNode = mapper.readTree(json)
-        val league = with(League()) {
+        return with(League())
+        {
             Name = jsonNode.get("leagueCaption")?.textValue
             MatchDay =  jsonNode.get("matchday").intValue
+
+            Table = with(Table()) {
+                Name = jsonNode.get("leagueCaption")?.textValue
+                Teams = tournamentParser.getTeams(jsonNode.get("standing"))
+                this
+            }
             this
         }
-
-        val type = getLeagueType(jsonNode)
-        val parser = parserFactory.getParser(getLeagueType(jsonNode))
-
-        if (type == League.LeagueType.TOURNAMENT)
-        {
-            val table = Table()
-            table.Name = jsonNode.get("leagueCaption")?.textValue
-            table.Teams = parser.getTeams(jsonNode.get("standing"))
-            league.Tables.add(table)
-        }
-        else if (type == League.LeagueType.CUP)
-        {
-            val standings = jsonNode.get("standings") as ObjectNode
-            val groups = standings.fieldNames
-
-            for (group in groups)
-            {
-                val table = Table()
-                table.Name = group
-                table.Teams = parser.getTeams(standings.get(group))
-                league.Tables.add(table)
-            }
-        }
-        return league
-    }
-
-    private fun getLeagueType(jsonNode: JsonNode) : League.LeagueType
-    {
-        if (jsonNode.has("standing"))
-        {
-            return League.LeagueType.TOURNAMENT
-        }
-        else if (jsonNode.has("standings"))
-        {
-            return League.LeagueType.CUP
-        }
-        throw IllegalArgumentException("Cannot parse league type")
     }
 
     private fun match(jsonNode: JsonNode) : Match

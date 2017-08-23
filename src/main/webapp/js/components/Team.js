@@ -3,7 +3,7 @@ import TeamName from './TeamName';
 
 class Team extends Component {
     render () {
-        let team = this.props.team;
+        const team = this.props.team;
         return (
             <tr>
                 <td><span>{team.statistic.position}</span></td>
