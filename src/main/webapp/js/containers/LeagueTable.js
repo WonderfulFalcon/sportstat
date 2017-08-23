@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LeagueLogo from './../components/LeagueLogo';
 import TeamContainer from './TeamContainer';
+import TableSorter from './../logic/TableSorter';
 
 class LeagueTable extends Component {
     render () {
@@ -9,7 +10,7 @@ class LeagueTable extends Component {
             <div id='col2'>
                 {!($.isEmptyObject(this.props.leagueTable)) && <table className="leagueTable">
                     <TableHeader tableName={this.props.leagueTable.name} />
-                    <TableBody teams={this.props.leagueTable.table.teams} />
+                    <TableBody teams={this.props.leagueTable.table.teams} homeAwayState={this.props.homeAwayState} />
                 </table>}
             </div>
         )
@@ -52,10 +53,18 @@ class TableHeader extends Component {
 }
 
 class TableBody extends Component {
+
+    sort () {
+        const tableSorter = new TableSorter();
+        return tableSorter.convertedTable(
+            this.props.teams,
+            this.props.homeAwayState);
+    }
+
     render () {
         return (
             <tbody>
-                {this.props.teams.map((team, index) =>
+                {this.sort().map((team, index) =>
                     <TeamContainer team={team} key={index}/>
                 )}
             </tbody>
