@@ -2,47 +2,39 @@ package footballstat.model.football
 
 class TournamentStatistic
 {
-    var Position : Int = -1
+    var Position : Int? = null
         get
         set
 
-    var PlayedGames : Int = 0
+    var PlayedGames : Int? = null
         get
         set
 
-    var Points : Int = 0
+    var Points : Int? = null
         get
         set
 
-    var GoalsScored : Int = 0
+    var GoalsScored : Int? = null
         get
         set
 
-    var GoalsAgainst : Int = 0
+    var GoalsAgainst : Int? = null
         get
         set
 
-    var GoalsDifference : Int = 0
+    var GoalsDifference : Int? = null
         get
         set
 
-    var Wins : Int = 0
+    var Wins : Int? = null
         get
         set
 
-    var Draws : Int = 0
+    var Draws : Int? = null
         get
         set
 
-    var Losses : Int = 0
-        get
-        set
-
-    var HomeStatistic : HomeAwayStatistic? = null
-        get
-        set
-
-    var AwayStatistic : HomeAwayStatistic? = null
+    var Losses : Int? = null
         get
         set
 }

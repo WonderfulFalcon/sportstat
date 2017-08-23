@@ -16,7 +16,11 @@ abstract class TeamsParser
             {
                 val team = Team(id)
                 team.Name = teamName(jsonNode)
-                team.Statistic = tournamentStatistic(jsonNode)
+
+                team.AllStatistic = tournamentStatistic(jsonNode)
+                team.HomeStatistic = tournamentStatistic(jsonNode.get("home"))
+                team.AwayStatistic = tournamentStatistic(jsonNode.get("away"))
+
                 teams.add(team)
             }
         }

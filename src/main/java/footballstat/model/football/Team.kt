@@ -1,7 +1,6 @@
 package footballstat.model.football
 
 import footballstat.model.Country
-import java.util.*
 
 class Team(id : Int)
 {
@@ -15,7 +14,15 @@ class Team(id : Int)
     val Country : Country? = null
         get
 
-    var Statistic : TournamentStatistic = TournamentStatistic()
+    var AllStatistic : TournamentStatistic = TournamentStatistic()
+        get
+        set
+
+    var HomeStatistic : TournamentStatistic = TournamentStatistic()
+        get
+        set
+
+    var AwayStatistic : TournamentStatistic = TournamentStatistic()
         get
         set
 }

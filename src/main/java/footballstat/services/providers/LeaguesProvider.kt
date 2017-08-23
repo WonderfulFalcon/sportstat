@@ -1,13 +1,12 @@
 package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
-import footballstat.model.football.*
+import footballstat.model.football.League
+import footballstat.model.football.LeagueInfo
+import footballstat.model.football.Match
 import footballstat.services.DataItems
 import footballstat.services.json.LeagueParser
-import footballstat.services.request.FDORequest
 import footballstat.services.request.RequestProvider
-import org.codehaus.jackson.JsonNode
-import org.codehaus.jackson.map.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
