@@ -4,6 +4,10 @@ import footballstat.model.Country
 
 class Team(id : Int)
 {
+    var id : String? = null
+        get
+        set
+
     var Id : Int = id
         get
 

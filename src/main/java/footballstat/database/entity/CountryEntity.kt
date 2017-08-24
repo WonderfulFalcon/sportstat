@@ -1,5 +1,7 @@
 package footballstat.database.entity
 
+import org.springframework.data.annotation.Id
+
 class CountryEntity()
 {
     public constructor(id : Int, name : String) : this()
@@ -8,6 +10,11 @@ class CountryEntity()
         Name = name
 
     }
+    @Id
+    public var newId : String = ""
+        set
+        get
+
     public var Id : Int = 0
         get
 

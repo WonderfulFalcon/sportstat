@@ -2,6 +2,10 @@ package footballstat.model.football
 
 class League
 {
+    var id : String? = null
+        get
+        set
+
     var Id : Int? = null
         get
         set

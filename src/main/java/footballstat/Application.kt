@@ -8,10 +8,12 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.boot.web.support.SpringBootServletInitializer
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.stereotype.Component
 
 
 @SpringBootApplication
+@EnableMongoRepositories("footballstat.database.dao.mongodb")
 open class Application : SpringBootServletInitializer()
 {
     override fun configure(application: SpringApplicationBuilder): SpringApplicationBuilder
