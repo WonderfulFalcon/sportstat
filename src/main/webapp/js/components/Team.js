@@ -8,22 +8,36 @@ class Team extends Component {
             "teamColumn"
     }
 
+    getTable () {
+        const homeAway = this.props.homeAwayState;
+        if (homeAway == "Home") {
+            return this.props.team.homeStatistic;
+        } else if (homeAway == "Away") {
+            return this.props.team.awayStatistic;
+        }
+        return this.props.team.allStatistic;
+    }
+
+    checkedValue (value) {
+        return value ? value : "-";
+    }
+
     render () {
-        const team = this.props.team;
+        const table = this.getTable();
         return (
             <tr>
-                <td><span>{team.allStatistic.position}</span></td>
-                <td className={this.getStyle(team.id)} onClick={this.props.onTeamClick}>
-                    <TeamName teamName={team.name} />
+                <td><span>{this.checkedValue(table.position)}</span></td>
+                <td className={this.getStyle(this.props.team.id)} onClick={this.props.onTeamClick}>
+                    <TeamName teamName={this.props.team.name} />
                 </td>
-                <td><span>{team.allStatistic.playedGames}</span></td>
-                <td><span>{team.allStatistic.wins}</span></td>
-                <td><span>{team.allStatistic.draws}</span></td>
-                <td><span>{team.allStatistic.losses}</span></td>
-                <td><span>{team.allStatistic.goalsScored}</span></td>
-                <td><span>{team.allStatistic.goalsAgainst}</span></td>
-                <td><span>{team.allStatistic.goalsDifference}</span></td>
-                <td><span><b>{team.allStatistic.points}</b></span></td>
+                <td><span>{this.checkedValue(table.playedGames)}</span></td>
+                <td><span>{this.checkedValue(table.wins)}</span></td>
+                <td><span>{this.checkedValue(table.draws)}</span></td>
+                <td><span>{this.checkedValue(table.losses)}</span></td>
+                <td><span>{this.checkedValue(table.goalsScored)}</span></td>
+                <td><span>{this.checkedValue(table.goalsAgainst)}</span></td>
+                <td><span>{this.checkedValue(table.goalsDifference)}</span></td>
+                <td><span><b>{this.checkedValue(table.points)}</b></span></td>
             </tr>
         );
     }

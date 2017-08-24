@@ -65,7 +65,7 @@ class TableBody extends Component {
         return (
             <tbody>
                 {this.sort().map((team, index) =>
-                    <TeamContainer team={team} key={index}/>
+                    <TeamContainer team={team} homeAwayState={this.props.homeAwayState} key={index}/>
                 )}
             </tbody>
         )

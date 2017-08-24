@@ -11,7 +11,6 @@ export default class TableSorter
             }
             return team2.awayStatistic.wins - team1.awayStatistic.wins
         });
-
         return teams;
     }
 }
