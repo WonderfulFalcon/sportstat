@@ -4,6 +4,8 @@ import footballstat.database.dao.mongodb.LeaguesMDAO
 import footballstat.model.football.League
 import footballstat.model.football.Table
 import footballstat.model.football.Team
+import footballstat.services.json.LeagueParser
+import org.codehaus.jackson.map.ObjectMapper
 import org.junit.*
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,9 +16,11 @@ import java.util.*
 
 import org.springframework.data.mongodb.core.query.Query.query
 import org.springframework.data.mongodb.core.query.Criteria.*
+import org.springframework.test.context.TestPropertySource
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
+@TestPropertySource(locations= arrayOf("classpath:test.properties"))
 open class LeagueMDAOTest
 {
     @Autowired
@@ -55,17 +59,8 @@ open class LeagueMDAOTest
     @Test
     fun tst()
     {
-        val league : League = with(League()) {
-            Id = 1
-            MatchDay = 1
-            Name="Hueliga"
-            Year=1999
-            Type=League.LeagueType.TOURNAMENT
-            Tables=buildTable()
-            this
-        }
-        leagueDAO.insert(league)
-        println("zalupa iz bazy ${leagueDAO.findOne(league.id)}")
+
+        println("zalupa iz bazy ${leagueDAO.findOne("sdfsdf")}")
     }
 
     private fun buildTable(): ArrayList<Table> {
