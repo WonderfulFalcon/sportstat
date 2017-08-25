@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper
 import org.junit.*
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.Example
 import org.springframework.test.context.junit4.SpringRunner
@@ -20,11 +21,20 @@ import org.springframework.test.context.TestPropertySource
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@TestPropertySource(locations= arrayOf("classpath:test.properties"))
+@TestPropertySource(locations= arrayOf("classpath:config/testdata/league-mdao-test.properties"))
 open class LeagueMDAOTest
 {
     @Autowired
     lateinit var leagueDAO : LeaguesMDAO
+
+    @Autowired
+    lateinit var leagueParser : LeagueParser
+
+    @Value("\${league}")
+    private val requestGetLeague: String = ""
+
+    @Value("\${listLeagueInfo}")
+    private val requestListLeagueInfo: String = ""
 //
 //    @Test
 //    fun getAll()
@@ -57,30 +67,16 @@ open class LeagueMDAOTest
 //    }
 
     @Test
-    fun tst()
+    fun leagueTest()
     {
-
-        println("zalupa iz bazy ${leagueDAO.findOne("sdfsdf")}")
+        val league = leagueParser.league(requestGetLeague)
+        leagueDAO.insert(league)
+        val leagueFromDB = leagueDAO.findOne(league.id)
     }
 
-    private fun buildTable(): ArrayList<Table> {
-        val result = ArrayList<Table>()
-        result.add(with(Table()) {
-            Name="HueTable"
-            Teams=buildTeams()
-            this
-        })
-
-        return result
-    }
-
-    private fun buildTeams(): ArrayList<Team> {
-        val result = ArrayList<Team>()
-        result.add(with(Team(100)) {
-            Name="HueTeam"
-            this
-        })
-
-        return result
+    @Test
+    fun leagueInfoTest()
+    {
+        var leagueList = leagueParser.availableLeagues(requestListLeagueInfo)
     }
 }

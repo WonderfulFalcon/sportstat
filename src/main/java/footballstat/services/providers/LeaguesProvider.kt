@@ -40,7 +40,7 @@ class LeaguesProvider
             }
 
             val league = json.league(request.getResponse(url));
-            league.Id = leagueId;
+            league.IdFromApi = leagueId;
 
             return league;
         }

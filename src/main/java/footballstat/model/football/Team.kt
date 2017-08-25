@@ -2,13 +2,13 @@ package footballstat.model.football
 
 import footballstat.model.Country
 
-class Team(id : Int)
+class Team
 {
     var id : String? = null
         get
         set
 
-    var Id : Int = id
+    var IdFromApi : Int = 0
         get
 
     var Name : String? = null

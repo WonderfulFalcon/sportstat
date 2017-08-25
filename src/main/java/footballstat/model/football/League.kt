@@ -6,7 +6,7 @@ class League
         get
         set
 
-    var Id : Int? = null
+    var IdFromApi : Int? = null
         get
         set
 
@@ -23,6 +23,10 @@ class League
         set
 
     var Table: Table = Table()
+        get
+        set
+
+    var ShortName : String? = null
         get
         set
 }
