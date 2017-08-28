@@ -5,9 +5,16 @@ import { connect } from 'react-redux';
 import { loadLeague } from './../main';
 
 class MatchDaySelect extends Component {
+    currentMatchDay() {
+        const leagueInfo = this.props.availableLeagues.find((league) => {
+            return league.id == this.props.leagueTable.id;
+        });
+        return leagueInfo ? leagueInfo['toursPlayed'] : 0;
+    }
+
     matchDays() {
         let matchDays = [];
-        for (let matchDay = 1; matchDay < this.props.leagueTable.matchDay + 1; matchDay++) {
+        for (let matchDay = 1; matchDay < this.currentMatchDay() + 1; matchDay++) {
             matchDays.push(matchDay);
         }
         return matchDays;
@@ -16,7 +23,7 @@ class MatchDaySelect extends Component {
     render () {
         return (
             <div>
-                {this.props.leagueTable &&
+                {!$.isEmptyObject(this.props.leagueTable) &&
                     <Select matchDays={this.matchDays()} />
                 }
             </div>
