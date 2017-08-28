@@ -7,18 +7,20 @@ const mapStateToProps = (state, ownProps) => {
         currentSelectedTeam: state.currentSelectedTeam,
         team: ownProps.team,
         teamPlayers: state.teamPlayers,
-        homeAwayState: ownProps.homeAwayState
+        homeAwayState: ownProps.homeAwayState,
+        position: ownProps.position
     }
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const { currentSelectedTeam, teamPlayers, homeAwayState } = stateProps;
+    const { currentSelectedTeam, teamPlayers, homeAwayState, position } = stateProps;
     const { team } = ownProps;
     return {
         currentSelectedTeam: currentSelectedTeam,
         team: team,
         teamPlayers: teamPlayers,
         homeAwayState: homeAwayState,
+        position: position,
         onTeamClick: () => {
             if (currentSelectedTeam.teamId === team.id) {
                 selectTeam();

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LeagueLogo from './../components/LeagueLogo';
 import TeamContainer from './TeamContainer';
-import TableSorter from './../logic/TableSorter';
+import MainTableHandler from './../logic/MainTableHandler';
 
 class LeagueTable extends Component {
     render () {
@@ -53,19 +53,16 @@ class TableHeader extends Component {
 }
 
 class TableBody extends Component {
-
-    sort () {
-        const tableSorter = new TableSorter();
-        return tableSorter.convertedTable(
+    render () {
+        const tableSorter = new MainTableHandler(
             this.props.teams,
             this.props.homeAwayState);
-    }
 
-    render () {
         return (
             <tbody>
-                {this.sort().map((team, index) =>
-                    <TeamContainer team={team} homeAwayState={this.props.homeAwayState} key={index}/>
+                {tableSorter.convertTable()}
+                {this.props.teams.map((team, index) =>
+                    <TeamContainer position={index + 1} team={team} homeAwayState={this.props.homeAwayState} key={index}/>
                 )}
             </tbody>
         )

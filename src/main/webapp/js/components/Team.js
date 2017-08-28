@@ -19,14 +19,14 @@ class Team extends Component {
     }
 
     checkedValue (value) {
-        return value ? value : "-";
+        return (value == null || value == undefined) ? "-" : value;
     }
 
     render () {
         const table = this.getTable();
         return (
             <tr>
-                <td><span>{this.checkedValue(table.position)}</span></td>
+                <td><span>{this.props.position}</span></td>
                 <td className={this.getStyle(this.props.team.id)} onClick={this.props.onTeamClick}>
                     <TeamName teamName={this.props.team.name} />
                 </td>
