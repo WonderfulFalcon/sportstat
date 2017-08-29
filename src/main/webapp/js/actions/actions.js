@@ -1,8 +1,3 @@
-
-export function changeHomeAway(value) {
-    return {type: "HOME_AWAY_CHANGED", payload : value};
-}
-
 export function loadLeaguesAction(json) {
    return { type : "LOAD_LEAGUES", payload: json };
 }
@@ -21,4 +16,14 @@ export function loadPlayersAction(json, teamName) {
 
 export function currentSelectedTeamAction(selectedTeam = {}) {
     return { type: "SELECT_TEAM", payload: selectedTeam };
+}
+
+export function changeCurrentState(attribute, value) {
+    return {
+        type: "CURRENT_STATE_CHANGED",
+        payload : {
+            attribute : attribute,
+            value : value
+        }
+    }
 }

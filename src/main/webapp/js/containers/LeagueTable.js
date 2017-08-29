@@ -72,7 +72,7 @@ class TableBody extends Component {
 export default connect(
         state => ({
             leagueTable : state.leagueTable,
-            homeAwayState : state.homeAwayState
+            homeAwayState : state.currentState.homeAwayState
         }),
         dispatch => ({})
 )(LeagueTable);
