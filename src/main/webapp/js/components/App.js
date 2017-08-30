@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import Header from './Header';
 import ControlsPanel from './../containers/ControlsPanel';
 import LeagueTable from './../containers/LeagueTable';
 import LoadLeague from './../containers/LoadLeague';
 import TeamPlayers from './../containers/TeamPlayers';
-import LeagueInfo from './../containers/LeagueInfo';
+import TourSummaryContainer from '../containers/TourSummaryContainer';
 import Loading from './../containers/Loading';
 
 class App extends Component {
@@ -17,7 +16,7 @@ class App extends Component {
                 <ControlsPanel />
                 <Loading />
                 <LoadLeague />
-                <LeagueInfo />
+                <TourSummaryContainer />
                 <LeagueTable />
                 <TeamPlayers />
             </div>
