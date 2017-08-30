@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { store } from './../main.js';
 
 import { connect } from 'react-redux';
 import { changeHomeAway } from './../actions/actions.js';

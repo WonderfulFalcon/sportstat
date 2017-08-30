@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadLeague } from './../main';
+import MatchDaySelect from './../components/MatchDaySelect';
 
-class MatchDaySelect extends Component {
+class MatchDayContainer extends Component {
     currentMatchDay() {
         const leagueInfo = this.props.availableLeagues.find((league) => {
             return league.id === this.props.leagueTable.id;
@@ -23,7 +23,7 @@ class MatchDaySelect extends Component {
         return (
             <div>
                 {!$.isEmptyObject(this.props.leagueTable) &&
-                    <Select
+                    <MatchDaySelect
                         matchDays={this.matchDays()}
                         selectedMatchDay={this.props.leagueTable.matchDay}
                         leagueId={this.props.leagueTable.id}
@@ -34,29 +34,6 @@ class MatchDaySelect extends Component {
     }
 }
 
-class Select extends Component {
-    selectOnChange () {
-        return (event) => {
-            const matchDay = parseInt(event.target.options[event.target.selectedIndex].value);
-            const leagueId = this.props.leagueId;
-
-            loadLeague(leagueId, matchDay);
-        }
-    }
-
-    render () {
-        return (
-            <select id="matchDay" value={this.props.selectedMatchDay} onChange={ this.selectOnChange() }>
-                {this.props.matchDays.map((item) =>
-                        <option key={item} value={item}>
-                            {item}
-                        </option>
-                )}
-            </select>
-        )
-    }
-}
-
 export default connect(
     state => ({ leagueTable : state.leagueTable })
-)(MatchDaySelect);
+)(MatchDayContainer);
