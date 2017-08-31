@@ -7,20 +7,12 @@ import { createStore } from 'redux';
 import reducer from './reducers/index';
 import { Provider } from 'react-redux';
 
+import { loadAvailableLeagues } from './api/external-api';
+
 import {
-    loadLeaguesAction,
     loadPlayersAction,
     currentSelectedTeamAction } from './actions/actions.js';
 
-
-function loadAvailableLeagues() {
-    return {
-        type: "POST",
-        payload: fetch('/availableLeagues', { method: 'POST'})
-            .then(response => response.json())
-            .then(json => store.dispatch(loadLeaguesAction(json)))
-    }
-}
 
 export function loadPlayers (team) {
     let data = new FormData();

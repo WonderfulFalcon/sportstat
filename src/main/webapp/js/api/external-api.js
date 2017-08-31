@@ -1,4 +1,4 @@
-import { loadTablesAction, loadMatchesAction } from "../actions/actions";
+import { loadTablesAction, loadMatchesAction, loadLeaguesAction } from "../actions/actions";
 import { store } from "../main";
 
 export function loadLeague(leagueId, matchDay) {
@@ -29,4 +29,14 @@ export function loadMatches(leagueId, matchDay) {
             }
         );
 }
+
+export function loadAvailableLeagues() {
+    return {
+        type: "POST",
+        payload: fetch('/availableLeagues', { method: 'POST'})
+            .then(response => response.json())
+            .then(json => store.dispatch(loadLeaguesAction(json)))
+    }
+}
+
 
