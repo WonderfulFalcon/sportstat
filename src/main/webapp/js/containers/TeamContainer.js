@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import Team from './../components/Team';
 import {loadPlayers, selectTeam} from "../main";
 
+import TeamSelector from './../logic/TeamSelector';
+
 const mapStateToProps = (state, ownProps) => {
     return {
         currentSelectedTeam: state.currentSelectedTeam,
@@ -12,31 +14,35 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
+function changeSelectedTeam(team, teamPlayers, currentSelectedTeam) {
+    const selector = new TeamSelector(team, teamPlayers, currentSelectedTeam);
+    const selectedTeam = selector.getSelectedTeam();
+
+    selectTeam(selectedTeam);
+
+    if (selector.isFirstSelect()) {
+        loadPlayers(selectedTeam);
+    }
+}
+
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const { currentSelectedTeam, teamPlayers, homeAwayState, position } = stateProps;
     const { team } = ownProps;
+
     return {
         currentSelectedTeam: currentSelectedTeam,
         team: team,
-        teamPlayers: teamPlayers,
         homeAwayState: homeAwayState,
         position: position,
-        onTeamClick: () => {
-            if (currentSelectedTeam.teamId === team.id) {
-                selectTeam();
-            } else if (teamPlayers && teamPlayers.teamName === team.name) {
-                selectTeam({teamId: team.id, teamName: team.name});
-            } else {
-                selectTeam({teamId: team.id, teamName: team.name});
-                loadPlayers(team.id, team.name);
-            }
-        }
+        onTeamClick: () => changeSelectedTeam(team, teamPlayers, currentSelectedTeam)
     }
 };
 
+const mapDispatchToProps = dispatch => ({});
+
 const TeamContainer = connect(
     mapStateToProps,
-    null,
+    mapDispatchToProps,
     mergeProps
 )(Team);
 

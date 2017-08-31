@@ -5,11 +5,11 @@ import MainTableHandler from './../logic/MainTableHandler';
 
 class LeagueTable extends Component {
     render () {
-        const tableSorter = new MainTableHandler(
+        const tableHandler = new MainTableHandler(
             this.props.teams,
             this.props.homeAwayState);
 
-        tableSorter.convertTable();
+        tableHandler.convertTable();
 
         return (
             <tbody>

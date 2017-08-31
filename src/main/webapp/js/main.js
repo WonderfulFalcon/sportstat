@@ -1,10 +1,10 @@
 require("./../css/style.less");
 
 import App from './components/App';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-import reducer from './reducers';
+import reducer from './reducers/index';
 import { Provider } from 'react-redux';
 
 import {
@@ -53,13 +53,13 @@ export function loadMatches(leagueId, matchDay) {
     );
 }
 
-export function loadPlayers (teamId, teamName) {
+export function loadPlayers (team) {
     let data = new FormData();
-    data.append("teamId", teamId);
+    data.append("teamId", team.teamId);
 
     fetch('/teamPlayers', { method: 'post', body: data })
         .then(response => response.json())
-        .then(json => store.dispatch(loadPlayersAction(json, teamName)));
+        .then(json => store.dispatch(loadPlayersAction(json, team.teamName)));
 }
 
 export function selectTeam(selectedTeam) {
