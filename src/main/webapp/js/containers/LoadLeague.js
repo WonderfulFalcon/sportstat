@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStore } from 'redux';
-import { store } from './../main';
-
-import { loadLeague } from './../main';
+import { loadLeague } from './../api/external-api';
 
 class LoadLeague extends Component {
     loadFirst () {

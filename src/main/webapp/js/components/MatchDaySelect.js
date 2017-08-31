@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { loadLeague } from './../main';
+import { loadLeague } from './../api/external-api';
 
 class MatchDaySelect extends Component {
     selectOnChange () {

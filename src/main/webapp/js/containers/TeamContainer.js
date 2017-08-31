@@ -25,16 +25,19 @@ function changeSelectedTeam(team, teamPlayers, currentSelectedTeam) {
     }
 }
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const { currentSelectedTeam, teamPlayers, homeAwayState, position } = stateProps;
-    const { team } = ownProps;
+const mergeProps = (stateProps) => {
+    const { currentSelectedTeam, teamPlayers, homeAwayState, position, team } = stateProps;
 
     return {
         currentSelectedTeam: currentSelectedTeam,
         team: team,
         homeAwayState: homeAwayState,
         position: position,
-        onTeamClick: () => changeSelectedTeam(team, teamPlayers, currentSelectedTeam)
+        onTeamClick: () => changeSelectedTeam(
+            team,
+            teamPlayers,
+            currentSelectedTeam
+        )
     }
 };
 

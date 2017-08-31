@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { loadLeague, selectTeam } from './../main';
+import { loadLeague } from './../api/external-api';
+import { selectTeam } from '../main';
 
 class LeagueSelect extends Component {
     render () {
