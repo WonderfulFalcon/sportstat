@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from './Header';
 import ControlsPanel from './../containers/ControlsPanel';
-import LeagueTable from './../containers/LeagueTable';
+import LeagueTableContainer from '../containers/LeagueTableContainer';
 import LoadLeague from './../containers/LoadLeague';
 import TeamPlayers from './../containers/TeamPlayers';
 import TourSummaryContainer from '../containers/TourSummaryContainer';
@@ -17,7 +17,7 @@ class App extends Component {
                 <Loading />
                 <LoadLeague />
                 <TourSummaryContainer />
-                <LeagueTable />
+                <LeagueTableContainer />
                 <TeamPlayers />
             </div>
         );

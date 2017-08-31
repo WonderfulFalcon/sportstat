@@ -1,5 +1,15 @@
 export default class MainTableHandler
 {
+    static total (table) {
+        return table.wins * 3 + table.draws;
+    }
+
+    static options (table) {
+        table.points = MainTableHandler.total(table);
+        table.goalsDifference = table.goalsScored - table.goalsAgainst;
+        table.playedGames = table.wins + table.draws + table.losses;
+    }
+
     constructor (teams, homeAwayState) {
         this.teams = teams;
         this.homeAwayState = homeAwayState;
@@ -13,26 +23,15 @@ export default class MainTableHandler
         });
     }
 
-    total (table) {
-        return table.wins * 3 + table.draws;
-    }
-
-    options (table) {
-        table.points = this.total(table);
-        table.goalsDifference = table.goalsScored - table.goalsAgainst;
-        table.playedGames = table.wins + table.draws + table.losses;
-    }
-
-
     tableComparators () {
         return {
             Home : (team1, team2) => {
-                return this.total(team2['homeStatistic']) -
-                    this.total(team1['homeStatistic'])
+                return MainTableHandler.total(team2['homeStatistic']) -
+                    MainTableHandler.total(team1['homeStatistic'])
             },
             Away : (team1, team2) => {
-                return this.total(team2['awayStatistic']) -
-                    this.total(team1['awayStatistic'])
+                return MainTableHandler.total(team2['awayStatistic']) -
+                    MainTableHandler.total(team1['awayStatistic'])
             },
             All : (team1, team2) => {
                 return team1.allStatistic.position - team2.allStatistic.position;
@@ -43,10 +42,10 @@ export default class MainTableHandler
     tableProcessors () {
         return {
             Home : (team) => {
-                this.options(team['homeStatistic']);
+                MainTableHandler.options(team['homeStatistic']);
             },
             Away : (team) => {
-                this.options(team['awayStatistic']);
+                MainTableHandler.options(team['awayStatistic']);
             },
             All : (team) => {}
         }

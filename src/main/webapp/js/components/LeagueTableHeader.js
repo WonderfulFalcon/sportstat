@@ -1,0 +1,39 @@
+import LeagueLogo from './LeagueLogo';
+import React, { Component } from 'react';
+
+class LeagueTableHeader extends Component {
+    static leagueShortName () {
+        return $("#leagueInfo").find(":selected").data("shortName");
+    }
+
+    render () {
+        return (
+            <thead>
+                <tr>
+                    <th>
+                        <LeagueLogo shortName={LeagueTableHeader.leagueShortName()} />
+                    </th>
+                    <th>
+                        <span className="table-name-header">
+                            {this.props.tableName}
+                        </span>
+                    </th>
+                </tr>
+                <tr>
+                    <th><span>Pos.</span></th>
+                    <th><span>Team</span></th>
+                    <th><span>P</span></th>
+                    <th><span>W</span></th>
+                    <th><span>D</span></th>
+                    <th><span>L</span></th>
+                    <th><span>GS</span></th>
+                    <th><span>GA</span></th>
+                    <th><span>GD</span></th>
+                    <th><span>Points</span></th>
+                </tr>
+            </thead>
+        );
+    }
+}
+
+export default LeagueTableHeader;
