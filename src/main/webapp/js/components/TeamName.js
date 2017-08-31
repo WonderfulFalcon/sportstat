@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 class TeamName extends Component {
-    imagePath (name) {
+    static imagePath (name) {
         return "/images/Clubs/" + name + ".svg";
     }
 
@@ -9,7 +9,7 @@ class TeamName extends Component {
         return (
             <div>
                 <div className="club-logo">
-                    <img src={this.imagePath(this.props.teamName)} />
+                    <img src={TeamName.imagePath(this.props.teamName)} />
                 </div>
                 <div className="team-name">
                     <span>{this.props.teamName}</span>
