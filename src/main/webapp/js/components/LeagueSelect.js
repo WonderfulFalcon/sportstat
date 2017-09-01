@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { loadLeague } from './../api/external-api';
-import { selectTeam } from '../main';
+import { selectTeam } from '../api/user-api';
 
 class LeagueSelect extends Component {
     render () {
@@ -10,6 +10,7 @@ class LeagueSelect extends Component {
                         const selectedLeague = $("#leagueInfo").find(":selected");
                         const leagueId = selectedLeague.data("leagueId");
                         const matchDay = selectedLeague.data("toursPlayed");
+
                         selectTeam();
                         loadLeague(leagueId, matchDay);
                     }

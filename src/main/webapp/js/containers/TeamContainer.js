@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Team from './../components/Team';
-import {loadPlayers, selectTeam} from "../main";
+import { loadPlayers } from '../api/external-api';
+import { selectTeam } from "../api/user-api";
 
 import TeamSelector from './../logic/TeamSelector';
 

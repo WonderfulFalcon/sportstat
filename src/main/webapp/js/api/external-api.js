@@ -1,4 +1,4 @@
-import { loadTablesAction, loadMatchesAction, loadLeaguesAction } from "../actions/actions";
+import { loadTablesAction, loadMatchesAction, loadLeaguesAction, loadPlayersAction } from "../actions/actions";
 import { store } from "../main";
 
 export function loadLeague(leagueId, matchDay) {
@@ -39,4 +39,11 @@ export function loadAvailableLeagues() {
     }
 }
 
+export function loadPlayers (team) {
+    let data = new FormData();
+    data.append("teamId", team.teamId);
 
+    fetch('/teamPlayers', { method: 'post', body: data })
+        .then(response => response.json())
+        .then(json => store.dispatch(loadPlayersAction(json, team.teamName)));
+}
