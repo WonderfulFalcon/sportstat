@@ -1,16 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import TourSummary from './../components/TourSummary';
 
-class TourSummaryContainer extends Component {
-    render () {
-        return (
-            <TourSummary matches={this.props.leagueMatches} />
-        )
+const mapStateToProps = (state) => {
+    return {
+        leagueMatches : state.leagueMatches
     }
-}
+};
 
 export default connect(
-    state => ({ leagueMatches : state.leagueMatches }),
-    dispatch => ({})
-)(TourSummaryContainer);
+    mapStateToProps
+)(TourSummary);
