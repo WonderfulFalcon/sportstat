@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class Loading extends Component {
     render () {
@@ -11,11 +10,8 @@ class Loading extends Component {
                     </div>
                 }
             </div>
-        );
+        )
     }
 }
 
-export default connect(
-        state => ({ leagueTable : state.leagueTable }),
-        dispatch => ({})
-)(Loading);
+export default Loading;

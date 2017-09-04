@@ -6,7 +6,7 @@ import LeagueTableContainer from '../containers/LeagueTableContainer';
 import LoadLeague from './../containers/LoadLeague';
 import TeamPlayers from '../containers/TeamPlayersContainer';
 import TourSummaryContainer from '../containers/TourSummaryContainer';
-import Loading from './../containers/Loading';
+import LoadingContainer from '../containers/LoadingContainer';
 
 class App extends Component {
     render() {
@@ -14,7 +14,7 @@ class App extends Component {
             <div>
                 <Header />
                 <ControlsPanel />
-                <Loading />
+                <LoadingContainer />
                 <LoadLeague />
                 <TourSummaryContainer />
                 <LeagueTableContainer />
