@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
-
-import TeamContainer from './../containers/TeamContainer';
-import MainTableHandler from './../logic/MainTableHandler';
+import LeagueTableHeader from './LeagueTableHeader';
+import LeagueTableBody from './LeagueTableBody';
 
 class LeagueTable extends Component {
     render () {
-        const tableHandler = new MainTableHandler(
-            this.props.teams,
-            this.props.homeAwayState);
-
-        tableHandler.convertTable();
-
         return (
-            <tbody>
-                {this.props.teams.map((team, index) =>
-                    <TeamContainer position={index + 1}
-                                   team={team}
-                                   homeAwayState={this.props.homeAwayState}
-                                   key={index}
+            <div id='col2'>
+                {!($.isEmptyObject(this.props.leagueTable)) && <table className="leagueTable">
+                    <LeagueTableHeader tableName={this.props.leagueTable.name} />
+                    <LeagueTableBody teams={this.props.leagueTable.table.teams}
+                                     homeAwayState={this.props.homeAwayState}
                     />
-                )}
-            </tbody>
+                </table>}
+            </div>
         )
     }
 }
