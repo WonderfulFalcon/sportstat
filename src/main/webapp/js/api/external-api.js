@@ -35,7 +35,14 @@ export function loadAvailableLeagues() {
         type: "POST",
         payload: fetch('/availableLeagues', { method: 'POST'})
             .then(response => response.json())
-            .then(json => store.dispatch(loadLeaguesAction(json)))
+            .then(availableLeagues => {
+                store.dispatch(loadLeaguesAction(availableLeagues));
+                return availableLeagues;
+            })
+            .then(availableLeagues => {
+                const firstLeague = availableLeagues[0];
+                loadLeague(firstLeague.id, firstLeague.toursPlayed);
+            })
     }
 }
 
