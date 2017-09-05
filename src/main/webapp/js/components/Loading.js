@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Loading extends Component {
     render () {
@@ -13,3 +14,7 @@ export default class Loading extends Component {
         )
     }
 }
+
+Loading.propTypes = {
+    leagueTable : PropTypes.object
+};

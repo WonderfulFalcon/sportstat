@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import TeamName from './TeamName';
 
 export default class TeamPlayers extends Component {
@@ -15,7 +17,8 @@ export default class TeamPlayers extends Component {
     render () {
         return (
             <div id="col3">
-                {this.isShowPlayers() && <div>
+                {this.isShowPlayers() &&
+                    <div>
                         <div className="players-table-header">
                             <TeamName teamName={this.props.teamPlayers.teamName} />
                         </div>
@@ -38,3 +41,8 @@ export default class TeamPlayers extends Component {
         )
     }
 }
+
+TeamPlayers.propTypes = {
+    currentSelectedTeam : PropTypes.object,
+    teamPlayers : PropTypes.object
+};

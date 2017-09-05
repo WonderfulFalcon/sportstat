@@ -15,6 +15,6 @@ export default class LeagueLogo extends Component {
     }
 }
 
-LeagueLogo.PropTypes = {
+LeagueLogo.propTypes = {
     shortName : PropTypes.string
 };

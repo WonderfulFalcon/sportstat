@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class TourSummary extends Component {
     render () {
@@ -32,3 +33,7 @@ export default class TourSummary extends Component {
         )
     }
 }
+
+TourSummary.propTypes = {
+    leagueMatches : PropTypes.array
+};

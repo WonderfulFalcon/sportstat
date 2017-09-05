@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class TeamName extends Component {
     static imagePath (name) {
@@ -18,3 +19,7 @@ export default class TeamName extends Component {
         )
     }
 }
+
+TeamName.propTypes = {
+    teamName : PropTypes.string
+};

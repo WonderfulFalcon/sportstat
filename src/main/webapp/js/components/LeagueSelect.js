@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 
 import LeagueSelectItem from './LeagueSelectItem';
 
@@ -24,3 +26,9 @@ export default class LeagueSelect extends Component {
         )
     }
 }
+
+LeagueSelect.PropTypes = {
+    availableLeagues : PropTypes.array,
+    selectTeam : PropTypes.func,
+    loadLeague : PropTypes.func
+};

@@ -1,5 +1,7 @@
-import LeagueLogo from './LeagueLogo';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import LeagueLogo from './LeagueLogo';
 
 export default class LeagueTableHeader extends Component {
     static leagueShortName () {
@@ -35,3 +37,7 @@ export default class LeagueTableHeader extends Component {
         );
     }
 }
+
+LeagueTableHeader.propTypes = {
+    tableName : PropTypes.string
+};

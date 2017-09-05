@@ -23,6 +23,6 @@ export default class HomeAwaySelect extends Component {
     }
 }
 
-HomeAwaySelect.PropTypes = {
+HomeAwaySelect.propTypes = {
     homeAway : PropTypes.func
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class MatchDaySelect extends Component {
     handleOnChange (event) {
@@ -41,3 +42,8 @@ export default class MatchDaySelect extends Component {
         )
     }
 }
+
+MatchDaySelect.propTypes = {
+    availableLeagues : PropTypes.array,
+    leagueTable : PropTypes.object
+};

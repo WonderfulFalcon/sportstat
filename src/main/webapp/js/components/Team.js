@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import TeamName from './TeamName';
 
@@ -43,3 +44,10 @@ export default class Team extends Component {
         );
     }
 }
+
+Team.propTypes = {
+    currentSelectedTeam : PropTypes.object,
+    homeAwayState : PropTypes.oneOf(['Home', 'Away', 'All']),
+    team : PropTypes.object,
+    position : PropTypes.number
+};

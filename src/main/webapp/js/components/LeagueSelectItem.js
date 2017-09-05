@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class LeagueSelectItem extends Component {
     render () {
@@ -11,3 +12,7 @@ export default class LeagueSelectItem extends Component {
         )
     }
 }
+
+LeagueSelectItem.PropTypes = {
+    league : PropTypes.object
+};
