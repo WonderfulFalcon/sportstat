@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 import LeagueSelectItem from './LeagueSelectItem';
 
 export default class LeagueSelect extends Component {
@@ -14,6 +13,7 @@ export default class LeagueSelect extends Component {
 
         this.props.selectTeam();
         this.props.loadLeague(id, selectedLeague['toursPlayed']);
+        this.props.selectLeague(selectedLeague);
     }
 
     render () {
@@ -21,7 +21,11 @@ export default class LeagueSelect extends Component {
             <div>
                 <select id="leagueInfo" onChange={(e) => { this.handleSelectLeague.bind(this)(e) }}>
                     {this.props.availableLeagues.map((league) =>
-                        <LeagueSelectItem key={league.id} league={league} />
+                        <LeagueSelectItem
+                            key={league.id}
+                            leagueId={league.id}
+                            leagueName={league.name}
+                        />
                     )}
                 </select>
             </div>
@@ -32,5 +36,6 @@ export default class LeagueSelect extends Component {
 LeagueSelect.PropTypes = {
     availableLeagues : PropTypes.array,
     selectTeam : PropTypes.func,
-    loadLeague : PropTypes.func
+    loadLeague : PropTypes.func,
+    selectLeague : PropTypes.func
 };

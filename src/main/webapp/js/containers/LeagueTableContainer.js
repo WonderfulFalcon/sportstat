@@ -6,7 +6,8 @@ import LeagueTable from '../components/league/LeagueTable';
 const mapStateToProps = (state) => {
     return {
         leagueTable : state.leagueTable,
-        homeAwayState : state.homeAwayState
+        homeAwayState : state.homeAwayState,
+        selectedLeague : state.currentSelectedLeague
     }
 };
 

@@ -10,9 +10,14 @@ export default class LeagueTable extends Component {
             <div id='col2'>
                 {!($.isEmptyObject(this.props.leagueTable)) &&
                     <table className="leagueTable">
-                        <LeagueTableHeader tableName={this.props.leagueTable.name} />
-                        <LeagueTableBody teams={this.props.leagueTable.table.teams}
-                                         homeAwayState={this.props.homeAwayState}
+                        <LeagueTableHeader
+                            tableName={this.props.leagueTable.name}
+                            shortName={this.props.selectedLeague.shortName}
+                        />
+
+                        <LeagueTableBody
+                            teams={this.props.leagueTable.table.teams}
+                            homeAwayState={this.props.homeAwayState}
                         />
                     </table>
                 }
@@ -23,5 +28,6 @@ export default class LeagueTable extends Component {
 
 LeagueTable.propTypes = {
     leagueTable : PropTypes.object,
-    homeAwayState : PropTypes.oneOf(['Home', 'Away', 'All'])
+    homeAwayState : PropTypes.oneOf(['Home', 'Away', 'All']),
+    selectedLeague : PropTypes.object
 };

@@ -1,4 +1,4 @@
-import { loadTablesAction, loadMatchesAction, loadLeaguesAction, loadPlayersAction } from "../actions/actions";
+import { loadTablesAction, loadMatchesAction, loadLeaguesAction, loadPlayersAction, currentSelectedLeague } from "../actions/actions";
 import { store } from "../main";
 
 export function loadLeague(leagueId, matchDay) {
@@ -41,6 +41,7 @@ export function loadAvailableLeagues() {
             })
             .then(availableLeagues => {
                 const firstLeague = availableLeagues[0];
+                store.dispatch(currentSelectedLeague(firstLeague));
                 loadLeague(firstLeague.id, firstLeague.toursPlayed);
             })
     }

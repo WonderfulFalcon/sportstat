@@ -4,16 +4,12 @@ import PropTypes from 'prop-types';
 import LeagueLogo from './LeagueLogo';
 
 export default class LeagueTableHeader extends Component {
-    static leagueShortName () {
-        return $("#leagueInfo").find(":selected").data("shortName");
-    }
-
     render () {
         return (
             <thead>
                 <tr>
                     <th>
-                        <LeagueLogo shortName={LeagueTableHeader.leagueShortName()} />
+                        <LeagueLogo shortName={this.props.shortName} />
                     </th>
                     <th>
                         <span className="table-name-header">
@@ -39,5 +35,6 @@ export default class LeagueTableHeader extends Component {
 }
 
 LeagueTableHeader.propTypes = {
-    tableName : PropTypes.string
+    tableName : PropTypes.string,
+    shortName : PropTypes.string
 };

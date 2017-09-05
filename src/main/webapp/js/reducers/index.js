@@ -6,6 +6,7 @@ import teamPlayers from './teamPlayers';
 import leagueMatches from './leagueMatches';
 import homeAwayState from './homeAwayState';
 import currentSelectedTeam from './currentSelectedTeam';
+import currentSelectedLeague from './currentSelectedLeague';
 
 export default combineReducers({
     availableLeagues,
@@ -13,5 +14,6 @@ export default combineReducers({
     teamPlayers,
     leagueMatches,
     homeAwayState,
-    currentSelectedTeam
-})
+    currentSelectedTeam,
+    currentSelectedLeague
+});

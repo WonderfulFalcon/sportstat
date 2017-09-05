@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 export default class LeagueSelectItem extends Component {
     render () {
         return (
-            <option value={this.props.league.id} data-short-name={this.props.league.shortName}>
-                {this.props.league.name}
+            <option value={this.props.leagueId} >
+                {this.props.leagueName}
             </option>
         )
     }
 }
 
-LeagueSelectItem.PropTypes = {
-    league : PropTypes.object
+LeagueSelectItem.propTypes = {
+    leagueId : PropTypes.number,
+    leagueName : PropTypes.string
 };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { loadLeague } from "../api/external-api";
 import LeagueSelect from "../components/controls/LeagueSelect";
-import { selectTeam } from "../api/user-api";
+import { selectTeam, selectLeague } from "../api/user-api";
 
 export default class LeagueSelectContainer extends Component {
     render () {
@@ -11,6 +11,7 @@ export default class LeagueSelectContainer extends Component {
                 availableLeagues={this.props.availableLeagues}
                 loadLeague={loadLeague}
                 selectTeam={selectTeam}
+                selectLeague={selectLeague}
             />
         )
     }

@@ -22,3 +22,7 @@ export function loadPlayersAction(json, teamName) {
 export function currentSelectedTeamAction(selectedTeam = {}) {
     return { type: "SELECT_TEAM", payload: selectedTeam };
 }
+
+export function currentSelectedLeague(selectedLeague = {}) {
+    return { type: "SELECT_LEAGUE", payload: selectedLeague };
+}
