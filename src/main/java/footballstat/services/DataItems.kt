@@ -22,8 +22,8 @@ interface DataItems
     {
         fun getAvailableLeagues() : List<LeagueInfo>
 
-        fun getLeague(leagueId : Int, matchDay : Int) : League
+        fun getLeague(leagueId: String, matchDay: Int) : League
 
-        fun getMatches(leagueId : Int, matchDay : Int) : Set<Match>
+        fun getMatches(leagueId: String, matchDay: Int) : Set<Match>
     }
 }

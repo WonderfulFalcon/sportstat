@@ -4,7 +4,7 @@ import java.util.*
 
 class League
 {
-    var Id : Int? = null
+    var id: String? = null
         get
         set
 

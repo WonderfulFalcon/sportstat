@@ -33,19 +33,19 @@ class LeaguesProvider
             }
         }
 
-        override fun getLeague(leagueId: Int, matchDay: Int) : League
+        override fun getLeague(leagueId: String, matchDay: Int) : League
         {
             val url = with(config) {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable/?$matchDayFilter=$matchDay"
             }
 
             val league = json.league(request.getResponse(url));
-            league.Id = leagueId;
+            league.id = leagueId;
 
             return league;
         }
 
-        override fun getMatches(leagueId: Int, matchDay: Int): Set<Match>
+        override fun getMatches(leagueId: String, matchDay: Int): Set<Match>
         {
             val url = with(config) {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$matches/?$matchDayFilter=$matchDay"
