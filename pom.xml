@@ -15,7 +15,6 @@
         <spring.version>4.3.8.RELEASE</spring.version>
         <jstl.version>1.2</jstl.version>
         <servletapi.version>3.1.0</servletapi.version>
-        <postgres.jdbc.version>9.4.1212</postgres.jdbc.version>
         <spring.boot.version>1.5.3.RELEASE</spring.boot.version>
         <maven.surefire.version>2.20</maven.surefire.version>
     </properties>
@@ -41,10 +40,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,13 +82,6 @@
             <scope>provided</scope>
         </dependency>
         <!-- JSP end -->
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgres.jdbc.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>

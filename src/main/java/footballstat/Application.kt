@@ -30,7 +30,7 @@ open class Application : SpringBootServletInitializer()
             val isConnected = dbService.testDbConnection()
             if (isConnected && java.lang.Boolean.getBoolean("init"))
             {
-                dbService.initPostgresqlDB()
+                dbService.initDB()
             }
         }
     }
