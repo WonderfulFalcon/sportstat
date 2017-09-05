@@ -1,5 +1,7 @@
 package footballstat.model.football
 
+import java.util.*
+
 class League
 {
     var Id : Int? = null
@@ -18,7 +20,7 @@ class League
         get
         set
 
-    var Table: Table = Table()
+    var Teams : ArrayList<Team> = ArrayList()
         get
         set
 }

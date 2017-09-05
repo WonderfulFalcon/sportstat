@@ -3,7 +3,6 @@ package footballstat.services.json
 import footballstat.model.football.League
 import footballstat.model.football.LeagueInfo
 import footballstat.model.football.Match
-import footballstat.model.football.Table
 import org.codehaus.jackson.JsonNode
 import org.codehaus.jackson.map.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,12 +40,7 @@ class FDOLeagueParser : LeagueParser
         {
             Name = jsonNode.get("leagueCaption")?.textValue
             MatchDay =  jsonNode.get("matchday").intValue
-
-            Table = with(Table()) {
-                Name = jsonNode.get("leagueCaption")?.textValue
-                Teams = tournamentParser.getTeams(jsonNode.get("standing"))
-                this
-            }
+            Teams = tournamentParser.getTeams(jsonNode.get("standing"))
             this
         }
     }
