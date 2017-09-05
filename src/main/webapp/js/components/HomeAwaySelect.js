@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class HomeAwaySelect extends Component {
     homeAwayChange () {
@@ -21,3 +22,7 @@ export default class HomeAwaySelect extends Component {
         )
     }
 }
+
+HomeAwaySelect.PropTypes = {
+    homeAway : PropTypes.func
+};

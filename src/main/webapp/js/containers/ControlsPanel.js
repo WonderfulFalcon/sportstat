@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import LeagueSelect from './../components/LeagueSelect';
+import LeagueSelectContainer from './LeagueSelectContainer';
 import MatchDayContainer from './MatchDayContainer';
 import HomeAwayContainer from './HomeAwayContainer';
 
@@ -10,7 +10,7 @@ class ControlsPanel extends Component {
         return (
             <div className="leagueControls">
                 {this.props.availableLeagues.length > 0 && <div className="controls">
-                    <LeagueSelect availableLeagues={this.props.availableLeagues} />
+                    <LeagueSelectContainer availableLeagues={this.props.availableLeagues} />
                     <MatchDayContainer availableLeagues={this.props.availableLeagues} />
                     <HomeAwayContainer />
                 </div>}
@@ -19,9 +19,10 @@ class ControlsPanel extends Component {
     }
 }
 
-export default connect(
-    state => ({
+const mapStateToProps = (state) => {
+    return {
         availableLeagues : state.availableLeagues
-    }),
-    dispatch => ({})
-)(ControlsPanel);
+    };
+};
+
+export default connect(mapStateToProps)(ControlsPanel);

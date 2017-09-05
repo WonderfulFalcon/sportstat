@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class LeagueLogo extends Component {
     static imagePath (name) {
@@ -13,3 +14,7 @@ export default class LeagueLogo extends Component {
         )
     }
 }
+
+LeagueLogo.PropTypes = {
+    shortName : PropTypes.string
+};
