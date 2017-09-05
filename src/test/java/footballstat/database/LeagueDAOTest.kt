@@ -2,6 +2,7 @@ package footballstat.database
 
 
 import footballstat.database.dao.DAO
+import footballstat.database.dao.mongodb.LeagueDAO
 import footballstat.model.football.League
 import footballstat.services.json.LeagueParser
 import org.codehaus.jackson.map.ObjectMapper
@@ -20,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional
 open class LeagueDAOTest
 {
     @Autowired
-    lateinit var leagueDAO : DAO<League>
+    lateinit var leagueDAO : LeagueDAO
 
     @Autowired
     lateinit var leagueParser : LeagueParser
