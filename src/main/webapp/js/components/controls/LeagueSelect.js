@@ -5,20 +5,22 @@ import PropTypes from 'prop-types';
 import LeagueSelectItem from './LeagueSelectItem';
 
 export default class LeagueSelect extends Component {
-    handleSelectLeague () {
-        const selectedLeague = $("#leagueInfo").find(":selected");
-        const leagueId = selectedLeague.data("leagueId");
-        const matchDay = selectedLeague.data("toursPlayed");
+    handleSelectLeague (event) {
+        const selected = event.target.options[event.target.selectedIndex];
+        const id = parseInt(selected.value);
+
+        const selectedLeague = this.props.availableLeagues
+            .find((league) => league.id === id);
 
         this.props.selectTeam();
-        this.props.loadLeague(leagueId, matchDay);
+        this.props.loadLeague(id, selectedLeague['toursPlayed']);
     }
 
     render () {
         return (
             <div>
-                <select id="leagueInfo" onChange={ this.handleSelectLeague.bind(this) }>
-                    {this.props.availableLeagues.map((league, index) =>
+                <select id="leagueInfo" onChange={(e) => { this.handleSelectLeague.bind(this)(e) }}>
+                    {this.props.availableLeagues.map((league) =>
                         <LeagueSelectItem key={league.id} league={league} />
                     )}
                 </select>

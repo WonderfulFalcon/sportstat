@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LeagueTable from './../components/LeagueTable';
+import LeagueTable from '../components/league/LeagueTable';
 
 const mapStateToProps = (state) => {
     return {

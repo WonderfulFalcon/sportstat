@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import MatchDaySelect from './../components/MatchDaySelect';
+import MatchDaySelect from '../components/controls/MatchDaySelect';
 import { loadLeague } from './../api/external-api';
 
 class MatchDayContainer extends Component {

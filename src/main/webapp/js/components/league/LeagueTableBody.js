@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TeamContainer from './../containers/TeamContainer';
-import MainTableHandler from './../logic/MainTableHandler';
+import TeamContainer from '../../containers/TeamContainer';
+import MainTableHandler from '../../logic/MainTableHandler';
 
 export default class LeagueTableBody extends Component {
     render () {

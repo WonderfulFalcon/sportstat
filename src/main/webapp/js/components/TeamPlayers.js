@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TeamName from './TeamName';
+import TeamName from './league/TeamName';
 
 export default class TeamPlayers extends Component {
     static logoClass (country) {

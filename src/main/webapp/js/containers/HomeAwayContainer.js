@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { changeHomeAway } from './../actions/actions.js';
-import HomeAwaySelect from './../components/HomeAwaySelect';
+import HomeAwaySelect from '../components/controls/HomeAwaySelect';
 
 const mapDispatchToProps = (dispatch) => {
     return {
