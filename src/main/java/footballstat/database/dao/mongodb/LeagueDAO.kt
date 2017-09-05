@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class LeagueDAO : DAO<League> {
@@ -40,4 +41,39 @@ class LeagueDAO : DAO<League> {
     }
 
 
+    class MongoLeague {
+        var id: String? = null
+            get
+            set
+
+        var Name : String? = null
+            get
+            set
+
+        var Year : Int? = null
+            get
+            set
+
+        var ShortName : String? = null
+            get
+            set
+
+        var Tables : ArrayList<MongoTable> = ArrayList()
+            get
+            set
+    }
+
+    class MongoTable {
+        var id: String? = null
+            get
+            set
+
+        var MatchDay : Int = 1
+            get
+            set
+
+        var Teams : ArrayList<Team> = ArrayList()
+            get
+            set
+    }
 }
