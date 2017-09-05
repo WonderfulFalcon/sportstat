@@ -20,16 +20,27 @@ class LeagueDAO : DAO<League> {
     lateinit var teamDAO : TeamDAO
 
     override fun getAll(): Collection<League> {
-        return mongoOperations.findAll(League::class.java)
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getById(id: String): League? {
         val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
-        return mongoOperations.findOne(searchLeagueQuery, League::class.java)
+
+        val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
+        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.Tables)), MongoTable::class.java)
+        val table : MongoTable = Collections.max(mongoTables, object : Comparator<MongoTable> {override fun compare(t1:MongoTable, t2:MongoTable) = t1.MatchDay - t2.MatchDay})
+        return with(League()) {
+            this.id = mongoLeague.id
+            Name = mongoLeague.Name
+            Year = mongoLeague.Year
+            MatchDay = table.MatchDay
+            Teams = table.Teams
+            this
+        }
     }
 
     override fun insert(obj: League): League? {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return League()
     }
 
     override fun insertAll(listOfObj: Collection<League>) {
@@ -58,7 +69,11 @@ class LeagueDAO : DAO<League> {
             get
             set
 
-        var Tables : ArrayList<MongoTable> = ArrayList()
+        var ToursPlayed : String? = null
+            get
+            set
+
+        var Tables : ArrayList<String> = ArrayList()
             get
             set
     }
