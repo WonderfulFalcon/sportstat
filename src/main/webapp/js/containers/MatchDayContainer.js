@@ -2,34 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MatchDaySelect from './../components/MatchDaySelect';
+import { loadLeague } from './../api/external-api';
 
 class MatchDayContainer extends Component {
-    currentMatchDay() {
-        const leagueInfo = this.props.availableLeagues.find((league) => {
-            return league.id === this.props.leagueTable.id;
-        });
-        return leagueInfo ? leagueInfo['toursPlayed'] : 0;
-    }
-
-    matchDays() {
-        let matchDays = [];
-        for (let matchDay = 1; matchDay < this.currentMatchDay() + 1; matchDay++) {
-            matchDays.push(matchDay);
-        }
-        return matchDays;
-    }
-
     render () {
         return (
-            <div>
-                {!$.isEmptyObject(this.props.leagueTable) &&
-                    <MatchDaySelect
-                        matchDays={this.matchDays()}
-                        selectedMatchDay={this.props.leagueTable.matchDay}
-                        leagueId={this.props.leagueTable.id}
-                    />
-                }
-            </div>
+            <MatchDaySelect
+                availableLeagues={this.props.availableLeagues}
+                leagueTable={this.props.leagueTable}
+                loadLeague={loadLeague}
+            />
         );
     }
 }
