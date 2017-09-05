@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@Transactional
 open class LeagueDAOTest {
     @Autowired
     lateinit var leagueDao : DAO<League>
