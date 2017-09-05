@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class TeamName extends Component {
+export default class TeamName extends Component {
     static imagePath (name) {
         return "/images/Clubs/" + name + ".svg";
     }
@@ -18,5 +18,3 @@ class TeamName extends Component {
         )
     }
 }
-
-export default TeamName;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TeamName from './TeamName';
 
-class TeamPlayers extends Component {
+export default class TeamPlayers extends Component {
     static logoClass (country) {
         return "flag-" + country;
     }
@@ -38,5 +38,3 @@ class TeamPlayers extends Component {
         )
     }
 }
-
-export default TeamPlayers;

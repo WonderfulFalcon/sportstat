@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
+
 import Team from './../components/Team';
 import { loadPlayers } from '../api/external-api';
 import { selectTeam } from "../api/user-api";
-
 import TeamSelector from './../logic/TeamSelector';
 
 const mapStateToProps = (state, ownProps) => {

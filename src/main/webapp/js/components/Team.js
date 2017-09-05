@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import TeamName from './TeamName';
 
-class Team extends Component {
+export default class Team extends Component {
     getStyle (teamId) {
         return this.props.currentSelectedTeam.teamId === teamId ?
             "teamColumn selected" :
@@ -42,5 +43,3 @@ class Team extends Component {
         );
     }
 }
-
-export default Team;

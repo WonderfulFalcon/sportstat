@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import TeamContainer from './../containers/TeamContainer';
 import MainTableHandler from './../logic/MainTableHandler';
 
-class LeagueTable extends Component {
+export default class LeagueTable extends Component {
     render () {
         const tableHandler = new MainTableHandler(
             this.props.teams,
@@ -24,5 +24,3 @@ class LeagueTable extends Component {
         )
     }
 }
-
-export default LeagueTable;

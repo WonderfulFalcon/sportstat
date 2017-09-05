@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { loadLeague } from './../api/external-api';
 import { selectTeam } from '../api/user-api';
 
-class LeagueSelect extends Component {
+export default class LeagueSelect extends Component {
     render () {
         return (
             <div>
@@ -35,5 +35,3 @@ class LeagueItem extends Component {
         )
     }
 }
-
-export default LeagueSelect;

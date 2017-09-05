@@ -7,7 +7,7 @@ import TeamPlayers from '../containers/TeamPlayersContainer';
 import TourSummaryContainer from '../containers/TourSummaryContainer';
 import LoadingContainer from '../containers/LoadingContainer';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
             <div>
@@ -21,5 +21,3 @@ class App extends Component {
         );
     }
 }
-
-export default App;

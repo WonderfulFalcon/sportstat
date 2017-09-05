@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LeagueTableHeader from './LeagueTableHeader';
 import LeagueTableBody from './LeagueTableBody';
 
-class LeagueTable extends Component {
+export default class LeagueTable extends Component {
     render () {
         return (
             <div id='col2'>
@@ -16,5 +16,3 @@ class LeagueTable extends Component {
         )
     }
 }
-
-export default LeagueTable;

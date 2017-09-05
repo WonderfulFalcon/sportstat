@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TourSummary extends Component {
+export default class TourSummary extends Component {
     render () {
         return (
             <div id="col1">
@@ -32,5 +32,3 @@ class TourSummary extends Component {
         )
     }
 }
-
-export default TourSummary;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class LeagueLogo extends Component {
+export default class LeagueLogo extends Component {
     static imagePath (name) {
         return "/images/League/" + name + ".svg";
     }
@@ -13,5 +13,3 @@ class LeagueLogo extends Component {
         )
     }
 }
-
-export default LeagueLogo;

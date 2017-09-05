@@ -1,7 +1,7 @@
 import LeagueLogo from './LeagueLogo';
 import React, { Component } from 'react';
 
-class LeagueTableHeader extends Component {
+export default class LeagueTableHeader extends Component {
     static leagueShortName () {
         return $("#leagueInfo").find(":selected").data("shortName");
     }
@@ -35,5 +35,3 @@ class LeagueTableHeader extends Component {
         );
     }
 }
-
-export default LeagueTableHeader;

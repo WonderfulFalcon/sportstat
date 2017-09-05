@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class HomeAwaySelect extends Component {
+export default class HomeAwaySelect extends Component {
     homeAwayChange () {
         return (event) => {
             const selectedIndex = event.target.selectedIndex;
@@ -21,5 +21,3 @@ class HomeAwaySelect extends Component {
         )
     }
 }
-
-export default HomeAwaySelect;
