@@ -20,6 +20,10 @@ class League
         get
         set
 
+    var ShortName : String? = null
+        get
+        set
+
     var Teams : ArrayList<Team> = ArrayList()
         get
         set
