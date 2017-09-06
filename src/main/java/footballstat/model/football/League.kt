@@ -20,6 +20,10 @@ class League
         get
         set
 
+    var ToursPlayed : Int? = null
+        get
+        set
+
     var ShortName : String? = null
         get
         set

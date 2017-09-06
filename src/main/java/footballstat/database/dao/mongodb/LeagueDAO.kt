@@ -27,6 +27,7 @@ class LeagueDAO : DAO<League> {
         val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
 
         val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
+        if (mongoLeague == null) { return null }
         val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.Tables)), MongoTable::class.java)
         val table : MongoTable = Collections.max(mongoTables, object : Comparator<MongoTable> {override fun compare(t1:MongoTable, t2:MongoTable) = t1.MatchDay - t2.MatchDay})
         return with(League()) {
@@ -40,6 +41,29 @@ class LeagueDAO : DAO<League> {
     }
 
     override fun insert(obj: League): League? {
+        var mongoLeague = mongoOperations.findOne(Query(Criteria.where("ShortName").`is`(obj.ShortName).andOperator(Criteria.where("Year"))), MongoLeague::class.java)
+
+        val toSaveTable = with(MongoTable()) {
+            this.MatchDay = obj.MatchDay
+            this.Teams = obj.Teams
+            this
+        }
+
+        if (mongoLeague == null)
+        {
+
+            val toSaveLeague = with(MongoLeague()) {
+                this.Name = obj.Name
+                this.ShortName = obj.ShortName
+                this.ToursPlayed = obj.ToursPlayed
+                this.Year = obj.Year
+                this
+            }
+        }
+        else
+        {
+
+        }
         return League()
     }
 
@@ -69,7 +93,7 @@ class LeagueDAO : DAO<League> {
             get
             set
 
-        var ToursPlayed : String? = null
+        var ToursPlayed : Int? = null
             get
             set
 
