@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -28,7 +29,7 @@ class LeagueDAO : DAO<League> {
 
         val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
         if (mongoLeague == null) { return null }
-        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.Tables)), MongoTable::class.java)
+        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
         val table : MongoTable = Collections.max(mongoTables, object : Comparator<MongoTable> {override fun compare(t1:MongoTable, t2:MongoTable) = t1.MatchDay - t2.MatchDay})
         return with(League()) {
             this.id = mongoLeague.id
@@ -51,28 +52,44 @@ class LeagueDAO : DAO<League> {
 
         if (mongoLeague == null)
         {
-
+            mongoOperations.insert(toSaveTable)
             val toSaveLeague = with(MongoLeague()) {
                 this.Name = obj.Name
                 this.ShortName = obj.ShortName
                 this.ToursPlayed = obj.ToursPlayed
                 this.Year = obj.Year
+                if (toSaveTable.id != null) {
+                    this.TableIds.add(toSaveTable.id!!)
+                }
                 this
             }
+            mongoOperations.insert(toSaveLeague)
         }
         else
         {
-
+            val existingMongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
+            if (existingMongoTables.find { it.MatchDay == obj.MatchDay } == null) {
+                mongoOperations.insert(toSaveTable)
+                if (toSaveTable.id != null) {
+                    mongoLeague.TableIds.add(toSaveTable.id!!)
+                }
+                mongoOperations.save(mongoLeague)
+            }
         }
         return League()
     }
 
     override fun insertAll(listOfObj: Collection<League>) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        listOfObj.forEach { it -> insert(it) }
     }
 
     override fun delete(id: String): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
+
+        val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
+        val mongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
+        mongoTables.forEach { mongoOperations.remove(it.id) }
+        mongoOperations.remove(it)
     }
 
 
@@ -97,7 +114,7 @@ class LeagueDAO : DAO<League> {
             get
             set
 
-        var Tables : ArrayList<String> = ArrayList()
+        var TableIds: ArrayList<String> = ArrayList()
             get
             set
     }
