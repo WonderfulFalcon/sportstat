@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {isEmpty} from 'underscore';
 
 import LeagueTableHeader from './LeagueTableHeader';
 import LeagueTableBody from './LeagueTableBody';
@@ -8,7 +9,7 @@ export default class LeagueTable extends Component {
     render () {
         return (
             <div id='col2'>
-                {!($.isEmptyObject(this.props.leagueTable)) &&
+                {!(isEmpty(this.props.leagueTable)) &&
                     <table className="leagueTable">
                         <LeagueTableHeader
                             tableName={this.props.leagueTable.name}

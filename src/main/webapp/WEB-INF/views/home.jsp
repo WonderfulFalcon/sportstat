@@ -6,11 +6,10 @@
     <title>Football stat</title>
     <link href="dist/style.css" rel="stylesheet" type="text/css" />
     <link href="css/flags.css" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-
 </head>
 <body>
     <div id="root"></div>
     <script type="text/javascript" src="<c:url value="dist/bundle.js" /> "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
 </body>
 </html>

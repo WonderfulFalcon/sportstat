@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {isEmpty} from 'underscore';
 
 import TeamName from './league/TeamName';
 
@@ -9,7 +10,7 @@ export default class TeamPlayers extends Component {
     }
 
     isShowPlayers () {
-        return !$.isEmptyObject(this.props.currentSelectedTeam) &&
+        return !isEmpty(this.props.currentSelectedTeam) &&
             this.props.teamPlayers.teamPlayers &&
             this.props.teamPlayers.teamPlayers.length > 0
     }

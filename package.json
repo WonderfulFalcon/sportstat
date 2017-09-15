@@ -41,6 +41,7 @@
     "node-libs-browser": "^2.0.0",
     "redux-devtools": "^3.4.0",
     "style-loader": "^0.18.2",
+    "underscore": "^1.8.3",
     "webpack": "^3.0.0"
   }
 }

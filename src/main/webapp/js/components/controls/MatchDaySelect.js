@@ -1,3 +1,4 @@
+import {isEmpty} from 'underscore';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -25,7 +26,7 @@ export default class MatchDaySelect extends Component {
     render () {
         return (
             <div>
-                {!$.isEmptyObject(this.props.leagueTable) &&
+                {!isEmpty(this.props.leagueTable) &&
                     <select
                         id="matchDay"
                         value={this.props.leagueTable.matchDay}
