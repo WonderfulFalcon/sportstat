@@ -17,11 +17,15 @@ class LeagueDAO : DAO<League> {
     @Autowired
     lateinit var mongoOperations : MongoOperations
 
-    @Autowired
-    lateinit var teamDAO : TeamDAO
-
     override fun getAll(): Collection<League> {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return mongoOperations.findAll(MongoLeague::class.java).map{ with(League())  {
+            this.id = it.id
+            Name = it.Name
+            ShortName = it.ShortName
+            Year = it.Year
+            ToursPlayed = it.ToursPlayed
+            this
+        } }
     }
 
     override fun getById(id: String): League? {
