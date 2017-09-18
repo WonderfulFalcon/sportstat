@@ -28,21 +28,12 @@ class LeagueDAO : DAO<League> {
         val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
 
         val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
-        if (mongoLeague == null) { return null }
-        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
-        val table : MongoTable = Collections.max(mongoTables, object : Comparator<MongoTable> {override fun compare(t1:MongoTable, t2:MongoTable) = t1.MatchDay - t2.MatchDay})
-        return with(League()) {
-            this.id = mongoLeague.id
-            Name = mongoLeague.Name
-            Year = mongoLeague.Year
-            MatchDay = table.MatchDay
-            Teams = table.Teams
-            this
-        }
+
+        return mongoLeague?.let { convertToLeague(mongoLeague, null)}
     }
 
     override fun insert(obj: League): League? {
-        var mongoLeague = mongoOperations.findOne(Query(Criteria.where("ShortName").`is`(obj.ShortName).andOperator(Criteria.where("Year"))), MongoLeague::class.java)
+        val mongoLeague = mongoOperations.findOne(Query(Criteria.where("ShortName").`is`(obj.ShortName).andOperator(Criteria.where("Year"))), MongoLeague::class.java)
 
         val toSaveTable = with(MongoTable()) {
             this.MatchDay = obj.MatchDay
@@ -89,9 +80,41 @@ class LeagueDAO : DAO<League> {
         val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
         val mongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
         mongoTables.forEach { mongoOperations.remove(it.id) }
-        mongoOperations.remove(it)
+        mongoOperations.remove(mongoLeague)
+        return true;
     }
 
+    override fun getByExample(example: League): Iterable<League> {
+        val searchLeagueQuery = Query()
+        with(example) {
+            id?.let { searchLeagueQuery.addCriteria( Criteria.where("id").`is`(it) ) }
+            ShortName?.let { searchLeagueQuery.addCriteria(Criteria.where("ShortName").`is`(it) ) }
+            Year?.let { Criteria.where("Year").`is`(it) }
+            Name?.let { searchLeagueQuery.addCriteria(Criteria.where("Name").`is`(it) ) }
+        }
+        val mongoLeagues : Iterable<MongoLeague> = mongoOperations.find(searchLeagueQuery, MongoLeague::class.java)
+        return mongoLeagues.map { convertToLeague(it, example.MatchDay) }
+    }
+
+    private fun convertToLeague(mongoLeague : MongoLeague, idMatchDay : Int?) : League {
+        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
+        var table : MongoTable? = null
+        if (idMatchDay == null) {
+            table = Collections.max(mongoTables, object : Comparator<MongoTable> {override fun compare(t1:MongoTable, t2:MongoTable) = t1.MatchDay - t2.MatchDay})
+
+        }
+        else {
+            table = mongoTables.filter { it.MatchDay == idMatchDay }.first()
+        }
+        return with(League()) {
+            this.id = mongoLeague.id
+            Name = mongoLeague.Name
+            Year = mongoLeague.Year
+            MatchDay = table!!.MatchDay
+            Teams = table!!.Teams
+            this
+        }
+    }
 
     class MongoLeague {
         var id: String? = null

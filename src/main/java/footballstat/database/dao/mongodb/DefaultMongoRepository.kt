@@ -1,6 +1,7 @@
 package footballstat.database.dao.mongodb
 
 import footballstat.database.dao.DAO
+import org.springframework.data.domain.Example
 import org.springframework.data.mongodb.repository.MongoRepository
 
 abstract class DefaultMongoRepository<T> : DAO<T> {
@@ -26,6 +27,10 @@ abstract class DefaultMongoRepository<T> : DAO<T> {
         getMongoRepository().delete(id)
         getMongoRepository().findAll()
         return true
+    }
+
+    override fun getByExample(example: T): Iterable<T> {
+        return getMongoRepository().findAll(Example.of(example))
     }
 
     abstract fun getMongoRepository() : MongoRepository<T, String>

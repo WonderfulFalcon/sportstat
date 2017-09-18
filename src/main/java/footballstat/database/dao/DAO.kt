@@ -8,4 +8,5 @@ interface DAO<T>
     fun insert(obj: T) : T?
     fun insertAll(listOfObj: Collection<T>)
     fun delete(id: String) : Boolean
+    fun getByExample(example: T) : Iterable<T>
 }
