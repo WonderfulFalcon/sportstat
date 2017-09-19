@@ -5,10 +5,9 @@ import {isEmpty} from 'underscore';
 export default class Loading extends Component {
     render () {
         return (
-            <div>
+            <div className="loading-gif-container">
                 {isEmpty(this.props.leagueTable) &&
-                    <div className="loading-gif-container">
-                        <img src="/images/loading_football.gif" />
+                    <div className="mdl-spinner mdl-js-spinner is-active">
                     </div>
                 }
             </div>
