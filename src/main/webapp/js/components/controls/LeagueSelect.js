@@ -6,7 +6,7 @@ import LeagueSelectItem from './LeagueSelectItem';
 export default class LeagueSelect extends Component {
     handleSelectLeague (event) {
         const selected = event.target.options[event.target.selectedIndex];
-        const id = parseInt(selected.value);
+        const id = selected.value;
 
         const selectedLeague = this.props.availableLeagues
             .find((league) => league.id === id);

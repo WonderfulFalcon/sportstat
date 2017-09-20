@@ -24,5 +24,5 @@ open class FDOConfig
     var matches : String = ""
 
     var matchDayFilter : String =""
-    var availableLeagueIds : Set<Int> = HashSet()
+    var availableLeagueIds : Set<String> = HashSet()
 }

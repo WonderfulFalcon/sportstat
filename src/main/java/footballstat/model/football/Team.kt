@@ -2,9 +2,10 @@ package footballstat.model.football
 
 import footballstat.model.Country
 
-class Team(id : Int)
+class Team
 {
-    var Id : Int = id
+    var Id : Int? = null
+        set
         get
 
     var Name : String? = null

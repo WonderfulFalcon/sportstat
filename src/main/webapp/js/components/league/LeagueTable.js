@@ -17,7 +17,7 @@ export default class LeagueTable extends Component {
                         />
 
                         <LeagueTableBody
-                            teams={this.props.leagueTable.table.teams}
+                            teams={this.props.leagueTable.teams}
                             homeAwayState={this.props.homeAwayState}
                         />
                     </table>

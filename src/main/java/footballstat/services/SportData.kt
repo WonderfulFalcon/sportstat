@@ -26,12 +26,12 @@ open class SportData : DataItems.Leagues, DataItems.Teams
         return teams.getTeamSquad(teamId)
     }
 
-    override fun getLeague(leagueId : Int, matchDay : Int) : League
+    override fun getLeague(leagueId: String, matchDay: Int) : League
     {
         return leagues.getLeague(leagueId, matchDay)
     }
 
-    override fun getMatches(leagueId : Int, matchDay : Int) : Set<Match>
+    override fun getMatches(leagueId: String, matchDay: Int) : Set<Match>
     {
         return leagues.getMatches(leagueId, matchDay)
     }

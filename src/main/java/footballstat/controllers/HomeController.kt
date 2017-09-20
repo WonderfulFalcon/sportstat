@@ -34,7 +34,7 @@ open class HomeController
 
     @PostMapping(value = "/league")
     @ResponseBody
-    open fun league(@RequestParam("leagueId", required = true) leagueId : Int,
+    open fun league(@RequestParam("leagueId", required = true) leagueId : String,
                          @RequestParam("matchDay", required = true) matchDay : Int) : League
     {
         return sportData.getLeague(leagueId, matchDay)
@@ -49,7 +49,7 @@ open class HomeController
 
     @PostMapping(value = "/matches")
     @ResponseBody
-    open fun leagueMatches(@RequestParam("leagueId", required = true) leagueId: Int,
+    open fun leagueMatches(@RequestParam("leagueId", required = true) leagueId: String,
                            @RequestParam("matchDay", required = true) matchDay: Int) : Set<Match>
     {
         return sportData.getMatches(leagueId, matchDay);

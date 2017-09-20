@@ -12,6 +12,6 @@ export default class LeagueSelectItem extends Component {
 }
 
 LeagueSelectItem.propTypes = {
-    leagueId : PropTypes.number,
+    leagueId : PropTypes.string,
     leagueName : PropTypes.string
 };
