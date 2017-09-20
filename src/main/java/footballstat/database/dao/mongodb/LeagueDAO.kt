@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
-import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -20,10 +19,10 @@ class LeagueDAO : DAO<League> {
     override fun getAll(): Collection<League> {
         return mongoOperations.findAll(MongoLeague::class.java).map{ with(League())  {
             this.id = it.id
-            Name = it.Name
-            ShortName = it.ShortName
-            Year = it.Year
-            ToursPlayed = it.ToursPlayed
+            Name = it.name
+            ShortName = it.shortName
+            Year = it.year
+            ToursPlayed = it.toursPlayed
             this
         } }
     }
@@ -37,11 +36,16 @@ class LeagueDAO : DAO<League> {
     }
 
     override fun insert(obj: League): League? {
-        val mongoLeague = mongoOperations.findOne(Query(Criteria.where("ShortName").`is`(obj.ShortName).andOperator(Criteria.where("Year"))), MongoLeague::class.java)
+        with(obj) {
+            val isValidObject = ShortName != null && Year != null && ToursPlayed != null && Name != null
+            if (!isValidObject) return null
+        }
+
+        var mongoLeague : MongoLeague? = mongoOperations.findOne(Query(Criteria.where("shortName").`is`(obj.ShortName).andOperator(Criteria.where("year").`is`(obj.Year))), MongoLeague::class.java)
 
         val toSaveTable = with(MongoTable()) {
-            this.MatchDay = obj.MatchDay
-            this.Teams = obj.Teams
+            this.matchDay = obj.MatchDay
+            this.teams = obj.Teams
             this
         }
 
@@ -49,29 +53,30 @@ class LeagueDAO : DAO<League> {
         {
             mongoOperations.insert(toSaveTable)
             val toSaveLeague = with(MongoLeague()) {
-                this.Name = obj.Name
-                this.ShortName = obj.ShortName
-                this.ToursPlayed = obj.ToursPlayed
-                this.Year = obj.Year
+                this.name = obj.Name
+                this.shortName = obj.ShortName
+                this.toursPlayed = obj.ToursPlayed
+                this.year = obj.Year
                 if (toSaveTable.id != null) {
-                    this.TableIds.add(toSaveTable.id!!)
+                    this.tableIds.add(toSaveTable.id!!)
                 }
                 this
             }
+            mongoLeague = toSaveLeague;
             mongoOperations.insert(toSaveLeague)
         }
         else
         {
-            val existingMongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
-            if (existingMongoTables.find { it.MatchDay == obj.MatchDay } == null) {
+            val existingMongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
+            if (existingMongoTables.find { it.matchDay == obj.MatchDay } == null) {
                 mongoOperations.insert(toSaveTable)
                 if (toSaveTable.id != null) {
-                    mongoLeague.TableIds.add(toSaveTable.id!!)
+                    mongoLeague.tableIds.add(toSaveTable.id!!)
                 }
                 mongoOperations.save(mongoLeague)
             }
         }
-        return League()
+        return with(obj) { this.id = mongoLeague!!.id; this;}
     }
 
     override fun insertAll(listOfObj: Collection<League>) {
@@ -82,10 +87,9 @@ class LeagueDAO : DAO<League> {
         val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
 
         val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
-        val mongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
-        mongoTables.forEach { mongoOperations.remove(it.id) }
+        mongoOperations.remove(Query.query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
         mongoOperations.remove(mongoLeague)
-        return true;
+        return true
     }
 
     override fun getByExample(example: League): Iterable<League> {
@@ -101,61 +105,62 @@ class LeagueDAO : DAO<League> {
     }
 
     private fun convertToLeague(mongoLeague : MongoLeague, idMatchDay : Int?) : League {
-        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.TableIds)), MongoTable::class.java)
+        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
         var table : MongoTable? = null
         if (idMatchDay == null) {
-            table = Collections.max(mongoTables, object : Comparator<MongoTable> {override fun compare(t1:MongoTable, t2:MongoTable) = t1.MatchDay - t2.MatchDay})
-
+            table = Collections.max(mongoTables) { t1, t2 -> t1.matchDay - t2.matchDay }
         }
         else {
-            table = mongoTables.filter { it.MatchDay == idMatchDay }.first()
+            table = mongoTables.filter { it.matchDay == idMatchDay }.first()
         }
         return with(League()) {
             this.id = mongoLeague.id
-            Name = mongoLeague.Name
-            Year = mongoLeague.Year
-            MatchDay = table!!.MatchDay
-            Teams = table!!.Teams
+            Name = mongoLeague.name
+            Year = mongoLeague.year
+            ShortName = mongoLeague.shortName
+            ToursPlayed = mongoLeague.toursPlayed
+            MatchDay = table!!.matchDay
+            Teams = table!!.teams
             this
         }
     }
 
-    class MongoLeague {
+    open class MongoLeague {
         var id: String? = null
             get
             set
 
-        var Name : String? = null
+        var name: String? = null
             get
             set
 
-        var Year : Int? = null
+        var year: Int? = null
             get
             set
 
-        var ShortName : String? = null
+        var shortName: String? = null
             get
             set
 
-        var ToursPlayed : Int? = null
+        var toursPlayed: Int? = null
             get
             set
 
-        var TableIds: ArrayList<String> = ArrayList()
+        var tableIds: ArrayList<String> = ArrayList()
             get
             set
     }
 
-    class MongoTable {
+    open class MongoTable {
         var id: String? = null
             get
             set
 
-        var MatchDay : Int = 1
+        var matchDay: Int = 1
             get
             set
 
-        var Teams : ArrayList<Team> = ArrayList()
+        var teams: ArrayList<Team> = ArrayList()
             get
             set
     }
