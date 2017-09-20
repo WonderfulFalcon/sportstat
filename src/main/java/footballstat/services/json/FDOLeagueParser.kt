@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class FDOLeagueParser : LeagueParser
+open class FDOLeagueParser : LeagueParser
 {
     @Autowired
     private lateinit var tournamentParser : FDOTournamentTeamsParser
@@ -20,7 +20,7 @@ class FDOLeagueParser : LeagueParser
     {
         return mapper.readTree(json).map {
             it ->  LeagueInfo(
-                it.get("id").intValue,
+                it.get("id").intValue.toString(),
                 it.get("caption").textValue,
                 it.get("currentMatchday").intValue,
                 it.get("league").textValue)
