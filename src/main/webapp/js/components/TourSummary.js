@@ -9,7 +9,7 @@ export default class TourSummary extends Component {
                     <div>
                         <div className="match-results-header">
                             <span>
-                                Match results
+                                {this.props.translate("headers.matchResults")}
                             </span>
                         </div>
                         <table className="match-results">
@@ -35,5 +35,6 @@ export default class TourSummary extends Component {
 }
 
 TourSummary.propTypes = {
-    leagueMatches : PropTypes.array
+    leagueMatches : PropTypes.array,
+    translate : PropTypes.func
 };

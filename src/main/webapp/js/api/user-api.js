@@ -1,3 +1,7 @@
+import { addTranslation } from 'react-localize-redux';
+import { initialize } from 'react-localize-redux';
+
+import headers from './../../localization/LocalizationJson.js';
 import { store } from "../main";
 import { currentSelectedTeamAction, currentSelectedLeague } from './../actions/actions.js';
 
@@ -7,4 +11,13 @@ export function selectTeam(selectedTeam) {
 
 export function selectLeague(selectedLeague) {
     store.dispatch(currentSelectedLeague(selectedLeague));
+}
+
+export function initLocalize() {
+    const languages = ['en', 'ru'];
+    store.dispatch(initialize(languages, { defaultLanguage: 'en' }));
+}
+
+export function initLocalizeData() {
+    store.dispatch(addTranslation(headers));
 }
