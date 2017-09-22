@@ -121,11 +121,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
-                <configuration>
-                    <excludes>
-                        <exclude>CountryDAOTest</exclude>
-                    </excludes>
-                </configuration>
+                <!--<configuration>-->
+                    <!--<excludes>-->
+                        <!--<exclude>InitMongoDB</exclude>-->
+                    <!--</excludes>-->
+                <!--</configuration>-->
             </plugin>
         </plugins>
     </build>
