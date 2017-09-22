@@ -9,7 +9,7 @@ export default class TourSummary extends Component {
                     <div>
                         <div className="match-results-header">
                             <span>
-                                {this.props.translate("headers.matchResults")}
+                                {this.props.translate("matchResults")}
                             </span>
                         </div>
                         <table className="match-results">

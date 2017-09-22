@@ -19,5 +19,6 @@ export function initLocalize() {
 }
 
 export function initLocalizeData() {
-    store.dispatch(addTranslation(headers));
+    const json = require('./../../localization/headers.json');
+    store.dispatch(addTranslation(json));
 }
