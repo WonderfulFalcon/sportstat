@@ -25,7 +25,6 @@ abstract class DefaultMongoRepository<T> : DAO<T> {
 
     override fun delete(id: String): Boolean {
         getMongoRepository().delete(id)
-        getMongoRepository().findAll()
         return true
     }
 

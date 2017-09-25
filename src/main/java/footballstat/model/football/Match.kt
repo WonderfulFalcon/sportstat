@@ -10,6 +10,10 @@ class Match
         get
         set
 
+    var LeagueId : String? = null
+        get
+        set
+
     var HomeTeamName : String? = null
         get
         set

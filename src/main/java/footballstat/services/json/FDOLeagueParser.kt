@@ -23,7 +23,8 @@ open class FDOLeagueParser : LeagueParser
                 it.get("id").intValue.toString(),
                 it.get("caption").textValue,
                 it.get("currentMatchday").intValue,
-                it.get("league").textValue)
+                it.get("league").textValue,
+                it.get("year").intValue)
         }
     }
 
