@@ -4,6 +4,7 @@ import footballstat.database.dao.DAO
 import footballstat.model.football.League
 import footballstat.model.football.Team
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.session.SessionProperties
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
@@ -97,7 +98,13 @@ class LeagueDAO : DAO<League> {
         val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
 
         val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
-        mongoOperations.remove(Query.query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
+        val mongoTables : List<MongoTable> = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
+        val teamIds : ArrayList<String> = ArrayList()
+        mongoTables.forEach {
+            teamIds.addAll(it.teams)
+            mongoOperations.remove(it)
+        }
+        teamIds.forEach { teamDAO.delete(it) }
         mongoOperations.remove(mongoLeague)
         return true
     }
