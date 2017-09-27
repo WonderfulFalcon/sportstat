@@ -92,12 +92,12 @@ class LeagueDAO : DAO<League> {
         return true
     }
 
-    override fun getByExample(example: League): Iterable<League> {
+    override fun getByExample(example: League): Collection<League> {
         val searchLeagueQuery = Query()
         with(example) {
             id?.let { searchLeagueQuery.addCriteria( Criteria.where("id").`is`(it) ) }
             ShortName?.let { searchLeagueQuery.addCriteria(Criteria.where("ShortName").`is`(it) ) }
-            Year?.let { Criteria.where("Year").`is`(it) }
+            Year?.let { searchLeagueQuery.addCriteria(Criteria.where("Year").`is`(it) ) }
             Name?.let { searchLeagueQuery.addCriteria(Criteria.where("Name").`is`(it) ) }
         }
         val mongoLeagues : Iterable<MongoLeague> = mongoOperations.find(searchLeagueQuery, MongoLeague::class.java)

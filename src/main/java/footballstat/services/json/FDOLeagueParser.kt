@@ -49,7 +49,7 @@ open class FDOLeagueParser : LeagueParser
     private fun match(jsonNode: JsonNode) : Match
     {
         return with(Match()) {
-            MatchDay = jsonNode.get("matchday").intValue
+            matchDay = jsonNode.get("matchday").intValue
             HomeTeamName = jsonNode.get("homeTeamName")?.textValue
             AwayTeamName = jsonNode.get("awayTeamName")?.textValue
             GoalsHomeTeam = jsonNode.get("result").get("goalsHomeTeam")?.intValue

@@ -2,7 +2,7 @@ package footballstat.database
 
 
 import footballstat.database.dao.DAO
-import footballstat.model.football.League
+import footballstat.model.football.Match
 import footballstat.services.json.LeagueParser
 import org.codehaus.jackson.map.ObjectMapper
 import org.junit.*
@@ -15,45 +15,34 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@TestPropertySource(locations= arrayOf("classpath:config/testdata/league-mdao-test.properties"))
+@TestPropertySource(locations= arrayOf("classpath:config/testdata/mdao-test.properties"))
 open class MatchDAOTest
 {
     @Autowired
-    lateinit var leagueDAO : DAO<League>
+    lateinit var matchDAO : DAO<Match>
 
     @Autowired
     lateinit var leagueParser : LeagueParser
 
-    @Value("\${league}")
-    private val requestGetLeague: String = ""
-
-    @Value("\${listLeagueInfo}")
-    private val requestListLeagueInfo: String = ""
+    @Value("\${matches}")
+    private val matchesFDO: String = ""
 
     private var objectMapper : ObjectMapper = ObjectMapper()
 
     @Test
     fun testInsertDeleteGetbyid()
     {
-        val league = leagueParser.league(requestGetLeague)
-        val leagueInfo = leagueParser.availableLeagues(requestListLeagueInfo).filter { it.Name == league.Name }.first()
-        with(league) {
-            Year = 2016
-            ShortName = leagueInfo.ShortName
-            ToursPlayed = leagueInfo.ToursPlayed
-        }
-        leagueDAO.insert(league)
+        val matches : List<Match> = leagueParser.matches(matchesFDO)
+        matches.forEach { it.leagueId = "test" }
+        matchDAO.insertAll(matches)
 
-        Assert.assertNotNull(league.id)
+        val exampleMatch = Match()
+        exampleMatch.leagueId = "test"
+        exampleMatch.matchDay = 38
 
-        val leagueFromDB = league.id?.let { leagueDAO.getById(it) }
-
-        Assert.assertEquals(objectMapper.writeValueAsString(league), objectMapper.writeValueAsString(leagueFromDB))
-
-        league.id?.let {
-            leagueDAO.delete(it)
-            Assert.assertNull(leagueDAO.getById(it))
-        }
-
+        val searchResult = matchDAO.getByExample(exampleMatch)
+        Assert.assertNotNull(searchResult)
+        Assert.assertTrue(searchResult.size == matches.size)
+        searchResult.forEach { matchDAO.delete(it.id!!) }
     }
 }

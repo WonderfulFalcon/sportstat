@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@TestPropertySource(locations= arrayOf("classpath:config/testdata/league-mdao-test.properties"))
+@TestPropertySource(locations= arrayOf("classpath:config/testdata/mdao-test.properties"))
 open class LeagueDAOTest
 {
     @Autowired
