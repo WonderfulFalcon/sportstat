@@ -10,11 +10,19 @@ import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
 import java.util.*
 
+
+/**
+ * TODO 1. ОБЯЗАТЕЛЬНО ВЫПОЛНИТЬ ВСЕ ПРОВЕРКИ НА ВАЛИДНОСТЬ ДАННЫХ И ТИПОВ ДАННЫХ ?!!
+ * TODO 2. придумать как избавиться от сайд-эффекта методов этой DAO - сохранение league вызывает сохранение table, удаление league вызовает удаление table
+ */
 @Service
 class LeagueDAO : DAO<League> {
 
     @Autowired
     lateinit var mongoOperations : MongoOperations
+
+    @Autowired
+    lateinit var teamDAO : DAO<Team>
 
     override fun getAll(): Collection<League> {
         return mongoOperations.findAll(MongoLeague::class.java).map{ with(League())  {
@@ -43,9 +51,11 @@ class LeagueDAO : DAO<League> {
 
         var mongoLeague : MongoLeague? = mongoOperations.findOne(Query(Criteria.where("shortName").`is`(obj.ShortName).andOperator(Criteria.where("year").`is`(obj.Year))), MongoLeague::class.java)
 
+        teamDAO.insertAll(obj.Teams)
+
         val toSaveTable = with(MongoTable()) {
             this.matchDay = obj.MatchDay
-            this.teams = obj.Teams
+            this.teams = obj.Teams.map { it.id!! }
             this
         }
 
@@ -120,7 +130,7 @@ class LeagueDAO : DAO<League> {
             ShortName = mongoLeague.shortName
             ToursPlayed = mongoLeague.toursPlayed
             MatchDay = table!!.matchDay
-            Teams = table!!.teams
+            Teams = table!!.teams.map { teamDAO.getById(it)!! }
             this
         }
     }
@@ -160,7 +170,7 @@ class LeagueDAO : DAO<League> {
             get
             set
 
-        var teams: ArrayList<Team> = ArrayList()
+        var teams: List<String> = ArrayList()
             get
             set
     }

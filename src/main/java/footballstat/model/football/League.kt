@@ -28,7 +28,7 @@ class League
         get
         set
 
-    var Teams : ArrayList<Team> = ArrayList()
+    var Teams: List<Team> = ArrayList()
         get
         set
 }

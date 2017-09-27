@@ -25,18 +25,15 @@ open class DBService
     @Autowired
     lateinit var matchDAO : DAO<Match>
 
-    @Autowired
-    lateinit var playersDAO : DAO<Player>
-
     fun hasDBConnection() : Boolean {
         return true
     }
 
-    @ManagedOperation
+    @ManagedOperation(description = "init database from footbal-data-org")
     fun initDB() {
         sportDataProvider.getAvailableLeagues().forEach {
             loadLeague(it)
-            //loadMatches(it)
+            loadMatches(it)
         }
     }
 
@@ -44,15 +41,15 @@ open class DBService
         var league : League? = null
         var matchDay = 0
         while (matchDay <= leagueInfo.ToursPlayed) {
-            league= getFilledLeague(sportDataProvider.getLeague(leagueInfo.Id, matchDay), leagueInfo)
+            league = getFilledLeague(sportDataProvider.getLeague(leagueInfo.Id, matchDay), leagueInfo)
+            league.Teams.forEach { it.Players = getTeamPlayers(it.id!!) }
             leagueDAO.insert(league)
             matchDay++
         }
-        //loadTeamPlayers(league!!.Teams)
     }
 
-    private fun loadTeamPlayers(teams: ArrayList<Team>) {
-
+    private fun getTeamPlayers(teamId: String) : Collection<Player> {
+        return sportDataProvider.getTeamSquad(teamId.toInt())
     }
 
     private fun loadMatches(leagueInfo: LeagueInfo) {
