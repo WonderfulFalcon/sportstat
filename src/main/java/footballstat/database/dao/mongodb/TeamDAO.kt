@@ -14,4 +14,6 @@ open class TeamDAO : DefaultMongoRepository<Team>() {
     override fun getMongoRepository(): MongoRepository<Team, String> {
         return mongoRepository
     }
+
+
 }

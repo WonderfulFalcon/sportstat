@@ -1,7 +1,9 @@
 package footballstat.database.dao.mongodb
 
 import footballstat.database.dao.DAO
+import footballstat.model.Country
 import footballstat.model.football.League
+import footballstat.model.football.Player
 import footballstat.model.football.Team
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.session.SessionProperties
@@ -13,8 +15,7 @@ import java.util.*
 
 
 /**
- * TODO 1. ОБЯЗАТЕЛЬНО ВЫПОЛНИТЬ ВСЕ ПРОВЕРКИ НА ВАЛИДНОСТЬ ДАННЫХ И ТИПОВ ДАННЫХ ?!!
- * TODO 2. придумать как избавиться от сайд-эффекта методов этой DAO - сохранение league вызывает сохранение table, удаление league вызовает удаление table
+ * TODO Удалить и написать заново
  */
 @Service
 class LeagueDAO : DAO<League> {

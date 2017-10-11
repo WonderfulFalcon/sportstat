@@ -7,6 +7,8 @@ import footballstat.model.football.Match
 import footballstat.services.DataItems
 import footballstat.services.json.LeagueParser
 import footballstat.services.request.RequestProvider
+import org.apache.log4j.spi.LoggerFactory
+import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
