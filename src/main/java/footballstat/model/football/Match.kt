@@ -6,7 +6,11 @@ class Match
         get
         set
 
-    var MatchDay : Int = 0
+    var matchDay: Int? = null
+        get
+        set
+
+    var leagueId: String? = null
         get
         set
 

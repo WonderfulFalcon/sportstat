@@ -25,4 +25,6 @@ open class FDOConfig
 
     var matchDayFilter : String =""
     var availableLeagueIds : Set<String> = HashSet()
+
+    var maxRequestsPerMinute : Int = 50
 }

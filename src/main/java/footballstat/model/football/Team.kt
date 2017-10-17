@@ -1,10 +1,11 @@
 package footballstat.model.football
 
 import footballstat.model.Country
+import java.util.*
 
 class Team
 {
-    var Id : Int? = null
+    var id : String? = null
         set
         get
 

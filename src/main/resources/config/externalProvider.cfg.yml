@@ -16,3 +16,6 @@ matches : fixtures
 #filters
 matchDayFilter : matchday
 availableLeagueIds : 426,430,434,436,438
+
+#lmit
+maxRequestsPerMinute : 50

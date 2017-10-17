@@ -15,7 +15,7 @@ abstract class TeamsParser
             if (id != null)
             {
                 val team = Team()
-                team.Id = id
+                team.id = id.toString()
                 team.Name = teamName(jsonNode)
 
                 team.AllStatistic = tournamentStatistic(jsonNode)

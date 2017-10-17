@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@TestPropertySource(locations= arrayOf("classpath:config/testdata/league-mdao-test.properties"))
+@TestPropertySource(locations= arrayOf("classpath:config/testdata/mdao-test.properties"))
 open class LeagueDAOTest
 {
     @Autowired
@@ -38,6 +38,7 @@ open class LeagueDAOTest
         val league = leagueParser.league(requestGetLeague)
         val leagueInfo = leagueParser.availableLeagues(requestListLeagueInfo).filter { it.Name == league.Name }.first()
         with(league) {
+            id = leagueInfo.Id
             Year = 2016
             ShortName = leagueInfo.ShortName
             ToursPlayed = leagueInfo.ToursPlayed
@@ -46,7 +47,10 @@ open class LeagueDAOTest
 
         Assert.assertNotNull(league.id)
 
-        val leagueFromDB = league.id?.let { leagueDAO.getById(it) }
+        val leagueFromDB = league.let { leagueDAO.getByExample(with(League()) {
+            id = league.id
+            MatchDay = league.MatchDay
+            this}) }.first()
 
         Assert.assertEquals(objectMapper.writeValueAsString(league), objectMapper.writeValueAsString(leagueFromDB))
 

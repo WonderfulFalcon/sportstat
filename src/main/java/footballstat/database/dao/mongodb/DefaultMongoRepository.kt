@@ -25,11 +25,10 @@ abstract class DefaultMongoRepository<T> : DAO<T> {
 
     override fun delete(id: String): Boolean {
         getMongoRepository().delete(id)
-        getMongoRepository().findAll()
         return true
     }
 
-    override fun getByExample(example: T): Iterable<T> {
+    override fun getByExample(example: T): Collection<T> {
         return getMongoRepository().findAll(Example.of(example))
     }
 
