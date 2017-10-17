@@ -16,10 +16,6 @@ class Team
     val Country : Country? = null
         get
 
-    var Players : Collection<Player>? = null
-        get
-        set
-
     var AllStatistic : TournamentStatistic = TournamentStatistic()
         get
         set

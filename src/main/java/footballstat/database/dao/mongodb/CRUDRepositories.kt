@@ -1,5 +1,7 @@
 package footballstat.database.dao.mongodb
 
+import footballstat.database.dao.entity.MongoLeague
+import footballstat.database.dao.entity.MongoTeam
 import footballstat.model.Country
 import footballstat.model.football.Match
 import footballstat.model.football.Player
@@ -19,3 +21,9 @@ interface TeamMongoRepository : MongoRepository<Team, String> { }
 
 @Repository
 interface PlayerMongoRepository : MongoRepository<Player, String> { }
+
+@Repository
+interface LeagueMongoRepository : MongoRepository<MongoLeague, String> { }
+
+@Repository
+interface TeamMongoMongoRepository : MongoRepository<MongoTeam, String> { }

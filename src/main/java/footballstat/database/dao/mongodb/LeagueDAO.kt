@@ -1,15 +1,19 @@
 package footballstat.database.dao.mongodb
 
 import footballstat.database.dao.DAO
+import footballstat.database.dao.entity.MongoLeague
 import footballstat.model.Country
 import footballstat.model.football.League
 import footballstat.model.football.Player
 import footballstat.model.football.Team
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.session.SessionProperties
+import org.springframework.data.domain.Example
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -18,168 +22,90 @@ import java.util.*
  * TODO Удалить и написать заново
  */
 @Service
-class LeagueDAO : DAO<League> {
+open class LeagueDAO : DAO<League> {
+
 
     @Autowired
-    lateinit var mongoOperations : MongoOperations
-
-    @Autowired
-    lateinit var teamDAO : DAO<Team>
+    lateinit var leagueMongoRepository : LeagueMongoRepository
 
     override fun getAll(): Collection<League> {
-        return mongoOperations.findAll(MongoLeague::class.java).map{ with(League())  {
-            this.id = it.id
-            Name = it.name
-            ShortName = it.shortName
-            Year = it.year
-            ToursPlayed = it.toursPlayed
+        return getByExample(with(League()) {
+            this.id = id
+            this.MatchDay = 1
             this
-        } }
+        })
     }
 
     override fun getById(id: String): League? {
-        val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
-
-        val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
-
-        return mongoLeague?.let { convertToLeague(mongoLeague, null)}
+        val result : Collection<League> = getAll()
+        if(result.isEmpty())
+        {
+            return null
+        }
+        return result.first()
     }
 
     override fun insert(obj: League): League? {
-        with(obj) {
-            val isValidObject = ShortName != null && Year != null && ToursPlayed != null && Name != null
-            if (!isValidObject) return null
-        }
-
-        var mongoLeague : MongoLeague? = mongoOperations.findOne(Query(Criteria.where("shortName").`is`(obj.ShortName).andOperator(Criteria.where("year").`is`(obj.Year))), MongoLeague::class.java)
-
-        teamDAO.insertAll(obj.Teams)
-
-        val toSaveTable = with(MongoTable()) {
-            this.matchDay = obj.MatchDay
-            this.teams = obj.Teams.map { it.id!! }
+        val mongoLeague : MongoLeague = with(MongoLeague()) {
+            iD = obj.id
+            name = obj.Name
+            year = obj.Year
+            shortName = obj.ShortName
+            toursPlayed = obj.ToursPlayed
+            matchday = obj.MatchDay
+            teams = obj.Teams
             this
         }
+        leagueMongoRepository.insert(mongoLeague)
 
-        if (mongoLeague == null)
-        {
-            mongoOperations.insert(toSaveTable)
-            val toSaveLeague = with(MongoLeague()) {
-                this.name = obj.Name
-                this.shortName = obj.ShortName
-                this.toursPlayed = obj.ToursPlayed
-                this.year = obj.Year
-                if (toSaveTable.id != null) {
-                    this.tableIds.add(toSaveTable.id!!)
-                }
-                this
-            }
-            mongoLeague = toSaveLeague;
-            mongoOperations.insert(toSaveLeague)
-        }
-        else
-        {
-            val existingMongoTables = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
-            if (existingMongoTables.find { it.matchDay == obj.MatchDay } == null) {
-                mongoOperations.insert(toSaveTable)
-                if (toSaveTable.id != null) {
-                    mongoLeague.tableIds.add(toSaveTable.id!!)
-                }
-                mongoOperations.save(mongoLeague)
-            }
-        }
-        return with(obj) { this.id = mongoLeague!!.id; this;}
+        return obj
     }
 
     override fun insertAll(listOfObj: Collection<League>) {
-        listOfObj.forEach { it -> insert(it) }
+        listOfObj.forEach {
+            insert(it)
+        }
     }
 
     override fun delete(id: String): Boolean {
-        val searchLeagueQuery = Query(Criteria.where("id").`is`(id))
-
-        val mongoLeague = mongoOperations.findOne(searchLeagueQuery, MongoLeague::class.java)
-        val mongoTables : List<MongoTable> = mongoOperations.find(Query.query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
-        val teamIds : ArrayList<String> = ArrayList()
-        mongoTables.forEach {
-            teamIds.addAll(it.teams)
-            mongoOperations.remove(it)
+        val league : League = with(League()) {
+            this.id = id
+            this
         }
-        teamIds.forEach { teamDAO.delete(it) }
-        mongoOperations.remove(mongoLeague)
-        return true
+        leagueMongoRepository.delete(getMongoLeagueByExample(league))
+
+        return true;
     }
 
     override fun getByExample(example: League): Collection<League> {
-        val searchLeagueQuery = Query()
-        with(example) {
-            id?.let { searchLeagueQuery.addCriteria( Criteria.where("id").`is`(it) ) }
-            ShortName?.let { searchLeagueQuery.addCriteria(Criteria.where("ShortName").`is`(it) ) }
-            Year?.let { searchLeagueQuery.addCriteria(Criteria.where("Year").`is`(it) ) }
-            Name?.let { searchLeagueQuery.addCriteria(Criteria.where("Name").`is`(it) ) }
-        }
-        val mongoLeagues : Iterable<MongoLeague> = mongoOperations.find(searchLeagueQuery, MongoLeague::class.java)
-        return mongoLeagues.map { convertToLeague(it, example.MatchDay) }
+       return getMongoLeagueByExample(example).map() { convertMongoLeagueToLeague(it) }
     }
 
-    private fun convertToLeague(mongoLeague : MongoLeague, idMatchDay : Int?) : League {
-        val mongoTables : List<MongoTable> = mongoOperations.find(Query(Criteria.where("id").`in`(mongoLeague.tableIds)), MongoTable::class.java)
-        var table : MongoTable? = null
-        if (idMatchDay == null) {
-            table = Collections.max(mongoTables) { t1, t2 -> t1.matchDay - t2.matchDay }
-        }
-        else {
-            table = mongoTables.filter { it.matchDay == idMatchDay }.first()
-        }
+    private fun convertMongoLeagueToLeague(mongoLeague : MongoLeague) : League
+    {
         return with(League()) {
-            this.id = mongoLeague.id
+            id = mongoLeague.iD
             Name = mongoLeague.name
             Year = mongoLeague.year
             ShortName = mongoLeague.shortName
+            MatchDay = mongoLeague.matchday
             ToursPlayed = mongoLeague.toursPlayed
-            MatchDay = table!!.matchDay
-            Teams = table!!.teams.map { teamDAO.getById(it)!! }
+            Teams = mongoLeague.teams
             this
         }
     }
 
-    open class MongoLeague {
-        var id: String? = null
-            get
-            set
+    fun getMongoLeagueByExample(example: League): Collection<MongoLeague> {
+        val mongoLeague : MongoLeague = with(MongoLeague()) {
+            iD = example.id
+            name = example.Name
+            year = example.Year
+            shortName = example.ShortName
+            toursPlayed = example.ToursPlayed
+            matchday = example.MatchDay
+            this
+        }
 
-        var name: String? = null
-            get
-            set
-
-        var year: Int? = null
-            get
-            set
-
-        var shortName: String? = null
-            get
-            set
-
-        var toursPlayed: Int? = null
-            get
-            set
-
-        var tableIds: ArrayList<String> = ArrayList()
-            get
-            set
-    }
-
-    open class MongoTable {
-        var id: String? = null
-            get
-            set
-
-        var matchDay: Int = 1
-            get
-            set
-
-        var teams: List<String> = ArrayList()
-            get
-            set
+        return leagueMongoRepository.findAll(Example.of(mongoLeague))
     }
 }

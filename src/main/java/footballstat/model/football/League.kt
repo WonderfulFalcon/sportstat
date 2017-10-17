@@ -8,7 +8,7 @@ class League
         get
         set
 
-    var MatchDay : Int = 1
+    var MatchDay : Int? = 1
         get
         set
 
@@ -28,7 +28,7 @@ class League
         get
         set
 
-    var Teams: List<Team> = ArrayList()
+    var Teams: List<Team>? = ArrayList()
         get
         set
 }
