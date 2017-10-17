@@ -1,6 +1,7 @@
 package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
+import footballstat.database.dao.DAO
 import footballstat.model.football.League
 import footballstat.model.football.LeagueInfo
 import footballstat.model.football.Match
@@ -11,6 +12,7 @@ import org.apache.log4j.spi.LoggerFactory
 import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.util.*
 
 class LeaguesProvider
 {
@@ -55,4 +57,33 @@ class LeaguesProvider
             return json.matches(request.getResponse(url)).toSet()
         }
     }
+
+//    @Component
+//    open class InternalLeaguesProvider : DataItems.Leagues
+//    {
+//        @Autowired
+//        lateinit var leagueDAO : DAO<League>
+//
+//        @Autowired
+//        lateinit var matchDAO : DAO<Match>
+//
+//        override fun getAvailableLeagues(): List<LeagueInfo> {
+//            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        }
+//
+//        override fun getLeague(leagueId: String, matchDay: Int): League {
+//            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        }
+//
+//        override fun getMatches(leagueId: String, matchDay: Int): Set<Match> {
+//            return HashSet(matchDAO.getByExample(
+//                    with(Match())
+//                    {
+//
+//                        this
+//                    }
+//            ))
+//        }
+//
+//    }
 }

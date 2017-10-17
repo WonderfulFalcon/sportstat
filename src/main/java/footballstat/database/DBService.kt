@@ -39,7 +39,6 @@ open class DBService
     @ManagedOperation(description = "init database from footbal-data-org")
     fun initDB() {
         try {
-
             sportDataProvider.getAvailableLeagues().forEach {
                 loadLeague(it)
                 loadMatches(it)
@@ -56,9 +55,6 @@ open class DBService
         logger.info("_______________ START LOAD LIAGUE ${leagueInfo.ShortName}")
         var league : League? = null
         var matchDay = 1
-        if ("436" == leagueInfo.Id) {
-            matchDay = 12
-        }
         val teamIds : MutableSet<String> = HashSet<String>()
         while (matchDay <= leagueInfo.ToursPlayed) {
             league = getFilledLeague(getLeague(leagueInfo.Id, matchDay), leagueInfo)
@@ -126,7 +122,9 @@ open class DBService
     private fun getMatch(leagueId : String, matchday : Int) : Set<Match> {
         try {
             Thread.sleep(3000)
-            return sportDataProvider.getMatches(leagueId, matchday)
+            val res = sportDataProvider.getMatches(leagueId, matchday)
+            res.forEach { it.leagueId = leagueId }
+            return res
         }
         catch (e: Exception) {
             logger.warn("Fail to load MatchSet with id=$leagueId matchday=$matchday. Exception.message = ${e.message}. Exception.type = ${e.javaClass.name}")
