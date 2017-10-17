@@ -101,6 +101,7 @@ open class DBService
 
     private fun getTeamSquad(teamId: Int) : Collection<Player> {
         try {
+            Thread.sleep(3000)
             return sportDataProvider.getTeamSquad(teamId)
         }
         catch (e: Exception) {
@@ -112,6 +113,7 @@ open class DBService
 
     private fun getLeague(leagueId : String, matchday : Int) : League {
         try {
+            Thread.sleep(3000)
             return sportDataProvider.getLeague(leagueId, matchday)
         }
         catch (e: Exception) {
@@ -123,6 +125,7 @@ open class DBService
 
     private fun getMatch(leagueId : String, matchday : Int) : Set<Match> {
         try {
+            Thread.sleep(3000)
             return sportDataProvider.getMatches(leagueId, matchday)
         }
         catch (e: Exception) {

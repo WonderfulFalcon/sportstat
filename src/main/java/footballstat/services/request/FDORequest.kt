@@ -13,7 +13,6 @@ class FDORequest : RequestProvider
 
     override fun getResponse(requestUrl: String): String
     {
-//        Thread.sleep(3000)
         val request = Request.Get(requestUrl)
         request.addHeader("X-Auth-Token", config.xAuthToken)
         return request.execute().returnContent().asString()
