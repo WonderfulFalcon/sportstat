@@ -124,6 +124,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/*DAOTest</exclude>
+                        <exclude>RemoteDBTest</exclude>
                     </excludes>
                 </configuration>
             </plugin>
