@@ -8,8 +8,6 @@ import footballstat.model.football.Match
 import footballstat.services.DataItems
 import footballstat.services.json.LeagueParser
 import footballstat.services.request.RequestProvider
-import org.apache.log4j.spi.LoggerFactory
-import org.slf4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.util.*
@@ -58,32 +56,49 @@ class LeaguesProvider
         }
     }
 
-//    @Component
-//    open class InternalLeaguesProvider : DataItems.Leagues
-//    {
-//        @Autowired
-//        lateinit var leagueDAO : DAO<League>
-//
-//        @Autowired
-//        lateinit var matchDAO : DAO<Match>
-//
-//        override fun getAvailableLeagues(): List<LeagueInfo> {
-//            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//        override fun getLeague(leagueId: String, matchDay: Int): League {
-//            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//        override fun getMatches(leagueId: String, matchDay: Int): Set<Match> {
-//            return HashSet(matchDAO.getByExample(
-//                    with(Match())
-//                    {
-//
-//                        this
-//                    }
-//            ))
-//        }
-//
-//    }
+    @Component
+    open class InternalLeaguesProvider : DataItems.Leagues
+    {
+        @Autowired
+        lateinit var leagueDAO : DAO<League>
+
+        @Autowired
+        lateinit var matchDAO : DAO<Match>
+
+        override fun getAvailableLeagues(): List<LeagueInfo> {
+            val leagues = leagueDAO.getByExample(
+                    with(League())
+                    {
+                        this.MatchDay = 1
+                        this
+                    }
+            )
+            return leagues.map {
+                LeagueInfo(it.id!!, it.Name!!, it.ToursPlayed!!, it.ShortName!!, it.Year!!)
+            }
+        }
+
+        override fun getLeague(leagueId: String, matchDay: Int): League {
+            return leagueDAO.getByExample(
+                    with(League())
+                    {
+                        this.id = leagueId
+                        this.MatchDay = matchDay
+                        this
+                    }
+            ).first()
+        }
+
+        override fun getMatches(leagueId: String, matchDay: Int): Set<Match> {
+            return HashSet(matchDAO.getByExample(
+                    with(Match())
+                    {
+                        this.leagueId = leagueId
+                        this.matchDay = matchDay
+                        this
+                    }
+            ))
+        }
+
+    }
 }

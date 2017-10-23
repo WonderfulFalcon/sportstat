@@ -1,6 +1,7 @@
 package footballstat.services.providers
 
 import footballstat.config.business.FDOConfig
+import footballstat.database.dao.mongodb.MongoTeamDAO
 import footballstat.model.football.Player
 import footballstat.services.DataItems
 import footballstat.services.request.FDORequest
@@ -49,5 +50,18 @@ class TeamsProvider
                 this
             }
         }
+    }
+
+    @Component
+    open class InternalTeamProvider : DataItems.Teams
+    {
+        @Autowired
+        lateinit var teamSquadDAO : MongoTeamDAO
+
+        override fun getTeamSquad(teamId: Int): Collection<Player>
+        {
+            return teamSquadDAO.getById(teamId.toString())?.Players!!
+        }
+
     }
 }

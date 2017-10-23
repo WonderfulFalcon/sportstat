@@ -30,7 +30,6 @@ open class LeagueDAO : DAO<League> {
 
     override fun getAll(): Collection<League> {
         return getByExample(with(League()) {
-            this.id = id
             this.MatchDay = 1
             this
         })

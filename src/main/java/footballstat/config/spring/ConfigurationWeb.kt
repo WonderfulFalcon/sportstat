@@ -16,10 +16,10 @@ open class ConfigurationWeb
     open fun countries() : DataItems.Countries = CountryProvider.InternalCountryProvider()
 
     @Bean
-    open fun teams() : DataItems.Teams = TeamsProvider.ExternalTeamsProvider()
+    open fun teams() : DataItems.Teams = TeamsProvider.InternalTeamProvider()
 
     @Bean
-    open fun leagues() : DataItems.Leagues = LeaguesProvider.ExternalLeaguesProvider()
+    open fun leagues() : DataItems.Leagues = LeaguesProvider.InternalLeaguesProvider()
 
     @Bean
     open fun errorPageFilter() : ErrorPageFilter = ErrorPageFilter()
