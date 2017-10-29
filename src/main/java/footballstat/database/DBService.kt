@@ -3,7 +3,6 @@ package footballstat.database
 
 import footballstat.database.dao.DAO
 import footballstat.database.dao.entity.MongoTeam
-import footballstat.database.dao.mongodb.TeamMongoMongoRepository
 import footballstat.model.football.*
 import footballstat.services.SportData
 import org.slf4j.Logger
