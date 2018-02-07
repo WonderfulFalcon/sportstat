@@ -22,7 +22,8 @@ open class ConfigurationWeb
     open fun countries() : DataItems.Countries = CountryProvider.InternalCountryProvider()
 
     @Bean
-    open fun teams() : DataItems.Teams {
+    open fun teams() : DataItems.Teams
+    {
         if (datasource == "db")
         {
             return TeamsProvider.InternalTeamProvider()
@@ -31,12 +32,13 @@ open class ConfigurationWeb
     }
 
     @Bean
-    open fun leagues() : DataItems.Leagues {
+    open fun leagues() : DataItems.Leagues
+    {
         if (datasource == "db")
         {
             return LeaguesProvider.InternalLeaguesProvider()
         }
-        return LeaguesProvider.InternalLeaguesProvider()
+        return LeaguesProvider.ExternalLeaguesProvider()
     }
 
     @Bean

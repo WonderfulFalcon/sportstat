@@ -23,8 +23,9 @@ open class FDOConfig
     var players : String = ""
     var matches : String = ""
 
-    var matchDayFilter : String =""
+    var matchDayFilter : String = ""
     var availableLeagueIds : Set<String> = HashSet()
+    var defaultSeason : String = ""
 
     var maxRequestsPerMinute : Int = 50
 }

@@ -28,7 +28,7 @@ class LeaguesProvider
 
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
-            val url = with(config) { "$apiUrl/$apiVersion/$competitions/?season=2016" } //HACK: FIX LATER
+            val url = with(config) { "$apiUrl/$apiVersion/$competitions/?season=$defaultSeason" }
 
             return json.availableLeagues(request.getResponse(url)).filter {
                 it -> config.availableLeagueIds.contains(it.Id)
@@ -37,7 +37,8 @@ class LeaguesProvider
 
         override fun getLeague(leagueId: String, matchDay: Int) : League
         {
-            val url = with(config) {
+            val url = with(config)
+            {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$leagueTable/?$matchDayFilter=$matchDay"
             }
 
@@ -49,7 +50,8 @@ class LeaguesProvider
 
         override fun getMatches(leagueId: String, matchDay: Int): Set<Match>
         {
-            val url = with(config) {
+            val url = with(config)
+            {
                 "$apiUrl/$apiVersion/$competitions/$leagueId/$matches/?$matchDayFilter=$matchDay"
             }
             return json.matches(request.getResponse(url)).toSet()
@@ -65,7 +67,8 @@ class LeaguesProvider
         @Autowired
         lateinit var matchDAO : DAO<Match>
 
-        override fun getAvailableLeagues(): List<LeagueInfo> {
+        override fun getAvailableLeagues(): List<LeagueInfo>
+        {
             val leagues = leagueDAO.getByExample(
                     with(League())
                     {
@@ -78,7 +81,8 @@ class LeaguesProvider
             }
         }
 
-        override fun getLeague(leagueId: String, matchDay: Int): League {
+        override fun getLeague(leagueId: String, matchDay: Int): League
+        {
             return leagueDAO.getByExample(
                     with(League())
                     {

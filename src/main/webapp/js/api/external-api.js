@@ -1,6 +1,7 @@
 import { loadTablesAction, loadMatchesAction, loadLeaguesAction, loadPlayersAction, currentSelectedLeague } from "../actions/actions";
 import { store } from "../main";
 
+
 export function loadLeague(leagueId, matchDay) {
     if (leagueId && matchDay) {
         let data = new FormData();
@@ -41,8 +42,10 @@ export function loadAvailableLeagues() {
             })
             .then(availableLeagues => {
                 const firstLeague = availableLeagues[0];
-                store.dispatch(currentSelectedLeague(firstLeague));
-                loadLeague(firstLeague.id, firstLeague.toursPlayed);
+                if (firstLeague) {
+                    store.dispatch(currentSelectedLeague(firstLeague));
+                    loadLeague(firstLeague.id, firstLeague.toursPlayed);
+                }
             })
     }
 }
