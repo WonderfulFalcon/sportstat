@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var EncodingPlugin = require('webpack-encoding-plugin');
 
 module.exports = {
     entry : {
@@ -38,6 +39,7 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('style.css'),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new EncodingPlugin({encoding: 'UTF-16'})
     ]
 };

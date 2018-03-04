@@ -13,8 +13,8 @@ export function selectLeague(selectedLeague) {
 }
 
 export function initLocalize() {
-    const languages = ['en', 'ru'];
-    store.dispatch(initialize(languages, { defaultLanguage: 'en' }));
+    const languages = ['England', 'Russia'];
+    store.dispatch(initialize(languages, { defaultLanguage: 'England' }));
 }
 
 export function initLocalizeData() {

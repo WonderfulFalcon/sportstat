@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LeagueSelectContainer from './LeagueSelectContainer';
 import MatchDayContainer from './MatchDayContainer';
 import HomeAwayContainer from './HomeAwayContainer';
+import LocalizeBoxContainer from './LocalizeBoxContainer';
 
 class ControlsPanel extends Component {
     render () {
@@ -13,6 +14,7 @@ class ControlsPanel extends Component {
                     <LeagueSelectContainer availableLeagues={this.props.availableLeagues} />
                     <MatchDayContainer availableLeagues={this.props.availableLeagues} />
                     <HomeAwayContainer />
+                    <LocalizeBoxContainer />
                 </div>}
             </div>
         )

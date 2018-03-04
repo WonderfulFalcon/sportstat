@@ -44,6 +44,7 @@
     "redux-devtools": "^3.4.0",
     "style-loader": "^0.18.2",
     "underscore": "^1.8.3",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "webpack-encoding-plugin": "^0.2.1"
   }
 }

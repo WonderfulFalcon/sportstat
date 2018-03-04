@@ -5,10 +5,6 @@ import {isEmpty} from 'underscore';
 import TeamName from './league/TeamName';
 
 export default class TeamPlayers extends Component {
-    static logoClass (country) {
-        return "flag-" + country;
-    }
-
     isShowPlayers () {
         return !isEmpty(this.props.currentSelectedTeam) &&
             this.props.teamPlayers.teamPlayers &&
@@ -27,8 +23,8 @@ export default class TeamPlayers extends Component {
                             <tbody>
                                 {this.props.teamPlayers.teamPlayers.map((player, index) =>
                                     <tr key={index}>
-                                        <td className="player-country">
-                                            <i className={TeamPlayers.logoClass(player.country)}/>
+                                        <td>
+                                            <i className={logoClass(player.country)}/>
                                         </td>
                                         <td>{player.name}</td>
                                         <td>{player.number}</td>
@@ -41,6 +37,10 @@ export default class TeamPlayers extends Component {
             </div>
         )
     }
+}
+
+export function logoClass (country) {
+    return "flag-" + country;
 }
 
 TeamPlayers.propTypes = {
