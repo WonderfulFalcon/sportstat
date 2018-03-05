@@ -28,6 +28,7 @@ class League
         get
         set
 
+    //почему я тут (и на других полях) null позволил оставлять ? Надо это поправить, если возможно
     var Teams: List<Team>? = ArrayList()
         get
         set

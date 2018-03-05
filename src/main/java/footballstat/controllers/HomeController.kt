@@ -1,9 +1,6 @@
 package footballstat.controllers
 
-import footballstat.model.football.League
-import footballstat.model.football.LeagueInfo
-import footballstat.model.football.Match
-import footballstat.model.football.Player
+import footballstat.model.football.*
 import footballstat.services.SportData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -35,7 +32,7 @@ open class HomeController
     @PostMapping(value = "/league")
     @ResponseBody
     open fun league(@RequestParam("leagueId", required = true) leagueId : String,
-                         @RequestParam("matchDay", required = true) matchDay : Int) : League
+                    @RequestParam("matchDay", required = true) matchDay : Int) : League
     {
         return sportData.getLeague(leagueId, matchDay)
     }
@@ -53,5 +50,13 @@ open class HomeController
                            @RequestParam("matchDay", required = true) matchDay: Int) : Set<Match>
     {
         return sportData.getMatches(leagueId, matchDay);
+    }
+
+    @PostMapping(value = "/lastMatchesByTeams")
+    @ResponseBody
+    open fun leagueLastMatchesByTeams(@RequestParam("leagueId", required = true) leagueId: String,
+                                      @RequestParam("matchesCount", required = false) matchesCount: Int = 5) : List<TeamForm>
+    {
+        return sportData.getLeagueLastMatchesByTeams(leagueId, matchesCount);
     }
 }

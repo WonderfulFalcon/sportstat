@@ -69,6 +69,7 @@ class LeaguesProvider
 
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
+            //Здесь потенциальная БАГА - что, если у лиги нет MatchDay = 1 ??? Глупо, странно, но вдруг
             val leagues = leagueDAO.getByExample(
                     with(League())
                     {
