@@ -128,6 +128,49 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+
+                <executions>
+                    <execution>
+                        <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <!-- optional: default phase is "generate-resources" -->
+                        <phase>generate-resources</phase>
+                    </execution>
+
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+
+                        <phase>generate-resources</phase>
+
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>webpack build</id>
+                        <goals>
+                            <goal>webpack</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <nodeVersion>v6.11.2</nodeVersion>
+                    <npmVersion>3.10.10</npmVersion>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
