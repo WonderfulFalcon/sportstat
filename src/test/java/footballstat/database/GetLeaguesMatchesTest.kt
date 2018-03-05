@@ -1,6 +1,7 @@
 package footballstat.database
 
 import footballstat.services.SportData
+import org.codehaus.jackson.map.SerializationConfig
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,6 +26,7 @@ class GetLeaguesMatchesTest {
     @Test
     fun getLeaguesMatchesTest()
     {
-        //Assert.assertEquals(expect, objectMapper.writeValueAsString(sportData.getLeagueLastMatchesByTeams("426", 5)))
+        objectMapper.configure(SerializationConfig.Feature.SORT_PROPERTIES_ALPHABETICALLY, true);
+        Assert.assertEquals(expect, objectMapper.writeValueAsString(sportData.getLeagueLastMatchesByTeams("426", 5)))
     }
 }
