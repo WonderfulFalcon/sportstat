@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import TeamName from './TeamName';
+import HistoryVidget from './HistoryVidget';
 
 export default class Team extends Component {
     getStyle (teamId) {
@@ -40,6 +41,7 @@ export default class Team extends Component {
                 <td><span>{Team.checkedValue(table.goalsAgainst)}</span></td>
                 <td><span>{Team.checkedValue(table.goalsDifference)}</span></td>
                 <td><span><b>{Team.checkedValue(table.points)}</b></span></td>
+                <td><HistoryVidget history={this.props.teamHistory} /></td>
             </tr>
         );
     }
