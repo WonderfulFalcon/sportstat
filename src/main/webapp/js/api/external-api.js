@@ -1,4 +1,4 @@
-import { loadTablesAction, loadMatchesAction, loadLeaguesAction, loadPlayersAction, currentSelectedLeague } from "../actions/actions";
+import { loadTablesAction, loadMatchesAction, loadLeaguesAction, loadPlayersAction, currentSelectedLeague, loadLeagueHistory } from "../actions/actions";
 import { store } from "../main";
 
 
@@ -13,8 +13,23 @@ export function loadLeague(leagueId, matchDay) {
             .then(league => {
                     store.dispatch(loadTablesAction(league));
                     loadMatches(league.id, league.matchDay);
+                    loadHistory(league.id, 5);
                 }
             );
+    }
+}
+
+export function loadHistory(leagueId, matchesCount) {
+    if (leagueId) {
+        let data = new FormData();
+        data.append("leagueId", leagueId);
+        data.append("matchesCount", matchesCount);
+
+        fetch('/lastMatchesByTeams', { method : 'post', body: data })
+            .then(response => response.json())
+            .then(history => {
+                store.dispatch(loadLeagueHistory(history));
+            });
     }
 }
 

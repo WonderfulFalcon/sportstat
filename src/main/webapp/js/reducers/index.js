@@ -7,6 +7,7 @@ import leagueMatches from './leagueMatches';
 import homeAwayState from './homeAwayState';
 import currentSelectedTeam from './currentSelectedTeam';
 import currentSelectedLeague from './currentSelectedLeague';
+import leagueHistory from './leagueHistory';
 
 import { localeReducer as locale} from 'react-localize-redux';
 
@@ -18,5 +19,6 @@ export default combineReducers({
     homeAwayState,
     currentSelectedTeam,
     currentSelectedLeague,
-    locale
+    locale,
+    leagueHistory
 });

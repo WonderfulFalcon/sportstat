@@ -11,6 +11,10 @@ export function loadTablesAction(json) {
     return {type : "LOAD_TABLES", payload: json };
 }
 
+export function loadLeagueHistory(json) {
+    return {type : "LOAD_HISTORY", payload: json};
+}
+
 export function loadMatchesAction(json) {
     return {type : "LOAD_MATCHES", payload: json };
 }
