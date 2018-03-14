@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
     return {
         leagueTable : state.leagueTable,
         homeAwayState : state.homeAwayState,
-        selectedLeague : state.currentSelectedLeague
+        selectedLeague : state.currentSelectedLeague,
+        leagueHistory : state.leagueHistory
     }
 };
 

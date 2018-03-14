@@ -49,5 +49,6 @@ Team.propTypes = {
     currentSelectedTeam : PropTypes.object,
     homeAwayState : PropTypes.oneOf(['Home', 'Away', 'All']),
     team : PropTypes.object,
-    position : PropTypes.number
+    position : PropTypes.number,
+    teamHistory : PropTypes.object
 };

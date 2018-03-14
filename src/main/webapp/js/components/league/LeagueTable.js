@@ -19,6 +19,7 @@ export default class LeagueTable extends Component {
                         <LeagueTableBody
                             teams={this.props.leagueTable.teams}
                             homeAwayState={this.props.homeAwayState}
+                            history={this.props.leagueHistory}
                         />
                     </table>
                 }
@@ -30,5 +31,6 @@ export default class LeagueTable extends Component {
 LeagueTable.propTypes = {
     leagueTable : PropTypes.object,
     homeAwayState : PropTypes.oneOf(['Home', 'Away', 'All']),
-    selectedLeague : PropTypes.object
+    selectedLeague : PropTypes.object,
+    history : PropTypes.array
 };
