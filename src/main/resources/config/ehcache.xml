@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+         updateCheck="true"
+         monitoring="autodetect"
+         dynamicConfig="true"
+         maxBytesLocalHeap="100M"
+         maxBytesLocalDisk="1G">
+
+    <defaultCache
+            maxBytesLocalHeap="100M"
+            maxBytesLocalDisk="1G"
+            timeToIdleSeconds="3600"
+            timeToLiveSeconds="0"
+            maxElementsInMemory="1000">
+    </defaultCache>
+
+    <cache name="leagues"
+           eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off"
+           maxBytesLocalHeap="100M"
+           maxBytesLocalDisk="1G">
+    </cache>
+
+</ehcache>

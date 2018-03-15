@@ -3,6 +3,7 @@ package footballstat.services
 import footballstat.model.football.*
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -25,6 +26,7 @@ open class SportData : DataItems.Leagues, DataItems.Teams
         return teams.getTeamSquad(teamId)
     }
 
+    @Cacheable("leagues")
     override fun getLeague(leagueId: String, matchDay: Int) : League
     {
         return leagues.getLeague(leagueId, matchDay)
@@ -78,7 +80,7 @@ open class SportData : DataItems.Leagues, DataItems.Teams
     /**
      * Return tours matches, sorted by MatchDay (last match .. old match)
      */
-    fun getToursMatches(league : League) : List<Set<Match>>
+    private fun getToursMatches(league : League) : List<Set<Match>>
     {
         val tourMatches : ArrayList<Set<Match>> = ArrayList()
         val allMatches : Set<Match> = getMatches(league.id!!)
