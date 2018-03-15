@@ -56,6 +56,10 @@ class LeaguesProvider
             }
             return json.matches(request.getResponse(url)).toSet()
         }
+
+        override fun getMatches(leagueId: String): Set<Match> {
+            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
     }
 
     @Component
@@ -105,5 +109,14 @@ class LeaguesProvider
             ))
         }
 
+        override fun getMatches(leagueId: String): Set<Match> {
+            return HashSet(matchDAO.getByExample(
+                    with(Match())
+                    {
+                        this.leagueId = leagueId
+                        this
+                    }
+            ))
+        }
     }
 }

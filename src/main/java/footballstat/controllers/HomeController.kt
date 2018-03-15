@@ -52,11 +52,11 @@ open class HomeController
         return sportData.getMatches(leagueId, matchDay);
     }
 
-    @PostMapping(value = "/lastMatchesByTeams")
+    @PostMapping(value = "/teamsForm")
     @ResponseBody
-    open fun leagueLastMatchesByTeams(@RequestParam("leagueId", required = true) leagueId: String,
+    open fun teamsForm(@RequestParam("leagueId", required = true) leagueId: String,
                                       @RequestParam("matchesCount", required = false) matchesCount: Int = 5) : List<TeamForm>
     {
-        return sportData.getLeagueLastMatchesByTeams(leagueId, matchesCount);
+        return sportData.getTeamsForm(leagueId, matchesCount);
     }
 }

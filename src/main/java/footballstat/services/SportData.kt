@@ -35,12 +35,16 @@ open class SportData : DataItems.Leagues, DataItems.Teams
         return leagues.getMatches(leagueId, matchDay)
     }
 
+    override fun getMatches(leagueId: String): Set<Match> {
+        return leagues.getMatches(leagueId);
+    }
+
     fun getLeague(leagueId: String) : League
     {
         return leagues.getLeague(leagueId, 1)
     }
 
-    fun getLeagueLastMatchesByTeams(leagueId: String, matchesCount: Int) : List<TeamForm>
+    fun getTeamsForm(leagueId: String, matchesCount: Int) : List<TeamForm>
     {
         val teamForms : ArrayList<TeamForm> = ArrayList()
 
@@ -77,11 +81,16 @@ open class SportData : DataItems.Leagues, DataItems.Teams
     fun getToursMatches(league : League) : List<Set<Match>>
     {
         val tourMatches : ArrayList<Set<Match>> = ArrayList()
-        var i : Int = league.ToursPlayed ?: 0
-        while (i != 0)
+        val allMatches : Set<Match> = getMatches(league.id!!)
+
+        var matchDay : Int = league.ToursPlayed ?: 0
+
+        while (matchDay != 0)
         {
-            tourMatches.add(leagues.getMatches(league.id!!, i))
-            i--
+            tourMatches.add(allMatches
+                    .filter { it.matchDay == matchDay }
+                    .toSet())
+            matchDay--
         }
         return tourMatches;
     }

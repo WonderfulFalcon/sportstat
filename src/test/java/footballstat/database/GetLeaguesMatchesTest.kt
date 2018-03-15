@@ -27,6 +27,6 @@ class GetLeaguesMatchesTest {
     fun getLeaguesMatchesTest()
     {
         objectMapper.configure(SerializationConfig.Feature.SORT_PROPERTIES_ALPHABETICALLY, true);
-        Assert.assertEquals(expect, objectMapper.writeValueAsString(sportData.getLeagueLastMatchesByTeams("426", 5)))
+        Assert.assertEquals(expect, objectMapper.writeValueAsString(sportData.getTeamsForm("426", 5)))
     }
 }

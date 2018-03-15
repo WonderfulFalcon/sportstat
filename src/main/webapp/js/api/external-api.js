@@ -25,7 +25,7 @@ export function loadHistory(leagueId, matchesCount) {
         data.append("leagueId", leagueId);
         data.append("matchesCount", matchesCount);
 
-        fetch('/lastMatchesByTeams', { method : 'post', body: data })
+        fetch('/teamsForm', { method : 'post', body: data })
             .then(response => response.json())
             .then(history => {
                 store.dispatch(loadLeagueHistory(history));
