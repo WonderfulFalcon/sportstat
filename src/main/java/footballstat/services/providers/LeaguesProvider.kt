@@ -9,6 +9,7 @@ import footballstat.services.DataItems
 import footballstat.services.json.LeagueParser
 import footballstat.services.request.RequestProvider
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -71,6 +72,7 @@ class LeaguesProvider
         @Autowired
         lateinit var matchDAO : DAO<Match>
 
+        @Cacheable(cacheNames = arrayOf("availableLeagues"))
         override fun getAvailableLeagues(): List<LeagueInfo>
         {
             //Здесь потенциальная БАГА - что, если у лиги нет MatchDay = 1 ??? Глупо, странно, но вдруг
@@ -86,6 +88,7 @@ class LeaguesProvider
             }
         }
 
+        @Cacheable(cacheNames = arrayOf("leagues"))
         override fun getLeague(leagueId: String, matchDay: Int): League
         {
             return leagueDAO.getByExample(
@@ -98,6 +101,7 @@ class LeaguesProvider
             ).first()
         }
 
+        @Cacheable(cacheNames = arrayOf("tourMatches"))
         override fun getMatches(leagueId: String, matchDay: Int): Set<Match> {
             return HashSet(matchDAO.getByExample(
                     with(Match())
@@ -109,6 +113,7 @@ class LeaguesProvider
             ))
         }
 
+        @Cacheable(cacheNames = arrayOf("allMatches"))
         override fun getMatches(leagueId: String): Set<Match> {
             return HashSet(matchDAO.getByExample(
                     with(Match())
