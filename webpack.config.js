@@ -1,19 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var EncodingPlugin = require('webpack-encoding-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const EncodingPlugin = require('webpack-encoding-plugin');
 
-module.exports = {
-    entry : {
-        bundle : path.resolve(__dirname, './src/main/webapp/js/main.js')
-    },
+const TARGET = process.env.npm_lifecycle_event;
+const PATHS = {
+    source: path.resolve(__dirname, './src/main/webapp/js/main.js'),
+    output: path.resolve(__dirname, 'src/main/webapp/dist/'),
+};
+
+const baseConfig = {
+    entry: PATHS.source,
     output : {
-        path: path.resolve(__dirname, 'src/main/webapp/dist/'),
+        path: PATHS.output,
         filename: '[name].js',
-        library: 'home'
     },
-    devtool : "source-map",
     module: {
         rules: [
             {
@@ -39,7 +42,31 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('style.css'),
-        new webpack.HotModuleReplacementPlugin(),
         new EncodingPlugin({encoding: 'UTF-16'})
     ]
+
 };
+
+const devConfig = {
+    devtool: 'source-map',
+    devServer: {
+        port: 9090,
+        proxy: {
+            '/': {
+                target: 'http://localhost:8080',
+                secure: false,
+                prependPath: false
+            }
+        },
+    historyApiFallback: true,
+    publicPath: 'http://localhost:9090/dist/',
+    },
+};
+
+if (TARGET === 'start') {
+    module.exports = merge(baseConfig, devConfig);
+}
+
+if (TARGET === 'build' || !TARGET) {
+    module.exports = merge(baseConfig, {});
+}
